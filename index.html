@@ -3,25 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YSB Technologies — L'excellence technologique au service de la performance africaine</title>
-<meta name="description" content="YSB Technologies : société de services numériques à Abidjan, Côte d'Ivoire. Développement digital, Cloud, Cybersécurité, IA et conseil pour les entreprises africaines.">
-<meta name="keywords" content="YSB Technologies, transformation digitale, Afrique, Côte d'Ivoire, Abidjan, développement web, cybersécurité, cloud, intelligence artificielle, infogérance">
+<title>YSB Technologies</title>
+<meta name="description" content="YSB Technologies : digital services company in Abidjan, Côte d'Ivoire.">
 <meta name="author" content="YSB Technologies SARL">
 <meta name="theme-color" content="#0a1d38">
-
-<!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="YSB Technologies — L'excellence technologique au service de la performance africaine">
-<meta property="og:description" content="Solutions technologiques robustes, sécurisées et évolutives, adaptées aux réalités du marché africain.">
-<meta property="og:url" content="https://www.ysbtechno.com">
-<meta property="og:locale" content="fr_CI">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="YSB Technologies">
-<meta name="twitter:description" content="L'excellence technologique au service de la performance africaine.">
-
-<link rel="canonical" href="https://www.ysbtechno.com">
+<meta property="og:title" content="YSB Technologies">
+<meta property="og:url" content="https://ysbtechno.com">
+<link rel="canonical" href="https://ysbtechno.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -510,7 +499,7 @@
   @media (max-width: 768px) {
     section { padding: 80px 24px; }
     .nav-inner { padding: 0 24px; height: 68px; }
-    .nav-center, .nav-phone { display: none; }
+    .nav-center, .nav-phone { display: none; } .lang-toggle { display: none; }
     .hamburger { display: block; }
     .mobile-menu { display: flex; }
     .hero-content { padding: 110px 24px 60px; }
@@ -528,6 +517,30 @@
     .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
     footer { padding: 56px 24px 32px; }
   }
+
+  /* ═══ LANG TOGGLE ═══ */
+  .lang-toggle {
+    font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700;
+    display: flex; align-items: center; border-radius: 6px; overflow: hidden;
+    border: 1.5px solid rgba(255,255,255,0.2); cursor: pointer; transition: border-color 0.3s;
+  }
+  .lang-toggle:hover { border-color: var(--cyan); }
+  nav.scrolled .lang-toggle { border-color: rgba(19,46,82,0.15); }
+  nav.scrolled .lang-toggle:hover { border-color: var(--cyan); }
+  .lang-btn {
+    padding: 6px 12px; background: transparent; border: none; cursor: pointer;
+    font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700;
+    color: rgba(255,255,255,0.5); transition: all 0.3s; letter-spacing: 0.05em;
+  }
+  nav.scrolled .lang-btn { color: rgba(19,46,82,0.4); }
+  .lang-btn.active { background: var(--cyan); color: var(--navy); }
+  .mobile-lang-toggle { display: flex; gap: 12px; margin-top: 16px; }
+  .mobile-lang-btn {
+    font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 700;
+    padding: 10px 24px; border-radius: 8px; border: 2px solid rgba(255,255,255,0.2);
+    background: transparent; color: rgba(255,255,255,0.5); cursor: pointer; transition: all 0.3s;
+  }
+  .mobile-lang-btn.active { background: var(--cyan); color: var(--navy); border-color: var(--cyan); }
 </style>
 </head>
 <body>
@@ -540,16 +553,20 @@
       <span class="nav-brand">YSB Technologies</span>
     </a>
     <ul class="nav-center">
-      <li><a href="#about">À propos</a></li>
-      <li><a href="#values">Valeurs</a></li>
-      <li><a href="#expertise">Expertise</a></li>
-      <li><a href="#method">Approche</a></li>
-      <li><a href="#why">Avantages</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about" data-i18n="nav_about">À propos</a></li>
+      <li><a href="#values" data-i18n="nav_values">Valeurs</a></li>
+      <li><a href="#expertise" data-i18n="nav_expertise">Expertise</a></li>
+      <li><a href="#method" data-i18n="nav_method">Approche</a></li>
+      <li><a href="#why" data-i18n="nav_why">Avantages</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
     </ul>
     <div class="nav-right">
+      <div class="lang-toggle" aria-label="Language selector">
+        <button class="lang-btn active" onclick="switchLang('fr')">FR</button>
+        <button class="lang-btn" onclick="switchLang('en')">EN</button>
+      </div>
       <a href="tel:+2252150015131" class="nav-phone">+225 2150 015 131</a>
-      <a href="#contact" class="nav-cta">Démarrer un projet</a>
+      <a href="#contact" class="nav-cta" data-i18n="nav_cta">Démarrer un projet</a>
     </div>
     <button class="hamburger" aria-label="Ouvrir le menu" onclick="document.querySelector('.mobile-menu').classList.add('open')"><span></span><span></span><span></span></button>
   </div>
@@ -557,12 +574,16 @@
 
 <div class="mobile-menu">
   <button class="mobile-close" aria-label="Fermer le menu" onclick="this.parentElement.classList.remove('open')">&#10005;</button>
-  <a href="#about" onclick="this.parentElement.classList.remove('open')">À propos</a>
-  <a href="#values" onclick="this.parentElement.classList.remove('open')">Valeurs</a>
-  <a href="#expertise" onclick="this.parentElement.classList.remove('open')">Expertise</a>
-  <a href="#method" onclick="this.parentElement.classList.remove('open')">Approche</a>
-  <a href="#why" onclick="this.parentElement.classList.remove('open')">Avantages</a>
-  <a href="#contact" onclick="this.parentElement.classList.remove('open')">Contact</a>
+  <a href="#about" onclick="this.parentElement.classList.remove('open')" data-i18n="nav_about">À propos</a>
+  <a href="#values" onclick="this.parentElement.classList.remove('open')" data-i18n="nav_values">Valeurs</a>
+  <a href="#expertise" onclick="this.parentElement.classList.remove('open')" data-i18n="nav_expertise">Expertise</a>
+  <a href="#method" onclick="this.parentElement.classList.remove('open')" data-i18n="nav_method">Approche</a>
+  <a href="#why" onclick="this.parentElement.classList.remove('open')" data-i18n="nav_why">Avantages</a>
+  <a href="#contact" onclick="this.parentElement.classList.remove('open')" data-i18n="nav_contact">Contact</a>
+  <div class="mobile-lang-toggle">
+    <button class="mobile-lang-btn active" onclick="switchLang('fr'); this.closest('.mobile-menu').classList.remove('open')">FR</button>
+    <button class="mobile-lang-btn" onclick="switchLang('en'); this.closest('.mobile-menu').classList.remove('open')">EN</button>
+  </div>
 </div>
 
 <!-- HERO -->
@@ -576,12 +597,12 @@
   </div>
   <div class="hero-content">
     <div class="hero-text">
-      <div class="hero-tag"><span class="pulse-dot"></span> Abidjan, Côte d'Ivoire — Afrique</div>
-      <h1 class="hero-title">L'excellence<br>technologique au<br>service de la<br><span class="grad">performance africaine</span></h1>
-      <p class="hero-sub">Nous concevons, déployons et opérons des <strong>solutions technologiques robustes, sécurisées et évolutives</strong>, spécifiquement adaptées aux réalités opérationnelles et aux défis de croissance du marché africain.</p>
+      <div class="hero-tag"><span class="pulse-dot"></span> <span data-i18n="hero_tag">Abidjan, Côte d'Ivoire — Afrique</span></div>
+      <h1 class="hero-title" data-i18n-html="hero_title">L'excellence<br>technologique au<br>service de la<br><span class="grad">performance africaine</span></h1>
+      <p class="hero-sub" data-i18n-html="hero_sub">Nous concevons, déployons et opérons des <strong>solutions technologiques robustes, sécurisées et évolutives</strong>, spécifiquement adaptées aux réalités opérationnelles et aux défis de croissance du marché africain.</p>
       <div class="hero-actions">
-        <a href="#expertise" class="btn btn-primary">Découvrir nos services <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <a href="#contact" class="btn btn-outline">Nous contacter</a>
+        <a href="#expertise" class="btn btn-primary" data-i18n-html="hero_btn1">Découvrir nos services <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#contact" class="btn btn-outline" data-i18n="hero_btn2">Nous contacter</a>
       </div>
       <div class="hero-trust">
         <div class="trust-avatars">
@@ -590,14 +611,14 @@
           <div class="trust-avatar ta3">CM</div>
           <div class="trust-avatar ta4">+</div>
         </div>
-        <div class="trust-text"><strong>Entreprises & Institutions</strong><br>nous font déjà confiance</div>
+        <div class="trust-text" data-i18n-html="hero_trust"><strong>Entreprises & Institutions</strong><br>nous font déjà confiance</div>
       </div>
     </div>
     <div class="hero-visual">
       <div class="hero-card-stack">
-        <div class="h-card hc1"><div class="hc-icon ic1">⚡</div><div class="hc-title">Développement Digital</div><div class="hc-desc">Applications web, mobile et desktop sur mesure pour votre écosystème</div><div class="hc-bar"><div class="hc-bar-fill bf1"></div></div></div>
-        <div class="h-card hc2"><div class="hc-icon ic2">🛡️</div><div class="hc-title">Cybersécurité</div><div class="hc-desc">Audit, durcissement et supervision pour protéger vos actifs numériques</div><div class="hc-bar"><div class="hc-bar-fill bf2"></div></div></div>
-        <div class="h-card hc3"><div class="hc-icon ic3">🤖</div><div class="hc-title">Intelligence Artificielle</div><div class="hc-desc">Chatbots, Computer Vision et reconnaissance faciale avancée</div><div class="hc-bar"><div class="hc-bar-fill bf3"></div></div></div>
+        <div class="h-card hc1"><div class="hc-icon ic1">⚡</div><div class="hc-title" data-i18n="hc1_t">Développement Digital</div><div class="hc-desc" data-i18n="hc1_d">Applications web, mobile et desktop sur mesure pour votre écosystème</div><div class="hc-bar"><div class="hc-bar-fill bf1"></div></div></div>
+        <div class="h-card hc2"><div class="hc-icon ic2">🛡️</div><div class="hc-title" data-i18n="hc2_t">Cybersécurité</div><div class="hc-desc" data-i18n="hc2_d">Audit, durcissement et supervision pour protéger vos actifs numériques</div><div class="hc-bar"><div class="hc-bar-fill bf2"></div></div></div>
+        <div class="h-card hc3"><div class="hc-icon ic3">🤖</div><div class="hc-title" data-i18n="hc3_t">Intelligence Artificielle</div><div class="hc-desc" data-i18n="hc3_d">Chatbots, Computer Vision et reconnaissance faciale avancée</div><div class="hc-bar"><div class="hc-bar-fill bf3"></div></div></div>
       </div>
     </div>
   </div>
@@ -605,7 +626,7 @@
 
 <!-- MARQUEE -->
 <div class="marquee-wrap">
-  <div class="marquee-track">
+  <div class="marquee-track" data-i18n-html="marquee">
     <span class="marquee-item">Cloud & Infrastructure</span><span class="marquee-item">Intelligence Artificielle</span><span class="marquee-item">Cybersécurité</span><span class="marquee-item">Développement Web & Mobile</span><span class="marquee-item">Conseil & Stratégie</span><span class="marquee-item">DevOps & Infogérance</span><span class="marquee-item">Télécommunications</span><span class="marquee-item">Support N1/N2/N3</span>
     <span class="marquee-item">Cloud & Infrastructure</span><span class="marquee-item">Intelligence Artificielle</span><span class="marquee-item">Cybersécurité</span><span class="marquee-item">Développement Web & Mobile</span><span class="marquee-item">Conseil & Stratégie</span><span class="marquee-item">DevOps & Infogérance</span><span class="marquee-item">Télécommunications</span><span class="marquee-item">Support N1/N2/N3</span>
   </div>
@@ -614,33 +635,33 @@
 <!-- ABOUT -->
 <section class="about" id="about">
   <div class="section-inner">
-    <div class="section-eyebrow reveal"><span class="eyebrow-line"></span> Qui sommes-nous</div>
+    <div class="section-eyebrow reveal"><span class="eyebrow-line"></span> <span data-i18n="about_ey">Qui sommes-nous</span></div>
     <div class="about-intro">
-      <div class="about-text-main reveal">YSB Technologies est une <strong>société de services numériques</strong> dédiée à l'accompagnement des entreprises et institutions dans leur transformation digitale en <strong>Afrique</strong>.</div>
+      <div class="about-text-main reveal" data-i18n-html="about_main">YSB Technologies est une <strong>société de services numériques</strong> dédiée à l'accompagnement des entreprises et institutions dans leur transformation digitale en <strong>Afrique</strong>.</div>
       <div class="about-text-right reveal reveal-d1">
-        <p>En Afrique, la transformation digitale n'est plus une option, c'est le moteur de notre souveraineté et de notre croissance. Mais pour que cette transformation soit réelle, elle doit reposer sur des fondations inébranlables.</p>
-        <p>Chez YSB Technologies, nous bâtissons ces fondations : des solutions technologiques robustes, sécurisées et évolutives, spécifiquement adaptées aux réalités opérationnelles et aux défis de croissance du marché africain.</p>
+        <p data-i18n="about_p1">En Afrique, la transformation digitale n'est plus une option, c'est le moteur de notre souveraineté et de notre croissance. Mais pour que cette transformation soit réelle, elle doit reposer sur des fondations inébranlables.</p>
+        <p data-i18n="about_p2">Chez YSB Technologies, nous bâtissons ces fondations : des solutions technologiques robustes, sécurisées et évolutives, spécifiquement adaptées aux réalités opérationnelles et aux défis de croissance du marché africain.</p>
       </div>
     </div>
     <div class="about-cards">
-      <div class="acard vision reveal"><div class="acard-stripe"></div><div class="acard-icon">🔭</div><h3>Notre Vision</h3><p>Devenir le partenaire technologique de référence en Afrique et acteur majeur de la transformation digitale du continent. Nous croyons qu'une Afrique numériquement souveraine passe par des infrastructures de classe mondiale, conçues et opérées localement.</p></div>
-      <div class="acard mission reveal reveal-d1"><div class="acard-stripe"></div><div class="acard-icon">🚀</div><h3>Notre Mission</h3><p>Accélérer la performance de nos partenaires en leur apportant des solutions sur mesure, sécurisées et évolutives, ainsi que du conseil de haut niveau. Nous couvrons l'intégralité du cycle de vie de vos projets : de la vision stratégique à la maintenance opérationnelle, en passant par l'ingénierie de pointe.</p></div>
+      <div class="acard vision reveal"><div class="acard-stripe"></div><div class="acard-icon">🔭</div><h3 data-i18n="vis_t">Notre Vision</h3><p data-i18n="vis_p">Devenir le partenaire technologique de référence en Afrique et acteur majeur de la transformation digitale du continent. Nous croyons qu'une Afrique numériquement souveraine passe par des infrastructures de classe mondiale, conçues et opérées localement.</p></div>
+      <div class="acard mission reveal reveal-d1"><div class="acard-stripe"></div><div class="acard-icon">🚀</div><h3 data-i18n="mis_t">Notre Mission</h3><p data-i18n="mis_p">Accélérer la performance de nos partenaires en leur apportant des solutions sur mesure, sécurisées et évolutives, ainsi que du conseil de haut niveau. Nous couvrons l'intégralité du cycle de vie de vos projets : de la vision stratégique à la maintenance opérationnelle, en passant par l'ingénierie de pointe.</p></div>
     </div>
   </div>
 </section>
 
 <!-- VALUES -->
 <section class="values" id="values">
-  <div class="values-bg-text">VALEURS</div>
+  <div class="values-bg-text" data-i18n="val_bg">VALEURS</div>
   <div class="section-inner">
-    <div class="section-eyebrow reveal"><span class="eyebrow-line"></span> Nos valeurs</div>
-    <div class="section-title reveal">Les piliers qui guident<br>chacune de nos actions</div>
-    <p class="section-desc reveal">Plus que de simples principes, nos valeurs sont la promesse que nous faisons à chaque partenaire qui nous fait confiance.</p>
+    <div class="section-eyebrow reveal"><span class="eyebrow-line"></span> <span data-i18n="val_ey">Nos valeurs</span></div>
+    <div class="section-title reveal" data-i18n-html="val_title">Les piliers qui guident<br>chacune de nos actions</div>
+    <p class="section-desc reveal" data-i18n="val_desc">Plus que de simples principes, nos valeurs sont la promesse que nous faisons à chaque partenaire qui nous fait confiance.</p>
     <div class="values-grid">
-      <div class="vcard reveal"><div class="vcard-num">01</div><div class="vcard-icon">💡</div><h3>Innovation</h3><div class="vcard-tags">Dynamisme · Adaptabilité · Futurisme</div><p>Nous ne nous contentons pas d'installer des solutions — nous évoluons au rythme des technologies mondiales pour offrir le meilleur de l'IA et du Cloud à nos partenaires.</p></div>
-      <div class="vcard reveal reveal-d1"><div class="vcard-num">02</div><div class="vcard-icon">🛡️</div><h3>Sécurité & Confiance</h3><div class="vcard-tags">Intégrité · Résilience · Protection · Pérennité</div><p>Nous bâtissons des infrastructures conformes au respect de la protection des données, capables de résister aux cyber menaces et aux contraintes techniques les plus exigeantes.</p></div>
-      <div class="vcard reveal reveal-d2"><div class="vcard-num">03</div><div class="vcard-icon">🎯</div><h3>Excellence dans l'Exécution</h3><div class="vcard-tags">Précision · Fiabilité · Qualité · Professionnalisme</div><p>De la conception à la maintenance, chaque étape du cycle de vie du projet est traitée avec une précision chirurgicale et un souci constant de la qualité.</p></div>
-      <div class="vcard reveal reveal-d3"><div class="vcard-num">04</div><div class="vcard-icon">✨</div><h3>Clarté & Simplicité</h3><div class="vcard-tags">Transparence · Efficacité · Lisibilité</div><p>Nous rendons la technologie complexe simple et accessible pour nos clients. Pas de jargon inutile, juste des résultats concrets et mesurables.</p></div>
+      <div class="vcard reveal"><div class="vcard-num">01</div><div class="vcard-icon">💡</div><h3 data-i18n="v1t">Innovation</h3><div class="vcard-tags" data-i18n="v1g">Dynamisme · Adaptabilité · Futurisme</div><p data-i18n="v1p">Nous ne nous contentons pas d'installer des solutions — nous évoluons au rythme des technologies mondiales pour offrir le meilleur de l'IA et du Cloud à nos partenaires.</p></div>
+      <div class="vcard reveal reveal-d1"><div class="vcard-num">02</div><div class="vcard-icon">🛡️</div><h3 data-i18n="v2t">Sécurité & Confiance</h3><div class="vcard-tags" data-i18n="v2g">Intégrité · Résilience · Protection · Pérennité</div><p data-i18n="v2p">Nous bâtissons des infrastructures conformes au respect de la protection des données, capables de résister aux cyber menaces et aux contraintes techniques les plus exigeantes.</p></div>
+      <div class="vcard reveal reveal-d2"><div class="vcard-num">03</div><div class="vcard-icon">🎯</div><h3 data-i18n="v3t">Excellence dans l'Exécution</h3><div class="vcard-tags" data-i18n="v3g">Précision · Fiabilité · Qualité · Professionnalisme</div><p data-i18n="v3p">De la conception à la maintenance, chaque étape du cycle de vie du projet est traitée avec une précision chirurgicale et un souci constant de la qualité.</p></div>
+      <div class="vcard reveal reveal-d3"><div class="vcard-num">04</div><div class="vcard-icon">✨</div><h3 data-i18n="v4t">Clarté & Simplicité</h3><div class="vcard-tags" data-i18n="v4g">Transparence · Efficacité · Lisibilité</div><p data-i18n="v4p">Nous rendons la technologie complexe simple et accessible pour nos clients. Pas de jargon inutile, juste des résultats concrets et mesurables.</p></div>
     </div>
   </div>
 </section>
@@ -649,16 +670,16 @@
 <section class="expertise" id="expertise">
   <div class="section-inner">
     <div class="expertise-header">
-      <div><div class="section-eyebrow reveal"><span class="eyebrow-line"></span> Nos domaines d'expertise</div><div class="section-title reveal">Des solutions complètes<br>pour chaque défi digital</div></div>
-      <div><p class="section-desc reveal">Nous couvrons l'intégralité du cycle de vie de vos projets technologiques, de la vision stratégique à la maintenance opérationnelle.</p></div>
+      <div><div class="section-eyebrow reveal"><span class="eyebrow-line"></span> <span data-i18n="exp_ey">Nos domaines d'expertise</span></div><div class="section-title reveal" data-i18n-html="exp_title">Des solutions complètes<br>pour chaque défi digital</div></div>
+      <div><p class="section-desc reveal" data-i18n="exp_desc">Nous couvrons l'intégralité du cycle de vie de vos projets technologiques, de la vision stratégique à la maintenance opérationnelle.</p></div>
     </div>
     <div class="expertise-grid">
-      <div class="ecard reveal"><div class="ecard-top"><div class="ecard-icon ei-dev">⚡</div><span class="ecard-num">01</span></div><h3>Développement &<br>Écosystèmes Digitaux</h3><ul class="ecard-list"><li>Logiciels et applications web, mobile et desktop</li><li>Systèmes d'information, portails et back-office</li><li>Intégrations API et connecteurs inter-systèmes</li></ul></div>
-      <div class="ecard reveal reveal-d1"><div class="ecard-top"><div class="ecard-icon ei-infra">☁️</div><span class="ecard-num">02</span></div><h3>Infrastructure, Cloud<br>& Infogérance</h3><ul class="ecard-list"><li>Installation et intégration technique complète</li><li>Hébergement cloud et on-premise avec supervision</li><li>Maintenance préventive et amélioration continue</li></ul></div>
-      <div class="ecard reveal reveal-d2"><div class="ecard-top"><div class="ecard-icon ei-conseil">🧠</div><span class="ecard-num">03</span></div><h3>Conseil &<br>Capital Humain</h3><ul class="ecard-list"><li>AMOA/MOE, architecture et stratégie digitale</li><li>Expertise à la demande : développeurs, DevOps, QA</li><li>Formation technique et assistance sur site</li></ul></div>
-      <div class="ecard reveal"><div class="ecard-top"><div class="ecard-icon ei-telecom">🔒</div><span class="ecard-num">04</span></div><h3>Télécoms &<br>Cybersécurité</h3><ul class="ecard-list"><li>Solutions SI et télécommunications d'entreprise</li><li>Audit de sécurité, contrôle d'accès et durcissement</li><li>Supervision continue et gestion proactive des risques</li></ul></div>
-      <div class="ecard reveal reveal-d1"><div class="ecard-top"><div class="ecard-icon ei-ia">🤖</div><span class="ecard-num">05</span></div><h3>Intelligence Artificielle<br>& Innovation</h3><ul class="ecard-list"><li>Chatbots et assistants virtuels intelligents</li><li>Reconnaissance faciale pour le contrôle d'accès</li><li>Surveillance intelligente et Computer Vision</li></ul></div>
-      <div class="ecard reveal reveal-d2"><div class="ecard-top"><div class="ecard-icon ei-support">🎧</div><span class="ecard-num">06</span></div><h3>Support &<br>Maintenance</h3><ul class="ecard-list"><li>Support multi-niveaux N1, N2 et N3 selon périmètre</li><li>SLA contractuels et monitoring 24/7</li><li>Documentation complète et transfert de compétences</li></ul></div>
+      <div class="ecard reveal"><div class="ecard-top"><div class="ecard-icon ei-dev">⚡</div><span class="ecard-num">01</span></div><h3 data-i18n-html="e1t">Développement &<br>Écosystèmes Digitaux</h3><ul class="ecard-list"><li data-i18n="e1a">Logiciels et applications web, mobile et desktop</li><li data-i18n="e1b">Systèmes d'information, portails et back-office</li><li data-i18n="e1c">Intégrations API et connecteurs inter-systèmes</li></ul></div>
+      <div class="ecard reveal reveal-d1"><div class="ecard-top"><div class="ecard-icon ei-infra">☁️</div><span class="ecard-num">02</span></div><h3 data-i18n-html="e2t">Infrastructure, Cloud<br>& Infogérance</h3><ul class="ecard-list"><li data-i18n="e2a">Installation et intégration technique complète</li><li data-i18n="e2b">Hébergement cloud et on-premise avec supervision</li><li data-i18n="e2c">Maintenance préventive et amélioration continue</li></ul></div>
+      <div class="ecard reveal reveal-d2"><div class="ecard-top"><div class="ecard-icon ei-conseil">🧠</div><span class="ecard-num">03</span></div><h3 data-i18n-html="e3t">Conseil &<br>Capital Humain</h3><ul class="ecard-list"><li data-i18n="e3a">AMOA/MOE, architecture et stratégie digitale</li><li data-i18n="e3b">Expertise à la demande : développeurs, DevOps, QA</li><li data-i18n="e3c">Formation technique et assistance sur site</li></ul></div>
+      <div class="ecard reveal"><div class="ecard-top"><div class="ecard-icon ei-telecom">🔒</div><span class="ecard-num">04</span></div><h3 data-i18n-html="e4t">Télécoms &<br>Cybersécurité</h3><ul class="ecard-list"><li data-i18n="e4a">Solutions SI et télécommunications d'entreprise</li><li data-i18n="e4b">Audit de sécurité, contrôle d'accès et durcissement</li><li data-i18n="e4c">Supervision continue et gestion proactive des risques</li></ul></div>
+      <div class="ecard reveal reveal-d1"><div class="ecard-top"><div class="ecard-icon ei-ia">🤖</div><span class="ecard-num">05</span></div><h3 data-i18n-html="e5t">Intelligence Artificielle<br>& Innovation</h3><ul class="ecard-list"><li data-i18n="e5a">Chatbots et assistants virtuels intelligents</li><li data-i18n="e5b">Reconnaissance faciale pour le contrôle d'accès</li><li data-i18n="e5c">Surveillance intelligente et Computer Vision</li></ul></div>
+      <div class="ecard reveal reveal-d2"><div class="ecard-top"><div class="ecard-icon ei-support">🎧</div><span class="ecard-num">06</span></div><h3 data-i18n-html="e6t">Support &<br>Maintenance</h3><ul class="ecard-list"><li data-i18n="e6a">Support multi-niveaux N1, N2 et N3 selon périmètre</li><li data-i18n="e6b">SLA contractuels et monitoring 24/7</li><li data-i18n="e6c">Documentation complète et transfert de compétences</li></ul></div>
     </div>
   </div>
 </section>
@@ -667,16 +688,16 @@
 <section class="methodology" id="method">
   <div class="section-inner">
     <div style="text-align:center; max-width:680px; margin:0 auto;">
-      <div class="section-eyebrow reveal" style="justify-content:center;"><span class="eyebrow-line"></span> Notre approche</div>
-      <div class="section-title reveal">Un accompagnement<br>de bout en bout</div>
-      <p class="section-desc reveal" style="margin:0 auto;">Chaque projet est unique. Notre méthodologie structurée garantit des résultats à la hauteur de vos ambitions.</p>
+      <div class="section-eyebrow reveal" style="justify-content:center;"><span class="eyebrow-line"></span> <span data-i18n="met_ey">Notre approche</span></div>
+      <div class="section-title reveal" data-i18n-html="met_title">Un accompagnement<br>de bout en bout</div>
+      <p class="section-desc reveal" style="margin:0 auto;" data-i18n="met_desc">Chaque projet est unique. Notre méthodologie structurée garantit des résultats à la hauteur de vos ambitions.</p>
     </div>
     <div class="method-timeline">
-      <div class="mstep reveal"><div class="mstep-icon">🔍</div><div class="mstep-dot"><div class="mstep-dot-inner"></div></div><div><h4>Audit & Analyse</h4><p>Compréhension de votre contexte, vos enjeux métiers et vos contraintes techniques.</p></div></div>
-      <div class="mstep reveal reveal-d1"><div class="mstep-icon">📐</div><div class="mstep-dot"><div class="mstep-dot-inner"></div></div><div><h4>Conception & Architecture</h4><p>Design de solutions robustes, choix technologiques justifiés et validation conjointe.</p></div></div>
-      <div class="mstep reveal reveal-d2"><div class="mstep-icon">🔧</div><div class="mstep-dot"><div class="mstep-dot-inner"></div></div><div><h4>Développement & Intégration</h4><p>Ingénierie de pointe, sprints itératifs et tests rigoureux dans votre écosystème.</p></div></div>
-      <div class="mstep reveal reveal-d3"><div class="mstep-icon">🚀</div><div class="mstep-dot"><div class="mstep-dot-inner"></div></div><div><h4>Déploiement & Formation</h4><p>Mise en production sécurisée, transfert de compétences et accompagnement au changement.</p></div></div>
-      <div class="mstep reveal reveal-d4"><div class="mstep-icon">📊</div><div class="mstep-dot"><div class="mstep-dot-inner"></div></div><div><h4>Opérations & Évolution</h4><p>Maintenance proactive, monitoring continu, SLA garantis et amélioration permanente.</p></div></div>
+      <div class="mstep reveal"><div class="mstep-icon">🔍</div><div class="mstep-dot"><div class="mstep-dot-inner"></div></div><div><h4 data-i18n="s1t">Audit & Analyse</h4><p data-i18n="s1p">Compréhension de votre contexte, vos enjeux métiers et vos contraintes techniques.</p></div></div>
+      <div class="mstep reveal reveal-d1"><div class="mstep-icon">📐</div><div class="mstep-dot"><div class="mstep-dot-inner"></div></div><div><h4 data-i18n="s2t">Conception & Architecture</h4><p data-i18n="s2p">Design de solutions robustes, choix technologiques justifiés et validation conjointe.</p></div></div>
+      <div class="mstep reveal reveal-d2"><div class="mstep-icon">🔧</div><div class="mstep-dot"><div class="mstep-dot-inner"></div></div><div><h4 data-i18n="s3t">Développement & Intégration</h4><p data-i18n="s3p">Ingénierie de pointe, sprints itératifs et tests rigoureux dans votre écosystème.</p></div></div>
+      <div class="mstep reveal reveal-d3"><div class="mstep-icon">🚀</div><div class="mstep-dot"><div class="mstep-dot-inner"></div></div><div><h4 data-i18n="s4t">Déploiement & Formation</h4><p data-i18n="s4p">Mise en production sécurisée, transfert de compétences et accompagnement au changement.</p></div></div>
+      <div class="mstep reveal reveal-d4"><div class="mstep-icon">📊</div><div class="mstep-dot"><div class="mstep-dot-inner"></div></div><div><h4 data-i18n="s5t">Opérations & Évolution</h4><p data-i18n="s5p">Maintenance proactive, monitoring continu, SLA garantis et amélioration permanente.</p></div></div>
     </div>
   </div>
 </section>
@@ -685,15 +706,15 @@
 <section class="why-us" id="why">
   <div class="section-inner">
     <div class="why-header">
-      <div class="section-eyebrow reveal"><span class="eyebrow-line"></span> Pourquoi YSB Technologies</div>
-      <div class="section-title reveal">Votre succès est<br>notre engagement</div>
-      <p class="section-desc reveal">Ce qui nous distingue va au-delà de la technologie — c'est notre approche centrée sur vos résultats.</p>
+      <div class="section-eyebrow reveal"><span class="eyebrow-line"></span> <span data-i18n="why_ey">Pourquoi YSB Technologies</span></div>
+      <div class="section-title reveal" data-i18n-html="why_title">Votre succès est<br>notre engagement</div>
+      <p class="section-desc reveal" data-i18n="why_desc">Ce qui nous distingue va au-delà de la technologie — c'est notre approche centrée sur vos résultats.</p>
     </div>
     <div class="why-grid">
-      <div class="wcard reveal"><div class="wcard-num">01</div><div><h4>Partenariat Durable</h4><p>Nous construisons des relations de confiance à long terme. Au-delà de la prestation, nous investissons dans votre réussite sur la durée.</p></div></div>
-      <div class="wcard reveal reveal-d1"><div class="wcard-num">02</div><div><h4>Exécution Solide & Transparente</h4><p>Reporting régulier, jalons clairs, zéro surprise — vous gardez le contrôle total à chaque étape de votre projet.</p></div></div>
-      <div class="wcard reveal reveal-d2"><div class="wcard-num">03</div><div><h4>Sécurité Intégrée dès la Conception</h4><p>Security by design, conformité et protection des données inscrites dans l'ADN de chaque solution livrée.</p></div></div>
-      <div class="wcard reveal reveal-d3"><div class="wcard-num">04</div><div><h4>Adaptabilité Terrain & Sur Mesure</h4><p>Des solutions pensées pour les réalités africaines : contraintes réseau, environnements hétérogènes et scalabilité.</p></div></div>
+      <div class="wcard reveal"><div class="wcard-num">01</div><div><h4 data-i18n="w1t">Partenariat Durable</h4><p data-i18n="w1p">Nous construisons des relations de confiance à long terme. Au-delà de la prestation, nous investissons dans votre réussite sur la durée.</p></div></div>
+      <div class="wcard reveal reveal-d1"><div class="wcard-num">02</div><div><h4 data-i18n="w2t">Exécution Solide & Transparente</h4><p data-i18n="w2p">Reporting régulier, jalons clairs, zéro surprise — vous gardez le contrôle total à chaque étape de votre projet.</p></div></div>
+      <div class="wcard reveal reveal-d2"><div class="wcard-num">03</div><div><h4 data-i18n="w3t">Sécurité Intégrée dès la Conception</h4><p data-i18n="w3p">Security by design, conformité et protection des données inscrites dans l'ADN de chaque solution livrée.</p></div></div>
+      <div class="wcard reveal reveal-d3"><div class="wcard-num">04</div><div><h4 data-i18n="w4t">Adaptabilité Terrain & Sur Mesure</h4><p data-i18n="w4p">Des solutions pensées pour les réalités africaines : contraintes réseau, environnements hétérogènes et scalabilité.</p></div></div>
     </div>
   </div>
 </section>
@@ -701,9 +722,9 @@
 <!-- CTA -->
 <div class="cta-banner">
   <div class="cta-inner reveal">
-    <div class="cta-text"><h2>Prêt à transformer<br>votre organisation ?</h2><p>Discutons de vos enjeux et construisons ensemble la solution qui accélérera votre performance. Premier échange sans engagement.</p></div>
+    <div class="cta-text"><h2 data-i18n-html="cta_h">Prêt à transformer<br>votre organisation ?</h2><p data-i18n="cta_p">Discutons de vos enjeux et construisons ensemble la solution qui accélérera votre performance. Premier échange sans engagement.</p></div>
     <div class="cta-actions">
-      <a href="#contact" class="btn btn-primary">Démarrer un projet →</a>
+      <a href="#contact" class="btn btn-primary" data-i18n="cta_btn">Démarrer un projet →</a>
       <a href="mailto:contact@ysbtechno.com" class="btn btn-outline">contact@ysbtechno.com</a>
     </div>
   </div>
@@ -713,27 +734,27 @@
 <section class="contact" id="contact">
   <div class="section-inner">
     <div class="section-eyebrow reveal"><span class="eyebrow-line"></span> Contact</div>
-    <div class="section-title reveal">Parlons de votre projet</div>
-    <p class="section-desc reveal">Remplissez le formulaire ou contactez-nous directement. Notre équipe vous répondra sous 24 heures.</p>
+    <div class="section-title reveal" data-i18n="ct_title">Parlons de votre projet</div>
+    <p class="section-desc reveal" data-i18n="ct_desc">Remplissez le formulaire ou contactez-nous directement. Notre équipe vous répondra sous 24 heures.</p>
     <div class="contact-layout">
       <div class="contact-left">
         <div class="contact-cards">
-          <div class="ccard reveal"><div class="ccard-icon">📍</div><div><div class="ccard-label">Siège social</div><div class="ccard-value">Abatta Village, En face Hotel Habibo<br>Bingerville, Abidjan — Côte d'Ivoire</div></div></div>
+          <div class="ccard reveal"><div class="ccard-icon">📍</div><div><div class="ccard-label" data-i18n="ct_hq">Siège social</div><div class="ccard-value">Abatta Village, En face Hotel Habibo<br>Bingerville, Abidjan — Côte d'Ivoire</div></div></div>
           <div class="ccard reveal reveal-d1"><div class="ccard-icon">📧</div><div><div class="ccard-label">Email</div><div class="ccard-value"><a href="mailto:contact@ysbtechno.com">contact@ysbtechno.com</a></div></div></div>
-          <div class="ccard reveal reveal-d2"><div class="ccard-icon">📞</div><div><div class="ccard-label">Téléphone</div><div class="ccard-value"><a href="tel:+2252150015131">+225 2150 015 131</a><br><a href="tel:+2250103680942">+225 0103 680 942</a></div></div></div>
-          <div class="ccard reveal reveal-d3"><div class="ccard-icon">🌐</div><div><div class="ccard-label">Site web</div><div class="ccard-value"><a href="https://www.ysbtechno.com">www.ysbtechno.com</a></div></div></div>
+          <div class="ccard reveal reveal-d2"><div class="ccard-icon">📞</div><div><div class="ccard-label" data-i18n="ct_ph">Téléphone</div><div class="ccard-value"><a href="tel:+2252150015131">+225 2150 015 131</a><br><a href="tel:+2250103680942">+225 0103 680 942</a></div></div></div>
+          <div class="ccard reveal reveal-d3"><div class="ccard-icon">🌐</div><div><div class="ccard-label" data-i18n="ct_web">Site web</div><div class="ccard-value"><a href="https://www.ysbtechno.com">www.ysbtechno.com</a></div></div></div>
         </div>
-        <div class="contact-legal reveal"><strong>YSB Technologies SARL</strong><br>RCCM : CI-ABJ-03-2025-B13-09622<br>Siège : Abidjan, Côte d'Ivoire</div>
+        <div class="contact-legal reveal"><strong>YSB Technologies SARL</strong><br>RCCM : CI-ABJ-03-2025-B13-09622<br><span data-i18n="ct_leg">Siège : Abidjan, Côte d'Ivoire</span></div>
       </div>
       <div class="contact-form-wrap reveal">
-        <h3>Envoyez-nous un message</h3>
-        <p class="form-sub">Tous les champs marqués d'un * sont obligatoires.</p>
-        <form class="cform" onsubmit="event.preventDefault(); alert('Merci ! Votre message a bien été envoyé. Notre équipe vous contactera sous 24h.');">
-          <div class="form-row"><div class="form-group"><label>Nom complet *</label><input type="text" placeholder="Votre nom" required></div><div class="form-group"><label>Entreprise</label><input type="text" placeholder="Nom de votre entreprise"></div></div>
-          <div class="form-row"><div class="form-group"><label>Email *</label><input type="email" placeholder="votre@email.com" required></div><div class="form-group"><label>Téléphone</label><input type="tel" placeholder="+225 ..."></div></div>
-          <div class="form-group"><label>Service qui vous intéresse</label><select><option value="">Sélectionnez un domaine...</option><option>Développement & Écosystèmes Digitaux</option><option>Infrastructure, Cloud & Infogérance</option><option>Conseil & Capital Humain</option><option>Télécoms & Cybersécurité</option><option>Intelligence Artificielle & Innovation</option><option>Support & Maintenance</option><option>Autre / Plusieurs domaines</option></select></div>
-          <div class="form-group"><label>Message *</label><textarea placeholder="Décrivez brièvement votre projet, vos besoins ou vos questions..." required></textarea></div>
-          <button type="submit" class="btn-send">Envoyer le message <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <h3 data-i18n="fm_t">Envoyez-nous un message</h3>
+        <p class="form-sub" data-i18n="fm_sub">Tous les champs marqués d'un * sont obligatoires.</p>
+        <form class="cform" id="contactForm">
+          <div class="form-row"><div class="form-group"><label data-i18n="fm_name">Nom complet *</label><input type="text" data-i18n-ph="fm_name_ph" placeholder="Votre nom" required></div><div class="form-group"><label data-i18n="fm_co">Entreprise</label><input type="text" data-i18n-ph="fm_co_ph" placeholder="Nom de votre entreprise"></div></div>
+          <div class="form-row"><div class="form-group"><label>Email *</label><input type="email" placeholder="votre@email.com" required></div><div class="form-group"><label data-i18n="fm_phone">Téléphone</label><input type="tel" placeholder="+225 ..."></div></div>
+          <div class="form-group"><label data-i18n="fm_serv">Service qui vous intéresse</label><select id="serviceSelect"><option value="" data-i18n="fm_sel">Sélectionnez un domaine...</option><option data-i18n="fm_o1">Développement & Écosystèmes Digitaux</option><option data-i18n="fm_o2">Infrastructure, Cloud & Infogérance</option><option data-i18n="fm_o3">Conseil & Capital Humain</option><option data-i18n="fm_o4">Télécoms & Cybersécurité</option><option data-i18n="fm_o5">Intelligence Artificielle & Innovation</option><option data-i18n="fm_o6">Support & Maintenance</option><option data-i18n="fm_o7">Autre / Plusieurs domaines</option></select></div>
+          <div class="form-group"><label>Message *</label><textarea data-i18n-ph="fm_msg_ph" placeholder="Décrivez brièvement votre projet, vos besoins ou vos questions..." required></textarea></div>
+          <button type="submit" class="btn-send" data-i18n-html="fm_send">Envoyer le message <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </form>
       </div>
     </div>
@@ -749,71 +770,166 @@
           <div class="logo-mark" style="width:36px;height:36px;"><div class="c1" style="width:26px;height:26px;"></div><div class="c2" style="width:16px;height:16px;bottom:1px;right:2px;"></div></div>
           <span>YSB Technologies</span>
         </div>
-        <p class="footer-brand-desc">Société de services numériques dédiée à l'accompagnement des entreprises et institutions africaines dans leur transformation digitale.</p>
+        <p class="footer-brand-desc" data-i18n="ft_desc">Société de services numériques dédiée à l'accompagnement des entreprises et institutions africaines dans leur transformation digitale.</p>
         <div class="footer-socials">
           <a href="#" class="footer-social" title="LinkedIn">in</a>
           <a href="#" class="footer-social" title="Twitter">𝕏</a>
           <a href="#" class="footer-social" title="Facebook">f</a>
         </div>
       </div>
-      <div class="footer-col"><h4>Expertise</h4><ul><li><a href="#expertise">Développement Digital</a></li><li><a href="#expertise">Cloud & Infogérance</a></li><li><a href="#expertise">Conseil & Stratégie</a></li><li><a href="#expertise">Cybersécurité</a></li><li><a href="#expertise">Intelligence Artificielle</a></li><li><a href="#expertise">Support</a></li></ul></div>
-      <div class="footer-col"><h4>Entreprise</h4><ul><li><a href="#about">À propos</a></li><li><a href="#values">Nos valeurs</a></li><li><a href="#method">Notre approche</a></li><li><a href="#why">Pourquoi nous</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div class="footer-col"><h4 data-i18n="nav_expertise">Expertise</h4><ul><li><a href="#expertise" data-i18n="ft_dev">Développement Digital</a></li><li><a href="#expertise" data-i18n="ft_cloud">Cloud & Infogérance</a></li><li><a href="#expertise" data-i18n="ft_cons">Conseil & Stratégie</a></li><li><a href="#expertise" data-i18n="ft_cyber">Cybersécurité</a></li><li><a href="#expertise" data-i18n="ft_ai">Intelligence Artificielle</a></li><li><a href="#expertise" data-i18n="ft_sup">Support</a></li></ul></div>
+      <div class="footer-col"><h4 data-i18n="ft_company">Entreprise</h4><ul><li><a href="#about" data-i18n="nav_about">À propos</a></li><li><a href="#values" data-i18n="ft_val">Nos valeurs</a></li><li><a href="#method" data-i18n="ft_met">Notre approche</a></li><li><a href="#why" data-i18n="ft_why">Pourquoi nous</a></li><li><a href="#contact" data-i18n="nav_contact">Contact</a></li></ul></div>
       <div class="footer-col"><h4>Contact</h4><ul><li><a href="mailto:contact@ysbtechno.com">contact@ysbtechno.com</a></li><li><a href="tel:+2252150015131">+225 2150 015 131</a></li><li><a href="tel:+2250103680942">+225 0103 680 942</a></li><li><a href="#">Abidjan, Côte d'Ivoire</a></li></ul></div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">© 2026 YSB Technologies SARL — Tous droits réservés. RCCM : CI-ABJ-03-2025-B13-09622</span>
-      <div class="footer-legal-links"><a href="#">Mentions légales</a><a href="#">Politique de confidentialité</a><a href="#">CGU</a></div>
+      <span class="footer-copy" data-i18n="ft_copy">© 2026 YSB Technologies SARL — Tous droits réservés. RCCM : CI-ABJ-03-2025-B13-09622</span>
+      <div class="footer-legal-links"><a href="#" data-i18n="ft_legal">Mentions légales</a><a href="#" data-i18n="ft_priv">Politique de confidentialité</a><a href="#" data-i18n="ft_terms">CGU</a></div>
     </div>
   </div>
 </footer>
 
 <script>
-  // Navbar scroll effect
-  const nav = document.getElementById('navbar');
-  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+const T={fr:{nav_about:"À propos",nav_values:"Valeurs",nav_expertise:"Expertise",nav_method:"Approche",nav_why:"Avantages",nav_contact:"Contact",nav_cta:"Démarrer un projet",
+hero_tag:"Abidjan, Côte d'Ivoire — Afrique",
+hero_title:'L\'excellence<br>technologique au<br>service de la<br><span class="grad">performance africaine</span>',
+hero_sub:'Nous concevons, déployons et opérons des <strong>solutions technologiques robustes, sécurisées et évolutives</strong>, spécifiquement adaptées aux réalités opérationnelles et aux défis de croissance du marché africain.',
+hero_btn1:'Découvrir nos services <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+hero_btn2:"Nous contacter",
+hero_trust:"<strong>Entreprises & Institutions</strong><br>nous font déjà confiance",
+hc1_t:"Développement Digital",hc1_d:"Applications web, mobile et desktop sur mesure pour votre écosystème",
+hc2_t:"Cybersécurité",hc2_d:"Audit, durcissement et supervision pour protéger vos actifs numériques",
+hc3_t:"Intelligence Artificielle",hc3_d:"Chatbots, Computer Vision et reconnaissance faciale avancée",
+marquee:'<span class="marquee-item">Cloud & Infrastructure</span><span class="marquee-item">Intelligence Artificielle</span><span class="marquee-item">Cybersécurité</span><span class="marquee-item">Développement Web & Mobile</span><span class="marquee-item">Conseil & Stratégie</span><span class="marquee-item">DevOps & Infogérance</span><span class="marquee-item">Télécommunications</span><span class="marquee-item">Support N1/N2/N3</span><span class="marquee-item">Cloud & Infrastructure</span><span class="marquee-item">Intelligence Artificielle</span><span class="marquee-item">Cybersécurité</span><span class="marquee-item">Développement Web & Mobile</span><span class="marquee-item">Conseil & Stratégie</span><span class="marquee-item">DevOps & Infogérance</span><span class="marquee-item">Télécommunications</span><span class="marquee-item">Support N1/N2/N3</span>',
+about_ey:"Qui sommes-nous",
+about_main:'YSB Technologies est une <strong>société de services numériques</strong> dédiée à l\'accompagnement des entreprises et institutions dans leur transformation digitale en <strong>Afrique</strong>.',
+about_p1:"En Afrique, la transformation digitale n'est plus une option, c'est le moteur de notre souveraineté et de notre croissance. Mais pour que cette transformation soit réelle, elle doit reposer sur des fondations inébranlables.",
+about_p2:"Chez YSB Technologies, nous bâtissons ces fondations : des solutions technologiques robustes, sécurisées et évolutives, spécifiquement adaptées aux réalités opérationnelles et aux défis de croissance du marché africain.",
+vis_t:"Notre Vision",vis_p:"Devenir le partenaire technologique de référence en Afrique et acteur majeur de la transformation digitale du continent. Nous croyons qu'une Afrique numériquement souveraine passe par des infrastructures de classe mondiale, conçues et opérées localement.",
+mis_t:"Notre Mission",mis_p:"Accélérer la performance de nos partenaires en leur apportant des solutions sur mesure, sécurisées et évolutives, ainsi que du conseil de haut niveau. Nous couvrons l'intégralité du cycle de vie de vos projets : de la vision stratégique à la maintenance opérationnelle, en passant par l'ingénierie de pointe.",
+val_bg:"VALEURS",val_ey:"Nos valeurs",val_title:"Les piliers qui guident<br>chacune de nos actions",val_desc:"Plus que de simples principes, nos valeurs sont la promesse que nous faisons à chaque partenaire qui nous fait confiance.",
+v1t:"Innovation",v1g:"Dynamisme · Adaptabilité · Futurisme",v1p:"Nous ne nous contentons pas d'installer des solutions — nous évoluons au rythme des technologies mondiales pour offrir le meilleur de l'IA et du Cloud à nos partenaires.",
+v2t:"Sécurité & Confiance",v2g:"Intégrité · Résilience · Protection · Pérennité",v2p:"Nous bâtissons des infrastructures conformes au respect de la protection des données, capables de résister aux cyber menaces et aux contraintes techniques les plus exigeantes.",
+v3t:"Excellence dans l'Exécution",v3g:"Précision · Fiabilité · Qualité · Professionnalisme",v3p:"De la conception à la maintenance, chaque étape du cycle de vie du projet est traitée avec une précision chirurgicale et un souci constant de la qualité.",
+v4t:"Clarté & Simplicité",v4g:"Transparence · Efficacité · Lisibilité",v4p:"Nous rendons la technologie complexe simple et accessible pour nos clients. Pas de jargon inutile, juste des résultats concrets et mesurables.",
+exp_ey:"Nos domaines d'expertise",exp_title:"Des solutions complètes<br>pour chaque défi digital",exp_desc:"Nous couvrons l'intégralité du cycle de vie de vos projets technologiques, de la vision stratégique à la maintenance opérationnelle.",
+e1t:"Développement &<br>Écosystèmes Digitaux",e1a:"Logiciels et applications web, mobile et desktop",e1b:"Systèmes d'information, portails et back-office",e1c:"Intégrations API et connecteurs inter-systèmes",
+e2t:"Infrastructure, Cloud<br>& Infogérance",e2a:"Installation et intégration technique complète",e2b:"Hébergement cloud et on-premise avec supervision",e2c:"Maintenance préventive et amélioration continue",
+e3t:"Conseil &<br>Capital Humain",e3a:"AMOA/MOE, architecture et stratégie digitale",e3b:"Expertise à la demande : développeurs, DevOps, QA",e3c:"Formation technique et assistance sur site",
+e4t:"Télécoms &<br>Cybersécurité",e4a:"Solutions SI et télécommunications d'entreprise",e4b:"Audit de sécurité, contrôle d'accès et durcissement",e4c:"Supervision continue et gestion proactive des risques",
+e5t:"Intelligence Artificielle<br>& Innovation",e5a:"Chatbots et assistants virtuels intelligents",e5b:"Reconnaissance faciale pour le contrôle d'accès",e5c:"Surveillance intelligente et Computer Vision",
+e6t:"Support &<br>Maintenance",e6a:"Support multi-niveaux N1, N2 et N3 selon périmètre",e6b:"SLA contractuels et monitoring 24/7",e6c:"Documentation complète et transfert de compétences",
+met_ey:"Notre approche",met_title:"Un accompagnement<br>de bout en bout",met_desc:"Chaque projet est unique. Notre méthodologie structurée garantit des résultats à la hauteur de vos ambitions.",
+s1t:"Audit & Analyse",s1p:"Compréhension de votre contexte, vos enjeux métiers et vos contraintes techniques.",
+s2t:"Conception & Architecture",s2p:"Design de solutions robustes, choix technologiques justifiés et validation conjointe.",
+s3t:"Développement & Intégration",s3p:"Ingénierie de pointe, sprints itératifs et tests rigoureux dans votre écosystème.",
+s4t:"Déploiement & Formation",s4p:"Mise en production sécurisée, transfert de compétences et accompagnement au changement.",
+s5t:"Opérations & Évolution",s5p:"Maintenance proactive, monitoring continu, SLA garantis et amélioration permanente.",
+why_ey:"Pourquoi YSB Technologies",why_title:"Votre succès est<br>notre engagement",why_desc:"Ce qui nous distingue va au-delà de la technologie — c'est notre approche centrée sur vos résultats.",
+w1t:"Partenariat Durable",w1p:"Nous construisons des relations de confiance à long terme. Au-delà de la prestation, nous investissons dans votre réussite sur la durée.",
+w2t:"Exécution Solide & Transparente",w2p:"Reporting régulier, jalons clairs, zéro surprise — vous gardez le contrôle total à chaque étape de votre projet.",
+w3t:"Sécurité Intégrée dès la Conception",w3p:"Security by design, conformité et protection des données inscrites dans l'ADN de chaque solution livrée.",
+w4t:"Adaptabilité Terrain & Sur Mesure",w4p:"Des solutions pensées pour les réalités africaines : contraintes réseau, environnements hétérogènes et scalabilité.",
+cta_h:"Prêt à transformer<br>votre organisation ?",cta_p:"Discutons de vos enjeux et construisons ensemble la solution qui accélérera votre performance. Premier échange sans engagement.",cta_btn:"Démarrer un projet →",
+ct_title:"Parlons de votre projet",ct_desc:"Remplissez le formulaire ou contactez-nous directement. Notre équipe vous répondra sous 24 heures.",
+ct_hq:"Siège social",ct_ph:"Téléphone",ct_web:"Site web",ct_leg:"Siège : Abidjan, Côte d'Ivoire",
+fm_t:"Envoyez-nous un message",fm_sub:"Tous les champs marqués d'un * sont obligatoires.",
+fm_name:"Nom complet *",fm_name_ph:"Votre nom",fm_co:"Entreprise",fm_co_ph:"Nom de votre entreprise",fm_phone:"Téléphone",fm_serv:"Service qui vous intéresse",
+fm_sel:"Sélectionnez un domaine...",fm_o1:"Développement & Écosystèmes Digitaux",fm_o2:"Infrastructure, Cloud & Infogérance",fm_o3:"Conseil & Capital Humain",fm_o4:"Télécoms & Cybersécurité",fm_o5:"Intelligence Artificielle & Innovation",fm_o6:"Support & Maintenance",fm_o7:"Autre / Plusieurs domaines",
+fm_msg_ph:"Décrivez brièvement votre projet, vos besoins ou vos questions...",
+fm_send:'Envoyer le message <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+fm_ok:"Merci ! Votre message a bien été envoyé. Notre équipe vous contactera sous 24h.",
+ft_desc:"Société de services numériques dédiée à l'accompagnement des entreprises et institutions africaines dans leur transformation digitale.",
+ft_company:"Entreprise",ft_dev:"Développement Digital",ft_cloud:"Cloud & Infogérance",ft_cons:"Conseil & Stratégie",ft_cyber:"Cybersécurité",ft_ai:"Intelligence Artificielle",ft_sup:"Support",
+ft_val:"Nos valeurs",ft_met:"Notre approche",ft_why:"Pourquoi nous",
+ft_copy:"© 2026 YSB Technologies SARL — Tous droits réservés. RCCM : CI-ABJ-03-2025-B13-09622",
+ft_legal:"Mentions légales",ft_priv:"Politique de confidentialité",ft_terms:"CGU"
+},
+en:{nav_about:"About",nav_values:"Values",nav_expertise:"Expertise",nav_method:"Approach",nav_why:"Advantages",nav_contact:"Contact",nav_cta:"Start a project",
+hero_tag:"Abidjan, Côte d'Ivoire — Africa",
+hero_title:'Technological<br>excellence driving<br><span class="grad">African performance</span>',
+hero_sub:'We design, deploy and operate <strong>robust, secure and scalable technology solutions</strong>, specifically adapted to the operational realities and growth challenges of the African market.',
+hero_btn1:'Explore our services <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+hero_btn2:"Contact us",
+hero_trust:"<strong>Companies & Institutions</strong><br>already trust us",
+hc1_t:"Digital Development",hc1_d:"Custom web, mobile and desktop applications for your ecosystem",
+hc2_t:"Cybersecurity",hc2_d:"Auditing, hardening and monitoring to protect your digital assets",
+hc3_t:"Artificial Intelligence",hc3_d:"Chatbots, Computer Vision and advanced facial recognition",
+marquee:'<span class="marquee-item">Cloud & Infrastructure</span><span class="marquee-item">Artificial Intelligence</span><span class="marquee-item">Cybersecurity</span><span class="marquee-item">Web & Mobile Development</span><span class="marquee-item">Consulting & Strategy</span><span class="marquee-item">DevOps & Managed Services</span><span class="marquee-item">Telecommunications</span><span class="marquee-item">L1/L2/L3 Support</span><span class="marquee-item">Cloud & Infrastructure</span><span class="marquee-item">Artificial Intelligence</span><span class="marquee-item">Cybersecurity</span><span class="marquee-item">Web & Mobile Development</span><span class="marquee-item">Consulting & Strategy</span><span class="marquee-item">DevOps & Managed Services</span><span class="marquee-item">Telecommunications</span><span class="marquee-item">L1/L2/L3 Support</span>',
+about_ey:"Who we are",
+about_main:'YSB Technologies is a <strong>digital services company</strong> dedicated to supporting businesses and institutions in their digital transformation across <strong>Africa</strong>.',
+about_p1:"In Africa, digital transformation is no longer optional — it is the engine of our sovereignty and growth. But for this transformation to be real, it must rest on unshakeable foundations.",
+about_p2:"At YSB Technologies, we build those foundations: robust, secure and scalable technology solutions, specifically adapted to the operational realities and growth challenges of the African market.",
+vis_t:"Our Vision",vis_p:"To become the leading technology partner in Africa and a major player in the continent's digital transformation. We believe a digitally sovereign Africa requires world-class infrastructure, designed and operated locally.",
+mis_t:"Our Mission",mis_p:"To accelerate our partners' performance by delivering tailored, secure and scalable solutions, along with high-level consulting. We cover the entire lifecycle of your projects: from strategic vision to operational maintenance, through cutting-edge engineering.",
+val_bg:"VALUES",val_ey:"Our values",val_title:"The pillars that guide<br>every action we take",val_desc:"More than mere principles, our values are the promise we make to every partner who trusts us.",
+v1t:"Innovation",v1g:"Dynamism · Adaptability · Forward-thinking",v1p:"We don't just install solutions — we evolve at the pace of global technology to deliver the best of AI and Cloud to our partners.",
+v2t:"Security & Trust",v2g:"Integrity · Resilience · Protection · Sustainability",v2p:"We build data-compliant infrastructures capable of withstanding cyber threats and the most demanding technical constraints.",
+v3t:"Excellence in Execution",v3g:"Precision · Reliability · Quality · Professionalism",v3p:"From design to maintenance, every stage of the project lifecycle is handled with surgical precision and a constant focus on quality.",
+v4t:"Clarity & Simplicity",v4g:"Transparency · Efficiency · Readability",v4p:"We make complex technology simple and accessible for our clients. No unnecessary jargon — just concrete, measurable results.",
+exp_ey:"Our areas of expertise",exp_title:"Comprehensive solutions<br>for every digital challenge",exp_desc:"We cover the entire lifecycle of your technology projects, from strategic vision to operational maintenance.",
+e1t:"Development &<br>Digital Ecosystems",e1a:"Web, mobile and desktop software applications",e1b:"Information systems, portals and back-office",e1c:"API integrations and cross-system connectors",
+e2t:"Infrastructure, Cloud<br>& Managed Services",e2a:"Complete technical installation and integration",e2b:"Cloud and on-premise hosting with monitoring",e2c:"Preventive maintenance and continuous improvement",
+e3t:"Consulting &<br>Human Capital",e3a:"Project management, architecture and digital strategy",e3b:"On-demand expertise: developers, DevOps, QA",e3c:"Technical training and on-site assistance",
+e4t:"Telecoms &<br>Cybersecurity",e4a:"Enterprise IT and telecommunications solutions",e4b:"Security audits, access control and hardening",e4c:"Continuous monitoring and proactive risk management",
+e5t:"Artificial Intelligence<br>& Innovation",e5a:"Intelligent chatbots and virtual assistants",e5b:"Facial recognition for access control",e5c:"Smart surveillance and Computer Vision",
+e6t:"Support &<br>Maintenance",e6a:"Multi-tier L1, L2 and L3 support by scope",e6b:"Contractual SLAs and 24/7 monitoring",e6c:"Complete documentation and knowledge transfer",
+met_ey:"Our approach",met_title:"End-to-end<br>support",met_desc:"Every project is unique. Our structured methodology guarantees results that match your ambitions.",
+s1t:"Audit & Analysis",s1p:"Understanding your context, business challenges and technical constraints.",
+s2t:"Design & Architecture",s2p:"Designing robust solutions, justified technology choices and joint validation.",
+s3t:"Development & Integration",s3p:"Cutting-edge engineering, iterative sprints and rigorous testing within your ecosystem.",
+s4t:"Deployment & Training",s4p:"Secure production rollout, knowledge transfer and change management support.",
+s5t:"Operations & Evolution",s5p:"Proactive maintenance, continuous monitoring, guaranteed SLAs and ongoing improvement.",
+why_ey:"Why YSB Technologies",why_title:"Your success is<br>our commitment",why_desc:"What sets us apart goes beyond technology — it's our results-driven approach.",
+w1t:"Lasting Partnership",w1p:"We build long-term relationships based on trust. Beyond delivery, we invest in your success over time.",
+w2t:"Solid & Transparent Execution",w2p:"Regular reporting, clear milestones, zero surprises — you maintain full control at every stage of your project.",
+w3t:"Security Built Into the Design",w3p:"Security by design, compliance and data protection embedded in the DNA of every solution we deliver.",
+w4t:"Field-Ready & Tailor-Made",w4p:"Solutions designed for African realities: network constraints, heterogeneous environments and scalability.",
+cta_h:"Ready to transform<br>your organization?",cta_p:"Let's discuss your challenges and build together the solution that will accelerate your performance. First consultation with no commitment.",cta_btn:"Start a project →",
+ct_title:"Let's talk about your project",ct_desc:"Fill out the form or contact us directly. Our team will respond within 24 hours.",
+ct_hq:"Headquarters",ct_ph:"Phone",ct_web:"Website",ct_leg:"HQ: Abidjan, Côte d'Ivoire",
+fm_t:"Send us a message",fm_sub:"All fields marked with * are required.",
+fm_name:"Full name *",fm_name_ph:"Your name",fm_co:"Company",fm_co_ph:"Your company name",fm_phone:"Phone",fm_serv:"Service you're interested in",
+fm_sel:"Select an area...",fm_o1:"Development & Digital Ecosystems",fm_o2:"Infrastructure, Cloud & Managed Services",fm_o3:"Consulting & Human Capital",fm_o4:"Telecoms & Cybersecurity",fm_o5:"Artificial Intelligence & Innovation",fm_o6:"Support & Maintenance",fm_o7:"Other / Multiple areas",
+fm_msg_ph:"Briefly describe your project, needs or questions...",
+fm_send:'Send message <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+fm_ok:"Thank you! Your message has been sent. Our team will contact you within 24 hours.",
+ft_desc:"Digital services company dedicated to supporting African businesses and institutions in their digital transformation.",
+ft_company:"Company",ft_dev:"Digital Development",ft_cloud:"Cloud & Managed Services",ft_cons:"Consulting & Strategy",ft_cyber:"Cybersecurity",ft_ai:"Artificial Intelligence",ft_sup:"Support",
+ft_val:"Our values",ft_met:"Our approach",ft_why:"Why us",
+ft_copy:"© 2026 YSB Technologies SARL — All rights reserved. RCCM: CI-ABJ-03-2025-B13-09622",
+ft_legal:"Legal notice",ft_priv:"Privacy policy",ft_terms:"Terms of use"
+}};
 
-  // Scroll reveal animations
-  const ro = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+let currentLang='fr';
+try{const s=localStorage.getItem('ysb_lang');if(s==='en')currentLang='en';}catch(e){}
 
-  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+function switchLang(lang){
+  currentLang=lang;
+  try{localStorage.setItem('ysb_lang',lang);}catch(e){}
+  document.documentElement.lang=lang;
+  document.querySelectorAll('.lang-btn,.mobile-lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===lang.toUpperCase()));
+  const t=T[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(t[k]!==undefined)el.textContent=t[k];});
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{const k=el.getAttribute('data-i18n-html');if(t[k]!==undefined)el.innerHTML=t[k];});
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{const k=el.getAttribute('data-i18n-ph');if(t[k]!==undefined)el.placeholder=t[k];});
+  document.title=lang==='fr'?"YSB Technologies — L'excellence technologique au service de la performance africaine":"YSB Technologies — Technological excellence driving African performance";
+}
 
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-
-  // Active nav link highlighting on scroll
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-center a');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 120;
-      if (window.scrollY >= sectionTop) {
-        current = section.getAttribute('id');
-      }
-    });
-    navLinks.forEach(link => {
-      link.style.opacity = '';
-      if (link.getAttribute('href') === '#' + current) {
-        link.style.color = 'var(--cyan)';
-      } else {
-        link.style.color = '';
-      }
-    });
-  });
+// Nav scroll
+const nav=document.getElementById('navbar');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+// Reveal
+const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){const t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}});});
+// Active nav
+const sects=document.querySelectorAll('section[id]'),nlinks=document.querySelectorAll('.nav-center a');
+window.addEventListener('scroll',()=>{let c='';sects.forEach(s=>{if(window.scrollY>=s.offsetTop-120)c=s.getAttribute('id');});nlinks.forEach(l=>{l.style.color=l.getAttribute('href')==='#'+c?'var(--cyan)':'';});});
+// Form
+document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();alert(T[currentLang].fm_ok);});
+// Init
+switchLang(currentLang);
 </script>
 </body>
 </html>
