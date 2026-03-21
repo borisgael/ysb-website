@@ -59,13 +59,14 @@
     max-width: 1340px; margin: 0 auto; padding: 0 48px;
     height: 80px; display: flex; align-items: center; justify-content: space-between;
   }
-  .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+  .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; flex-shrink: 0; white-space: nowrap; }
   .logo-mark { position: relative; width: 42px; height: 42px; flex-shrink: 0; }
   .logo-mark .c1 { position: absolute; width: 32px; height: 32px; border-radius: 50%; background: var(--cyan); top: 0; left: 0; }
   .logo-mark .c2 { position: absolute; width: 19px; height: 19px; border-radius: 50%; background: var(--purple); bottom: 2px; right: 3px; }
   .nav-brand {
     font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.2rem;
     color: var(--white); letter-spacing: -0.02em; transition: color 0.4s;
+    white-space: nowrap;
   }
   .nav-center { display: flex; gap: 40px; list-style: none; }
   .nav-center a {
@@ -565,7 +566,6 @@
         <button class="lang-btn active" onclick="switchLang('fr')">FR</button>
         <button class="lang-btn" onclick="switchLang('en')">EN</button>
       </div>
-      <a href="tel:+2252150015131" class="nav-phone">+225 2150 015 131</a>
       <a href="#contact" class="nav-cta" data-i18n="nav_cta">Démarrer un projet</a>
     </div>
     <button class="hamburger" aria-label="Ouvrir le menu" onclick="document.querySelector('.mobile-menu').classList.add('open')"><span></span><span></span><span></span></button>
