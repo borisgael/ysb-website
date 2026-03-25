@@ -749,11 +749,16 @@
       <div class="contact-form-wrap reveal">
         <h3 data-i18n="fm_t">Envoyez-nous un message</h3>
         <p class="form-sub" data-i18n="fm_sub">Tous les champs marqués d'un * sont obligatoires.</p>
-        <form class="cform" id="contactForm">
-          <div class="form-row"><div class="form-group"><label data-i18n="fm_name">Nom complet *</label><input type="text" data-i18n-ph="fm_name_ph" placeholder="Votre nom" required></div><div class="form-group"><label data-i18n="fm_co">Entreprise</label><input type="text" data-i18n-ph="fm_co_ph" placeholder="Nom de votre entreprise"></div></div>
-          <div class="form-row"><div class="form-group"><label>Email *</label><input type="email" placeholder="votre@email.com" required></div><div class="form-group"><label data-i18n="fm_phone">Téléphone</label><input type="tel" placeholder="+225 ..."></div></div>
-          <div class="form-group"><label data-i18n="fm_serv">Service qui vous intéresse</label><select id="serviceSelect"><option value="" data-i18n="fm_sel">Sélectionnez un domaine...</option><option data-i18n="fm_o1">Développement & Écosystèmes Digitaux</option><option data-i18n="fm_o2">Infrastructure, Cloud & Infogérance</option><option data-i18n="fm_o3">Conseil & Capital Humain</option><option data-i18n="fm_o4">Télécoms & Cybersécurité</option><option data-i18n="fm_o5">Intelligence Artificielle & Innovation</option><option data-i18n="fm_o6">Support & Maintenance</option><option data-i18n="fm_o7">Autre / Plusieurs domaines</option></select></div>
-          <div class="form-group"><label>Message *</label><textarea data-i18n-ph="fm_msg_ph" placeholder="Décrivez brièvement votre projet, vos besoins ou vos questions..." required></textarea></div>
+        <form class="cform" id="contactForm" action="https://formsubmit.co/contact@ysbtechno.com" method="POST">
+          <input type="hidden" name="_subject" id="emailSubject" value="Nouveau message depuis ysbtechno.com">
+          <input type="hidden" name="_next" value="https://ysbtechno.com#contact">
+          <input type="hidden" name="_captcha" value="true">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" style="display:none">
+          <div class="form-row"><div class="form-group"><label data-i18n="fm_name">Nom complet *</label><input type="text" name="name" data-i18n-ph="fm_name_ph" placeholder="Votre nom" required></div><div class="form-group"><label data-i18n="fm_co">Entreprise</label><input type="text" name="company" data-i18n-ph="fm_co_ph" placeholder="Nom de votre entreprise"></div></div>
+          <div class="form-row"><div class="form-group"><label>Email *</label><input type="email" name="email" placeholder="votre@email.com" required></div><div class="form-group"><label data-i18n="fm_phone">Téléphone</label><input type="tel" name="phone" placeholder="+225 ..."></div></div>
+          <div class="form-group"><label data-i18n="fm_serv">Service qui vous intéresse</label><select id="serviceSelect" name="service"><option value="" data-i18n="fm_sel">Sélectionnez un domaine...</option><option data-i18n="fm_o1">Développement & Écosystèmes Digitaux</option><option data-i18n="fm_o2">Infrastructure, Cloud & Infogérance</option><option data-i18n="fm_o3">Conseil & Capital Humain</option><option data-i18n="fm_o4">Télécoms & Cybersécurité</option><option data-i18n="fm_o5">Intelligence Artificielle & Innovation</option><option data-i18n="fm_o6">Support & Maintenance</option><option data-i18n="fm_o7">Autre / Plusieurs domaines</option></select></div>
+          <div class="form-group"><label>Message *</label><textarea name="message" data-i18n-ph="fm_msg_ph" placeholder="Décrivez brièvement votre projet, vos besoins ou vos questions..." required></textarea></div>
           <button type="submit" class="btn-send" data-i18n-html="fm_send">Envoyer le message <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </form>
       </div>
@@ -925,7 +930,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click'
 const sects=document.querySelectorAll('section[id]'),nlinks=document.querySelectorAll('.nav-center a');
 window.addEventListener('scroll',()=>{let c='';sects.forEach(s=>{if(window.scrollY>=s.offsetTop-120)c=s.getAttribute('id');});nlinks.forEach(l=>{l.style.color=l.getAttribute('href')==='#'+c?'var(--cyan)':'';});});
 // Form
-document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();alert(T[currentLang].fm_ok);});
+// Form - update email subject based on language
+document.getElementById('contactForm').addEventListener('submit',function(){document.getElementById('emailSubject').value=currentLang==='fr'?'Nouveau message depuis ysbtechno.com':'New message from ysbtechno.com';});
 // Init
 switchLang(currentLang);
 </script>
