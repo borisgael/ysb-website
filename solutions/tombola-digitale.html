@@ -256,6 +256,15 @@ footer a{color:rgba(255,255,255,.3);text-decoration:none;transition:color .3s}fo
 /* RESPONSIVE */
 @media(max-width:1100px){.hero-inner{grid-template-columns:1fr;gap:48px}.problem-grid{grid-template-columns:1fr;gap:48px}.campaign-grid{grid-template-columns:1fr}.rewards-grid{grid-template-columns:1fr}.data-layout{grid-template-columns:1fr}.diff-grid{grid-template-columns:1fr}.deploy-card{grid-template-columns:1fr;padding:48px}.dash-stats{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:768px){section{padding:80px 24px}.nav-inner{padding:0 24px}.nav-back{display:none}.product-hero{padding:110px 24px 60px}.hero-features{grid-template-columns:1fr}.problem-cards{grid-template-columns:1fr}.flow-steps{grid-template-columns:1fr;gap:16px}.flow-steps::before{display:none}.flow-step{text-align:left;display:flex;gap:16px;align-items:flex-start}.flow-step-num{margin:0}.rewards-grid{grid-template-columns:1fr}.deploy-card{padding:36px 24px}.product-cta .btn-group{flex-direction:column;align-items:center}.mockup-tabs{flex-wrap:wrap}.cta-contacts{flex-direction:column;align-items:center}}
+
+  /* ═══ WHATSAPP BUTTON ═══ */
+  .wa-float{position:fixed;bottom:28px;right:28px;z-index:900;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+  .wa-tooltip{background:var(--white);color:var(--navy);font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:600;padding:10px 18px;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,.12);opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;white-space:nowrap}
+  .wa-float:hover .wa-tooltip{opacity:1;transform:translateY(0)}
+  .wa-btn{width:60px;height:60px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.35);transition:all .3s;text-decoration:none;border:none;cursor:pointer}
+  .wa-btn:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,.45)}
+  .wa-btn svg{width:32px;height:32px;fill:#fff}
+  @media(max-width:768px){.wa-float{bottom:20px;right:20px}.wa-btn{width:54px;height:54px}.wa-btn svg{width:28px;height:28px}}
 </style>
 </head>
 <body>
@@ -577,7 +586,7 @@ footer a{color:rgba(255,255,255,.3);text-decoration:none;transition:color .3s}fo
 <script>
 const T={
 en:{
-nav_cta:"Contact us",nav_back:"Back to site",bc_home:"Home",bc_sol:"Solutions",
+wa_tip:"Let's chat on WhatsApp",nav_cta:"Contact us",nav_back:"Back to site",bc_home:"Home",bc_sol:"Solutions",
 hero_badge:"Operational platform",hero_tag:"Create a direct link with your consumers.",
 hf1t:"Universal QR Code",hf2t:"Instant reward",hf3t:"Real-time dashboard",hf4t:"AI & Analytics",
 plt_t:"CMP in action",
@@ -599,7 +608,7 @@ dep_t:"Operational in 7 days",
 cta_t:"Ready to digitize your campaigns?",
 },
 fr:{
-nav_cta:"Nous contacter",nav_back:"Retour au site",bc_home:"Accueil",bc_sol:"Solutions",
+wa_tip:"Discutons sur WhatsApp",nav_cta:"Nous contacter",nav_back:"Retour au site",bc_home:"Accueil",bc_sol:"Solutions",
 hero_badge:"Plateforme opérationnelle",hero_tag:"Créez un lien direct avec vos consommateurs.",
 hf1t:"QR Code universel",hf2t:"Récompense instantanée",hf3t:"Dashboard en temps réel",hf4t:"IA & Analytics",
 plt_t:"CMP en action",
@@ -628,5 +637,13 @@ document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.getAttribute("d
 }
 document.addEventListener("DOMContentLoaded",()=>setLang(cL));
 </script>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<div class="wa-float">
+  <div class="wa-tooltip" data-i18n="wa_tip">Discutons sur WhatsApp</div>
+  <a href="https://wa.me/2250103680942?text=Bonjour%20YSB%20Technologies%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20vos%20services." target="_blank" rel="noopener" class="wa-btn" aria-label="WhatsApp">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16.004 0h-.008C7.174 0 0 7.176 0 16c0 3.5 1.128 6.744 3.046 9.378L1.054 31.29l6.118-1.96A15.89 15.89 0 0016.004 32C24.826 32 32 24.822 32 16S24.826 0 16.004 0zm9.35 22.616c-.393 1.107-1.946 2.026-3.2 2.294-.86.18-1.98.324-5.756-1.238-4.832-1.998-7.94-6.896-8.18-7.214-.232-.318-1.946-2.59-1.946-4.942 0-2.35 1.232-3.508 1.67-3.986.392-.43 1.036-.644 1.654-.644.2 0 .378.02.54.036.436.02.656.046 .944.73.358.852 1.232 3.006 1.34 3.224.108.218.216.518.066.818-.142.308-.268.446-.486.698-.218.252-.424.446-.642.718-.2.236-.424.488-.178.924.246.43 1.094 1.8 2.35 2.916 1.616 1.434 2.978 1.88 3.4 2.088.43.208.682.178.934-.108.258-.29 1.102-1.286 1.396-1.728.288-.442.582-.366.978-.218.4.142 2.538 1.198 2.974 1.416.436.218.728.328.836.508.106.18.106 1.054-.288 2.16z"/></svg>
+  </a>
+</div>
 </body>
 </html>
