@@ -349,6 +349,47 @@
   .ecard-list li { font-size: 0.88rem; color: rgba(19,46,82,0.55); line-height: 1.55; padding-left: 22px; position: relative; }
   .ecard-list li::before { content: ''; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; border-radius: 50%; border: 2px solid var(--cyan); }
 
+
+  /* ═══ SOLUTIONS ═══ */
+  .solutions{background:var(--white);position:relative;overflow:hidden}
+  .solutions::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,194,203,.15),transparent)}
+  .solutions-header{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-bottom:72px;align-items:end}
+  .solutions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .sol-card{position:relative;border-radius:24px;overflow:hidden;background:var(--navy-deep);transition:all .6s cubic-bezier(.16,1,.3,1);cursor:pointer;text-decoration:none;display:block;min-height:440px}
+  .sol-card:hover{transform:translateY(-10px);box-shadow:0 32px 72px rgba(19,46,82,.18)}
+  .sol-card-bg{position:absolute;inset:0;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+  .sol-card:hover .sol-card-bg{transform:scale(1.05)}
+  .sol-card-bg .noise{position:absolute;inset:0;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:256px}
+  .sol-card-bg .orb1{position:absolute;width:250px;height:250px;border-radius:50%;filter:blur(60px);opacity:.4;transition:opacity .5s}
+  .sol-card:hover .orb1{opacity:.6}
+  .sol-card-bg .orb2{position:absolute;width:150px;height:150px;border-radius:50%;filter:blur(50px);opacity:.3}
+  .sol-card.tombola{background:linear-gradient(160deg,#0a1d38,#132E52)}
+  .sol-card.tombola .orb1{background:var(--cyan);top:-60px;right:-60px}
+  .sol-card.tombola .orb2{background:var(--purple);bottom:-40px;left:-30px}
+  .sol-card.coming{background:linear-gradient(160deg,#1a1a2e,#16213e)}
+  .sol-card.coming .orb1{background:var(--purple);top:-40px;left:-60px}
+  .sol-card.coming2{background:linear-gradient(160deg,#0d1b2a,#1b2838)}
+  .sol-card.coming2 .orb1{background:var(--blue);bottom:-60px;right:-40px}
+  .sol-card-content{position:relative;z-index:2;padding:44px 36px;display:flex;flex-direction:column;height:100%}
+  .sol-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;width:fit-content;margin-bottom:28px}
+  .sol-badge.live{background:rgba(0,194,203,.15);color:var(--cyan);border:1px solid rgba(0,194,203,.2)}
+  .sol-badge.live .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:blink 2s ease-in-out infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+  .sol-badge.soon{background:rgba(255,255,255,.06);color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.08)}
+  .sol-icon{font-size:2.8rem;margin-bottom:20px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.3))}
+  .sol-card h3{font-family:'Montserrat',sans-serif;font-size:1.5rem;font-weight:900;color:var(--white);margin-bottom:12px;letter-spacing:-.02em;line-height:1.2}
+  .sol-card p{font-size:.9rem;color:rgba(255,255,255,.45);line-height:1.7;flex-grow:1}
+  .sol-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+  .sol-tag{padding:6px 12px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+  .sol-tag.cyan{background:rgba(0,194,203,.1);color:var(--cyan);border:1px solid rgba(0,194,203,.15)}
+  .sol-tag.purple{background:rgba(109,54,219,.1);color:var(--purple-light);border:1px solid rgba(109,54,219,.15)}
+  .sol-arrow{display:flex;align-items:center;gap:8px;margin-top:24px;font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:700;color:var(--cyan);transition:gap .3s}
+  .sol-card:hover .sol-arrow{gap:14px}
+  .sol-card.coming .sol-arrow,.sol-card.coming2 .sol-arrow{color:rgba(255,255,255,.2)}
+  .sol-coming-overlay{position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.15);backdrop-filter:blur(1px);opacity:0;transition:opacity .4s;border-radius:24px}
+  .sol-card.coming:hover .sol-coming-overlay,.sol-card.coming2:hover .sol-coming-overlay{opacity:1}
+  .sol-coming-text{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--white);text-transform:uppercase;letter-spacing:.1em;padding:12px 28px;border:2px solid rgba(255,255,255,.2);border-radius:12px}
+
   /* ═══ METHODOLOGY ═══ */
   .methodology { background: var(--white); }
   .method-timeline { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; margin-top: 72px; position: relative; }
@@ -490,6 +531,7 @@
     .values-grid { grid-template-columns: repeat(2, 1fr); }
     .expertise-header { grid-template-columns: 1fr; gap: 20px; }
     .expertise-grid { grid-template-columns: repeat(2, 1fr); }
+    .solutions-header{grid-template-columns:1fr;gap:20px}.solutions-grid{grid-template-columns:repeat(2,1fr)}
     .method-timeline { grid-template-columns: repeat(3, 1fr); gap: 32px; }
     .method-timeline::before { display: none; }
     .why-grid { grid-template-columns: 1fr; }
@@ -507,6 +549,7 @@
     .about-cards { grid-template-columns: 1fr; }
     .values-grid { grid-template-columns: 1fr; }
     .expertise-grid { grid-template-columns: 1fr; }
+    .solutions-grid{grid-template-columns:1fr}.sol-card{min-height:360px}
     .method-timeline { grid-template-columns: 1fr; gap: 20px; }
     .mstep { text-align: left; display: flex; gap: 20px; align-items: flex-start; }
     .mstep-icon { margin-bottom: 0; } .mstep-dot { margin: 0; }
@@ -556,7 +599,9 @@
     <ul class="nav-center">
       <li><a href="#about" data-i18n="nav_about">À propos</a></li>
       <li><a href="#values" data-i18n="nav_values">Valeurs</a></li>
-      <li><a href="#expertise" data-i18n="nav_expertise">Expertise</a></li>
+      <li><a href="#solutions" data-i18n="nav_solutions">Solutions</a></li>
+          <li><a href="#expertise" data-i18n="nav_expertise">Expertise</a></li>
+      <li><a href="#solutions" data-i18n="nav_solutions">Solutions</a></li>
       <li><a href="#method" data-i18n="nav_method">Approche</a></li>
       <li><a href="#why" data-i18n="nav_why">Avantages</a></li>
       <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
@@ -577,6 +622,7 @@
   <a href="#about" onclick="this.parentElement.classList.remove('open')" data-i18n="nav_about">À propos</a>
   <a href="#values" onclick="this.parentElement.classList.remove('open')" data-i18n="nav_values">Valeurs</a>
   <a href="#expertise" onclick="this.parentElement.classList.remove('open')" data-i18n="nav_expertise">Expertise</a>
+  <a href="#solutions" onclick="this.parentElement.classList.remove('open')" data-i18n="nav_solutions">Solutions</a>
   <a href="#method" onclick="this.parentElement.classList.remove('open')" data-i18n="nav_method">Approche</a>
   <a href="#why" onclick="this.parentElement.classList.remove('open')" data-i18n="nav_why">Avantages</a>
   <a href="#contact" onclick="this.parentElement.classList.remove('open')" data-i18n="nav_contact">Contact</a>
@@ -680,6 +726,65 @@
       <div class="ecard reveal"><div class="ecard-top"><div class="ecard-icon ei-telecom">🔒</div><span class="ecard-num">04</span></div><h3 data-i18n-html="e4t">Télécoms &<br>Cybersécurité</h3><ul class="ecard-list"><li data-i18n="e4a">Solutions SI et télécommunications d'entreprise</li><li data-i18n="e4b">Audit de sécurité, contrôle d'accès et durcissement</li><li data-i18n="e4c">Supervision continue et gestion proactive des risques</li></ul></div>
       <div class="ecard reveal reveal-d1"><div class="ecard-top"><div class="ecard-icon ei-ia">🤖</div><span class="ecard-num">05</span></div><h3 data-i18n-html="e5t">Intelligence Artificielle<br>& Innovation</h3><ul class="ecard-list"><li data-i18n="e5a">Chatbots et assistants virtuels intelligents</li><li data-i18n="e5b">Reconnaissance faciale pour le contrôle d'accès</li><li data-i18n="e5c">Surveillance intelligente et Computer Vision</li></ul></div>
       <div class="ecard reveal reveal-d2"><div class="ecard-top"><div class="ecard-icon ei-support">🎧</div><span class="ecard-num">06</span></div><h3 data-i18n-html="e6t">Support &<br>Maintenance</h3><ul class="ecard-list"><li data-i18n="e6a">Support multi-niveaux N1, N2 et N3 selon périmètre</li><li data-i18n="e6b">SLA contractuels et monitoring 24/7</li><li data-i18n="e6c">Documentation complète et transfert de compétences</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTIONS -->
+<section class="solutions" id="solutions">
+  <div class="section-inner">
+    <div class="solutions-header">
+      <div>
+        <div class="section-eyebrow reveal"><span class="eyebrow-line"></span> <span data-i18n="sol_ey">Nos solutions</span></div>
+        <div class="section-title reveal" data-i18n-html="sol_title">Des produits conçus pour<br>le marché africain</div>
+      </div>
+      <div>
+        <p class="section-desc reveal" data-i18n="sol_desc">Au-delà du conseil et de l'intégration, nous développons nos propres solutions digitales pour répondre aux besoins concrets de nos partenaires.</p>
+      </div>
+    </div>
+    <div class="solutions-grid">
+      <a href="solutions/tombola-digitale.html" class="sol-card tombola reveal">
+        <div class="sol-card-bg"><div class="noise"></div><div class="orb1"></div><div class="orb2"></div></div>
+        <div class="sol-card-content">
+          <div class="sol-badge live"><span class="dot"></span> <span data-i18n="sol_live">Solution active</span></div>
+          <div class="sol-icon">🎰</div>
+          <h3>Tombola Digitale<br>CMP</h3>
+          <p data-i18n="sol1_desc">Plateforme de campagnes promotionnelles digitales par QR Code. Tombola, quiz, jeux concours — avec récompenses instantanées et collecte de données consommateurs.</p>
+          <div class="sol-tags">
+            <span class="sol-tag cyan">QR Code</span>
+            <span class="sol-tag cyan">Airtime</span>
+            <span class="sol-tag purple">IA & Analytics</span>
+          </div>
+          <div class="sol-arrow">
+            <span data-i18n="sol_discover">Découvrir la solution</span>
+            <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </a>
+      <div class="sol-card coming reveal reveal-d1">
+        <div class="sol-card-bg"><div class="noise"></div><div class="orb1"></div></div>
+        <div class="sol-coming-overlay"><div class="sol-coming-text" data-i18n="sol_soon">Bientôt disponible</div></div>
+        <div class="sol-card-content">
+          <div class="sol-badge soon"><span data-i18n="sol_dev">En développement</span></div>
+          <div class="sol-icon">🏗️</div>
+          <h3 data-i18n-html="sol2_t">Portail RH &<br>Gestion de Talents</h3>
+          <p data-i18n="sol2_desc">Solution intégrée de gestion des ressources humaines adaptée aux entreprises africaines : recrutement, onboarding, paie et suivi de performance.</p>
+          <div class="sol-tags"><span class="sol-tag purple">SaaS</span><span class="sol-tag purple">Multi-tenant</span></div>
+          <div class="sol-arrow"><span data-i18n="sol_more">En savoir plus</span> <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+      </div>
+      <div class="sol-card coming2 reveal reveal-d2">
+        <div class="sol-card-bg"><div class="noise"></div><div class="orb1"></div></div>
+        <div class="sol-coming-overlay"><div class="sol-coming-text" data-i18n="sol_soon">Bientôt disponible</div></div>
+        <div class="sol-card-content">
+          <div class="sol-badge soon"><span data-i18n="sol_dev">En développement</span></div>
+          <div class="sol-icon">📊</div>
+          <h3 data-i18n-html="sol3_t">Smart<br>Monitoring</h3>
+          <p data-i18n="sol3_desc">Plateforme de supervision intelligente d'infrastructures IT avec alertes prédictives, tableaux de bord temps réel et rapports automatisés.</p>
+          <div class="sol-tags"><span class="sol-tag purple">IoT</span><span class="sol-tag purple">Computer Vision</span></div>
+          <div class="sol-arrow"><span data-i18n="sol_more">En savoir plus</span> <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -821,6 +926,12 @@ e3t:"Conseil &<br>Capital Humain",e3a:"AMOA/MOE, architecture et stratégie digi
 e4t:"Télécoms &<br>Cybersécurité",e4a:"Solutions SI et télécommunications d'entreprise",e4b:"Audit de sécurité, contrôle d'accès et durcissement",e4c:"Supervision continue et gestion proactive des risques",
 e5t:"Intelligence Artificielle<br>& Innovation",e5a:"Chatbots et assistants virtuels intelligents",e5b:"Reconnaissance faciale pour le contrôle d'accès",e5c:"Surveillance intelligente et Computer Vision",
 e6t:"Support &<br>Maintenance",e6a:"Support multi-niveaux N1, N2 et N3 selon périmètre",e6b:"SLA contractuels et monitoring 24/7",e6c:"Documentation complète et transfert de compétences",
+nav_solutions:"Solutions",
+sol_ey:"Nos solutions",sol_title:"Des produits conçus pour<br>le marché africain",sol_desc:"Au-delà du conseil et de l'intégration, nous développons nos propres solutions digitales pour répondre aux besoins concrets de nos partenaires.",
+sol_live:"Solution active",sol_soon:"Bientôt disponible",sol_dev:"En développement",sol_discover:"Découvrir la solution",sol_more:"En savoir plus",
+sol1_desc:"Plateforme de campagnes promotionnelles digitales par QR Code. Tombola, quiz, jeux concours — avec récompenses instantanées et collecte de données consommateurs.",
+sol2_t:"Portail RH &<br>Gestion de Talents",sol2_desc:"Solution intégrée de gestion des ressources humaines adaptée aux entreprises africaines : recrutement, onboarding, paie et suivi de performance.",
+sol3_t:"Smart<br>Monitoring",sol3_desc:"Plateforme de supervision intelligente d'infrastructures IT avec alertes prédictives, tableaux de bord temps réel et rapports automatisés.",
 met_ey:"Notre approche",met_title:"Un accompagnement<br>de bout en bout",met_desc:"Chaque projet est unique. Notre méthodologie structurée garantit des résultats à la hauteur de vos ambitions.",
 s1t:"Audit & Analyse",s1p:"Compréhension de votre contexte, vos enjeux métiers et vos contraintes techniques.",
 s2t:"Conception & Architecture",s2p:"Design de solutions robustes, choix technologiques justifiés et validation conjointe.",
@@ -876,6 +987,12 @@ e3t:"Consulting &<br>Human Capital",e3a:"Project management, architecture and di
 e4t:"Telecoms &<br>Cybersecurity",e4a:"Enterprise IT and telecommunications solutions",e4b:"Security audits, access control and hardening",e4c:"Continuous monitoring and proactive risk management",
 e5t:"Artificial Intelligence<br>& Innovation",e5a:"Intelligent chatbots and virtual assistants",e5b:"Facial recognition for access control",e5c:"Smart surveillance and Computer Vision",
 e6t:"Support &<br>Maintenance",e6a:"Multi-tier L1, L2 and L3 support by scope",e6b:"Contractual SLAs and 24/7 monitoring",e6c:"Complete documentation and knowledge transfer",
+nav_solutions:"Solutions",
+sol_ey:"Our solutions",sol_title:"Products built for<br>the African market",sol_desc:"Beyond consulting and integration, we develop our own digital solutions to meet our partners' real-world needs.",
+sol_live:"Live solution",sol_soon:"Coming soon",sol_dev:"In development",sol_discover:"Discover the solution",sol_more:"Learn more",
+sol1_desc:"Digital promotional campaign platform via QR Code. Tombola, quiz, contests — with instant rewards and consumer data collection.",
+sol2_t:"HR Portal &<br>Talent Management",sol2_desc:"Integrated HR management solution designed for African businesses: recruitment, onboarding, payroll and performance tracking.",
+sol3_t:"Smart<br>Monitoring",sol3_desc:"Intelligent IT infrastructure monitoring platform with predictive alerts, real-time dashboards and automated reports.",
 met_ey:"Our approach",met_title:"End-to-end<br>support",met_desc:"Every project is unique. Our structured methodology guarantees results that match your ambitions.",
 s1t:"Audit & Analysis",s1p:"Understanding your context, business challenges and technical constraints.",
 s2t:"Design & Architecture",s2p:"Designing robust solutions, justified technology choices and joint validation.",
