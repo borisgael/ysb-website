@@ -1104,6 +1104,8 @@ window.addEventListener('scroll',()=>{let c='';sects.forEach(s=>{if(window.scrol
 document.getElementById('contactForm').addEventListener('submit',function(){document.getElementById('emailSubject').value=currentLang==='fr'?'Nouveau message depuis ysbtechno.com':'New message from ysbtechno.com';});
 // Init
 switchLang(currentLang);
+// Splash screen dismiss
+setTimeout(function(){document.getElementById('splashScreen').classList.add('hide');document.body.classList.add('page-loaded');},2000);
 </script>
 
 <!-- WHATSAPP FLOATING BUTTON -->
