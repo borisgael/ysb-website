@@ -85,7 +85,7 @@
   }
   .nav-center { display: flex; gap: 40px; list-style: none; }
   .nav-center a {
-    font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 600;
+    font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 600; white-space: nowrap;
     color: rgba(255,255,255,0.7); text-decoration: none; letter-spacing: 0.06em;
     text-transform: uppercase; position: relative; padding-bottom: 4px; transition: color 0.3s;
   }
@@ -586,12 +586,13 @@
   .lang-toggle:hover { border-color: var(--cyan); }
   nav.scrolled .lang-toggle { border-color: rgba(19,46,82,0.15); }
   nav.scrolled .lang-toggle:hover { border-color: var(--cyan); }
+  nav.scrolled .lang-sep { background: rgba(19,46,82,0.12) !important; }
   .lang-btn {
     padding: 6px 12px; background: transparent; border: none; cursor: pointer;
     font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700;
-    color: rgba(255,255,255,0.5); transition: all 0.3s; letter-spacing: 0.05em;
+    color: rgba(255,255,255,0.7); transition: all 0.3s; letter-spacing: 0.05em;
   }
-  nav.scrolled .lang-btn { color: rgba(19,46,82,0.4); }
+  nav.scrolled .lang-btn { color: rgba(19,46,82,0.55); }
   .lang-btn.active { background: var(--cyan); color: var(--navy); }
   .mobile-lang-toggle { display: flex; gap: 12px; margin-top: 16px; }
   .mobile-lang-btn {
@@ -616,7 +617,7 @@
   @keyframes heroIn{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
 </style>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"YSB Technologies","url":"https://ysbtechno.com","logo":"https://ysbtechno.com/og-image.png","description":"Société de services numériques dédiée à la transformation digitale en Afrique.","address":{"@type":"PostalAddress","streetAddress":"Abatta Village, En face Hotel Habibo","addressLocality":"Bingerville, Abidjan","addressCountry":"CI"},"telephone":["+225 2150015131","+225 0103680942"],"email":"infos@ysbtechno.com","sameAs":["https://www.linkedin.com/company/ysbtechnologies"]}
+{"@context":"https://schema.org","@type":"Organization","name":"YSB Technologies","url":"https://ysbtechno.com","logo":"https://ysbtechno.com/og-image.png","description":"Société de services numériques dédiée à la transformation digitale en Afrique.","address":{"@type":"PostalAddress","streetAddress":"Abatta Village, En face Hotel Habibo","addressLocality":"Bingerville, Abidjan","addressCountry":"CI"},"telephone":["+225 2150015131","+225 0103680942"],"email":"infos@ysbtechno.com","sameAs":["https://www.linkedin.com/company/ysb-technologies"]}
 </script>
 </head>
 <body>
@@ -639,8 +640,7 @@
     </ul>
     <div class="nav-right">
       <div class="lang-toggle" aria-label="Language selector">
-        <button class="lang-btn active" onclick="switchLang('fr')">FR</button>
-        <button class="lang-btn" onclick="switchLang('en')">EN</button>
+        <button class="lang-btn active" onclick="switchLang('fr')">FR</button><span class="lang-sep" style="width:1px;height:16px;background:rgba(255,255,255,0.2);display:block"></span><button class="lang-btn" onclick="switchLang('en')">EN</button>
       </div>
       <a href="#contact" class="nav-cta" data-i18n="nav_cta">Démarrer un projet</a>
     </div>
@@ -913,7 +913,7 @@
         </div>
         <p class="footer-brand-desc" data-i18n="ft_desc">Société de services numériques dédiée à l'accompagnement des entreprises et institutions africaines dans leur transformation digitale.</p>
         <div class="footer-socials">
-          <a href="https://www.linkedin.com/company/ysbtechnologies" target="_blank" rel="noopener" class="footer-social" title="LinkedIn">in</a>
+          <a href="https://www.linkedin.com/company/ysb-technologies" target="_blank" rel="noopener" class="footer-social" title="LinkedIn">in</a>
         </div>
       </div>
       <div class="footer-col"><h4 data-i18n="nav_expertise">Expertise</h4><ul><li><a href="#expertise" data-i18n="ft_dev">Développement Digital</a></li><li><a href="#expertise" data-i18n="ft_cloud">Cloud & Infogérance</a></li><li><a href="#expertise" data-i18n="ft_cons">Conseil & Stratégie</a></li><li><a href="#expertise" data-i18n="ft_cyber">Cybersécurité</a></li><li><a href="#expertise" data-i18n="ft_ai">Intelligence Artificielle</a></li><li><a href="#expertise" data-i18n="ft_sup">Support</a></li></ul></div>
