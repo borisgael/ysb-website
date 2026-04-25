@@ -609,16 +609,40 @@
   .wa-btn svg{width:32px;height:32px;fill:#fff}
   @media(max-width:768px){.wa-float{bottom:20px;right:20px}.wa-btn{width:54px;height:54px}.wa-btn svg{width:28px;height:28px}}
 
-  /* PAGE LOAD ANIMATION */
-  .hero-tag,.hero-title,.hero-sub,.hero-actions,.hero-trust{opacity:0;animation:heroIn .8s cubic-bezier(.16,1,.3,1) forwards}
-  .hero-tag{animation-delay:.1s}.hero-title{animation-delay:.25s}.hero-sub{animation-delay:.4s}.hero-actions{animation-delay:.55s}.hero-trust{animation-delay:.7s}
-  @keyframes heroIn{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+  /* PAGE LOAD ANIMATION — Logo Splash */
+  .splash-screen{position:fixed;inset:0;z-index:9999;background:var(--navy-deep);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s ease,visibility .6s ease}
+  .splash-screen.hide{opacity:0;visibility:hidden}
+  .splash-circles{position:relative;width:70px;height:70px;margin-bottom:20px}
+  .splash-c1{position:absolute;width:52px;height:52px;border-radius:50%;background:var(--cyan);top:0;left:0;animation:splashPulse 1.2s ease-in-out infinite}
+  .splash-c2{position:absolute;width:30px;height:30px;border-radius:50%;background:var(--purple);bottom:2px;right:4px;animation:splashPulse 1.2s ease-in-out infinite .3s}
+  @keyframes splashPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.12);opacity:.65}}
+  .splash-name{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--white);letter-spacing:-.01em}
+  .splash-bar{width:140px;height:3px;border-radius:3px;background:rgba(255,255,255,.08);margin-top:24px;overflow:hidden}
+  .splash-bar-fill{width:0;height:100%;border-radius:3px;background:var(--cyan);animation:splashFill 1.8s ease forwards}
+  @keyframes splashFill{to{width:100%}}
+  .hero-text>*{opacity:0;transform:translateY(28px)}
+  .page-loaded .hero-text>*{animation:heroIn .7s cubic-bezier(.16,1,.3,1) forwards}
+  .page-loaded .hero-text>*:nth-child(1){animation-delay:.15s}
+  .page-loaded .hero-text>*:nth-child(2){animation-delay:.3s}
+  .page-loaded .hero-text>*:nth-child(3){animation-delay:.45s}
+  .page-loaded .hero-text>*:nth-child(4){animation-delay:.6s}
+  .page-loaded .hero-text>*:nth-child(5){animation-delay:.75s}
+  .hero-visual{opacity:0;transform:translateY(28px)}
+  .page-loaded .hero-visual{animation:heroIn .8s cubic-bezier(.16,1,.3,1) .5s forwards}
+  @keyframes heroIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","name":"YSB Technologies","url":"https://ysbtechno.com","logo":"https://ysbtechno.com/og-image.png","description":"Société de services numériques dédiée à la transformation digitale en Afrique.","address":{"@type":"PostalAddress","streetAddress":"Abatta Village, En face Hotel Habibo","addressLocality":"Bingerville, Abidjan","addressCountry":"CI"},"telephone":["+225 2150015131","+225 0103680942"],"email":"infos@ysbtechno.com","sameAs":["https://www.linkedin.com/company/ysb-technologies"]}
 </script>
 </head>
 <body>
+
+<!-- SPLASH SCREEN -->
+<div class="splash-screen" id="splashScreen">
+  <div class="splash-circles"><div class="splash-c1"></div><div class="splash-c2"></div></div>
+  <div class="splash-name">YSB Technologies</div>
+  <div class="splash-bar"><div class="splash-bar-fill"></div></div>
+</div>
 
 <!-- NAV -->
 <nav id="navbar" aria-label="Navigation principale">
