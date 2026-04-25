@@ -580,19 +580,17 @@
   /* ═══ LANG TOGGLE ═══ */
   .lang-toggle {
     font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700;
-    display: flex; align-items: center; border-radius: 6px; overflow: hidden;
-    border: 1.5px solid rgba(255,255,255,0.2); cursor: pointer; transition: border-color 0.3s;
+    display: flex; align-items: center; border-radius: 8px; overflow: hidden;
+    background: rgba(255,255,255,0.1); padding: 3px; gap: 2px;
   }
-  .lang-toggle:hover { border-color: var(--cyan); }
-  nav.scrolled .lang-toggle { border-color: rgba(19,46,82,0.15); }
-  nav.scrolled .lang-toggle:hover { border-color: var(--cyan); }
-  nav.scrolled .lang-sep { background: rgba(19,46,82,0.12) !important; }
+  nav.scrolled .lang-toggle { background: rgba(19,46,82,0.06); }
   .lang-btn {
-    padding: 6px 12px; background: transparent; border: none; cursor: pointer;
+    padding: 7px 14px; border: none; cursor: pointer; border-radius: 6px;
     font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700;
-    color: rgba(255,255,255,0.7); transition: all 0.3s; letter-spacing: 0.05em;
+    color: var(--white); transition: all 0.3s; letter-spacing: 0.05em;
+    background: transparent;
   }
-  nav.scrolled .lang-btn { color: rgba(19,46,82,0.55); }
+  nav.scrolled .lang-btn { color: var(--navy); }
   .lang-btn.active { background: var(--cyan); color: var(--navy); }
   .mobile-lang-toggle { display: flex; gap: 12px; margin-top: 16px; }
   .mobile-lang-btn {
@@ -640,7 +638,7 @@
     </ul>
     <div class="nav-right">
       <div class="lang-toggle" aria-label="Language selector">
-        <button class="lang-btn active" onclick="switchLang('fr')">FR</button><span class="lang-sep" style="width:1px;height:16px;background:rgba(255,255,255,0.2);display:block"></span><button class="lang-btn" onclick="switchLang('en')">EN</button>
+        <button class="lang-btn active" onclick="switchLang('fr')">FR</button><button class="lang-btn" onclick="switchLang('en')">EN</button>
       </div>
       <a href="#contact" class="nav-cta" data-i18n="nav_cta">Démarrer un projet</a>
     </div>
