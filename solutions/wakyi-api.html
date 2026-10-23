@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q2RGCX0JKX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Q2RGCX0JKX');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documentation API Wakyi — Paiements Mobile Money (XOF) | YSB Technologies</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="description" content="Documentation de l'API Wakyi : encaissements Mobile Money (C2B), paiements de masse (B2C), wallets, webhooks signés HMAC, lots Excel. REST/JSON, XOF, Orange Money, MTN MoMo, Wave, Moov Money — Côte d'Ivoire.">
+<link rel="canonical" href="https://ysbtechno.com/solutions/wakyi-api.html">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0E2F5A;--navy-deep:#081B33;--cyan:#11C5D9;--purple:#6C63FF;--purple-light:#8B86FF;--blue:#2F80ED;--gray:#6B7280;--gray-light:#F5F7FA;--gray-medium:#E5E9F0;--white:#fff;--charcoal:#1F2937;--success:#10B981;--amber:#F59E0B;--red:#E74C3C;--code:#0B1E3A}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;font-size:16px;scroll-padding-top:90px}
+body{font-family:'Open Sans',sans-serif;color:var(--charcoal);background:var(--white);-webkit-font-smoothing:antialiased}
+a{color:var(--blue)}
+/* NAV */
+nav.top{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.96);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(14,47,90,.08)}
+.nav-inner{max-width:1400px;margin:0 auto;padding:0 32px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo img{height:30px}
+.nav-logo .tag{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--white);background:var(--navy);padding:5px 10px;border-radius:6px}
+.nav-right{display:flex;align-items:center;gap:14px}
+.nav-back{font-family:'Montserrat',sans-serif;font-size:.76rem;font-weight:600;color:var(--gray);text-decoration:none}
+.nav-back:hover{color:var(--navy)}
+.lang-switch{display:flex;gap:4px;background:rgba(14,47,90,.06);border-radius:8px;padding:3px}
+.lang-btn{font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;padding:6px 12px;border:none;border-radius:6px;cursor:pointer;background:transparent;color:rgba(14,47,90,.45)}
+.lang-btn.active{background:var(--cyan);color:var(--navy)}
+.nav-cta{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.74rem;background:var(--cyan);color:var(--navy);padding:10px 20px;border-radius:8px;text-decoration:none;text-transform:uppercase;letter-spacing:.04em}
+.nav-cta:hover{background:var(--navy);color:var(--white)}
+/* HERO */
+.doc-hero{margin-top:68px;background:var(--navy-deep);color:var(--white);padding:64px 32px 56px;position:relative;overflow:hidden}
+.doc-hero .orb{position:absolute;width:520px;height:520px;border-radius:50%;background:rgba(17,197,217,.12);filter:blur(100px);top:-220px;right:-120px}
+.doc-hero .inner{max-width:1400px;margin:0 auto;position:relative;z-index:1}
+.doc-hero .ey{font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
+.doc-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(2rem,3.6vw,2.9rem);font-weight:900;letter-spacing:-.03em;line-height:1.1;margin-bottom:16px}
+.doc-hero p{max-width:720px;color:rgba(255,255,255,.6);line-height:1.75;font-size:1.02rem}
+.hero-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.pill{font-family:'JetBrains Mono',monospace;font-size:.74rem;padding:7px 12px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.8)}
+.pill b{color:var(--cyan);font-weight:500}
+/* LAYOUT */
+.layout{max-width:1400px;margin:0 auto;padding:48px 32px 96px;display:grid;grid-template-columns:260px minmax(0,1fr);gap:56px}
+.side{position:sticky;top:92px;align-self:start;max-height:calc(100vh - 110px);overflow:auto;padding-right:8px}
+.side h6{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gray);margin:22px 0 8px}
+.side h6:first-child{margin-top:0}
+.side a{display:flex;align-items:center;gap:8px;font-size:.84rem;color:var(--charcoal);text-decoration:none;padding:6px 10px;border-radius:7px;line-height:1.3}
+.side a:hover{background:var(--gray-light);color:var(--navy)}
+.side a.active{background:rgba(17,197,217,.12);color:var(--navy);font-weight:600}
+.m{font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:500;padding:2px 6px;border-radius:4px;min-width:44px;text-align:center;flex-shrink:0}
+.m.get{background:rgba(16,185,129,.14);color:#0a7a56}.m.post{background:rgba(47,128,237,.14);color:#1f5fb5}.m.patch{background:rgba(245,158,11,.16);color:#a3630a}.m.del{background:rgba(231,76,60,.14);color:#b53a2b}
+/* CONTENT */
+.content{min-width:0}
+section.doc{padding:0 0 56px;margin-bottom:56px;border-bottom:1px solid var(--gray-medium)}
+section.doc:last-child{border-bottom:none}
+.grp{font-family:'Montserrat',sans-serif;font-size:.66rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);margin-bottom:10px}
+section.doc h2{font-family:'Montserrat',sans-serif;font-size:1.75rem;font-weight:900;letter-spacing:-.02em;color:var(--navy);margin-bottom:14px;line-height:1.2}
+section.doc h3{font-family:'Montserrat',sans-serif;font-size:1.05rem;font-weight:800;color:var(--navy);margin:34px 0 10px}
+section.doc p{line-height:1.75;color:#374151;margin-bottom:14px;font-size:.95rem}
+section.doc ul,section.doc ol{margin:0 0 16px 22px;line-height:1.75;color:#374151;font-size:.95rem}
+section.doc li{margin-bottom:4px}
+.lead{font-size:1.05rem!important;color:#4B5563!important}
+code{font-family:'JetBrains Mono',monospace;font-size:.84em;background:rgba(14,47,90,.07);color:var(--navy);padding:2px 6px;border-radius:5px}
+.ep{display:flex;align-items:center;gap:12px;background:var(--gray-light);border:1px solid var(--gray-medium);border-radius:10px;padding:12px 16px;margin:14px 0 18px;font-family:'JetBrains Mono',monospace;font-size:.9rem;color:var(--navy);flex-wrap:wrap}
+.ep .m{font-size:.68rem;padding:4px 10px}
+pre{background:var(--code);color:#D6E4F5;border-radius:12px;padding:20px 22px;overflow:auto;font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.6;margin:12px 0 20px;position:relative}
+pre .lbl{position:absolute;top:10px;right:14px;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);font-family:'Montserrat',sans-serif;font-weight:700}
+pre .c{color:#7FA3C9}pre .k{color:#8BE9FD}pre .s{color:#C3E88D}pre .n{color:#F78C6C}
+.resp{display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:800;margin:14px 0 4px}
+.resp .code2{padding:3px 9px;border-radius:5px;color:#fff}
+.resp .ok{background:var(--success)}.resp .acc{background:var(--blue)}.resp .err{background:var(--red)}.resp .warn{background:var(--amber)}
+table{width:100%;border-collapse:collapse;margin:10px 0 22px;font-size:.86rem}
+th{font-family:'Montserrat',sans-serif;font-size:.64rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);text-align:left;padding:10px 12px;border-bottom:2px solid var(--gray-medium)}
+td{padding:11px 12px;border-bottom:1px solid var(--gray-medium);vertical-align:top;line-height:1.55;color:#374151}
+td:first-child{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--navy);white-space:nowrap}
+.req{font-family:'Montserrat',sans-serif;font-size:.58rem;font-weight:800;letter-spacing:.08em;padding:2px 6px;border-radius:4px;text-transform:uppercase;margin-left:6px}
+.req.y{background:rgba(231,76,60,.12);color:#b53a2b}.req.n{background:var(--gray-medium);color:var(--gray)}
+.callout{border-left:4px solid var(--cyan);background:rgba(17,197,217,.07);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0 20px;font-size:.9rem;line-height:1.65}
+.callout.warn{border-color:var(--amber);background:rgba(245,158,11,.08)}
+.callout.danger{border-color:var(--red);background:rgba(231,76,60,.07)}
+.callout b{display:block;font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:800;color:var(--navy);margin-bottom:4px}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:18px 0 22px}
+.card{background:var(--gray-light);border:1px solid var(--gray-medium);border-radius:12px;padding:18px 20px;text-decoration:none;color:inherit;transition:all .3s}
+.card:hover{border-color:var(--cyan);transform:translateY(-2px)}
+.card h4{font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:800;color:var(--navy);margin-bottom:4px}
+.card p{font-size:.82rem;color:var(--gray);margin:0}
+.ops{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 20px}
+.op{display:flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--gray-medium);border-radius:10px;padding:8px 12px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.8rem;color:var(--navy)}
+.op img{height:28px;width:52px;object-fit:contain;border-radius:5px;padding:2px}
+.l-om{background:#010101}.l-mtn{background:#f4cc46}.l-wave{background:#58b5e7}.l-moov{background:#2b65ad}
+.steps{counter-reset:s;margin:14px 0 20px}
+.step{display:flex;gap:16px;padding:14px 0;border-bottom:1px dashed var(--gray-medium)}
+.step:last-child{border:none}
+.step::before{counter-increment:s;content:counter(s);width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;font-family:'Montserrat',sans-serif;font-weight:800;font-size:.78rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step div{line-height:1.6;font-size:.92rem}
+.step b{color:var(--navy)}
+/* FOOTER */
+footer{background:#060d18;padding:40px 32px;text-align:center}
+footer p{font-size:.76rem;color:rgba(255,255,255,.25);line-height:1.7}
+footer a{color:rgba(255,255,255,.4);text-decoration:none}footer a:hover{color:var(--cyan)}
+footer img{height:36px;margin-bottom:14px}
+@media(max-width:1000px){.layout{grid-template-columns:1fr;gap:24px}.side{position:static;max-height:none;display:flex;flex-wrap:wrap;gap:4px;border-bottom:1px solid var(--gray-medium);padding-bottom:20px}.side h6{width:100%}.cards{grid-template-columns:1fr}}
+@media(max-width:640px){.nav-inner{padding:0 16px}.nav-back,.nav-logo .tag{display:none}.doc-hero,.layout{padding-left:16px;padding-right:16px}table{display:block;overflow-x:auto}td:first-child{white-space:normal}}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="nav-inner">
+    <a href="/solutions/wakyi.html" class="nav-logo"><img src="logos/wakyi-logo.png" alt="Wakyi by YSB Technologies" style="filter:brightness(.2)"><span class="tag">API Docs</span></a>
+    <div class="nav-right">
+      <a href="/solutions/wakyi.html" class="nav-back" data-i18n="nav_back">← Page Wakyi</a>
+      <div class="lang-switch"><button class="lang-btn active" onclick="setLang('fr')">FR</button><button class="lang-btn" onclick="setLang('en')">EN</button></div>
+      <a href="mailto:developers@wakyi.com?subject=Wakyi%20API%20%E2%80%94%20Demande%20d%27acc%C3%A8s%20sandbox" class="nav-cta" data-i18n="nav_cta">Accès sandbox</a>
+    </div>
+  </div>
+</nav>
+
+<header class="doc-hero">
+  <div class="orb"></div>
+  <div class="inner">
+    <div class="ey" data-i18n="h_ey">Documentation développeur</div>
+    <h1 data-i18n="h_t">API Wakyi — Paiements Mobile Money en Côte d'Ivoire</h1>
+    <p data-i18n="h_p">L'API Wakyi vous permet d'encaisser (C2B), de payer (B2C) et de suivre vos transactions Mobile Money sur Orange Money, MTN MoMo, Wave et Moov Money, via une seule intégration REST/JSON. Cette documentation couvre les endpoints publics destinés aux intégrateurs B2B : exemples de requête, schémas de réponse et codes d'erreur.</p>
+    <div class="hero-pills">
+      <span class="pill"><b>Base URL</b> https://api.wakyi.com/api/v1</span>
+      <span class="pill"><b>Devise</b> XOF</span>
+      <span class="pill"><b>Auth</b> X-API-Key + X-API-Secret</span>
+      <span class="pill"><b>Webhooks</b> HMAC-SHA256</span>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+<aside class="side" id="sidenav">
+  <h6 data-i18n="s_start">Démarrage</h6>
+  <a href="#welcome" data-i18n="s_welcome">Bienvenue</a>
+  <a href="#quickstart" data-i18n="s_quick">Démarrage rapide</a>
+  <a href="#environments" data-i18n="s_env">Environnements</a>
+  <h6 data-i18n="s_concepts">Concepts</h6>
+  <a href="#authentication" data-i18n="s_auth">Authentification</a>
+  <a href="#ip-whitelist" data-i18n="s_ip">Liste blanche d'IP</a>
+  <a href="#idempotency" data-i18n="s_idem">Idempotence</a>
+  <a href="#approval" data-i18n="s_appr">Approbation des paiements</a>
+  <a href="#errors" data-i18n="s_err">Modèle d'erreur</a>
+  <a href="#pagination" data-i18n="s_pag">Pagination &amp; filtres</a>
+  <a href="#wallets" data-i18n="s_wal">Wallets &amp; transferts</a>
+  <a href="#sandbox" data-i18n="s_sbx">Sandbox</a>
+  <h6 data-i18n="s_ref">Référence API</h6>
+  <a href="#ep-c2b"><span class="m post">POST</span><span data-i18n="s_c2b">Collecte (C2B)</span></a>
+  <a href="#ep-b2c"><span class="m post">POST</span><span data-i18n="s_b2c">Payout (B2C)</span></a>
+  <a href="#ep-task"><span class="m get">GET</span><span data-i18n="s_task">Suivre un job</span></a>
+  <a href="#ep-transactions"><span class="m get">GET</span><span data-i18n="s_tx">Lister les transactions</span></a>
+  <a href="#ep-wallets"><span class="m get">GET</span><span data-i18n="s_lw">Lister mes wallets</span></a>
+  <a href="#ep-balance"><span class="m get">GET</span><span data-i18n="s_bal">Solde d'un wallet</span></a>
+  <a href="#ep-transfer"><span class="m post">POST</span><span data-i18n="s_tr">Transfert Collection → Credit</span></a>
+  <a href="#ep-pending"><span class="m get">GET</span><span data-i18n="s_pend">Paiements en attente</span></a>
+  <a href="#ep-approve"><span class="m post">POST</span><span data-i18n="s_appr2">Approuver / refuser</span></a>
+  <a href="#ep-bulk"><span class="m post">POST</span><span data-i18n="s_bulk">Lancer un lot (Excel)</span></a>
+  <a href="#ep-bulk-detail"><span class="m get">GET</span><span data-i18n="s_bd">Détail &amp; items d'un lot</span></a>
+  <a href="#ep-bulk-cancel"><span class="m post">POST</span><span data-i18n="s_bc">Annuler un lot</span></a>
+  <a href="#ep-operators"><span class="m get">GET</span><span data-i18n="s_ops">Lister les opérateurs</span></a>
+  <a href="#ep-keys"><span class="m get">GET</span><span data-i18n="s_keys">Clés d'API</span></a>
+  <h6>Webhooks</h6>
+  <a href="#wh-concept" data-i18n="s_whc">Concept &amp; signature</a>
+  <a href="#wh-events" data-i18n="s_whe">Catalogue d'événements</a>
+  <a href="#wh-register"><span class="m post">POST</span><span data-i18n="s_whr">Enregistrer un endpoint</span></a>
+  <a href="#wh-manage"><span class="m patch">PATCH</span><span data-i18n="s_whm">Gérer un endpoint</span></a>
+  <a href="#wh-deliveries"><span class="m get">GET</span><span data-i18n="s_whd">Livraisons &amp; renvoi</span></a>
+</aside>
+
+<main class="content">
+
+<!-- ===================== WELCOME ===================== -->
+<section class="doc" id="welcome">
+  <div class="grp" data-i18n="s_start">Démarrage</div>
+  <h2 data-i18n="w_t">Bienvenue sur l'API Wakyi</h2>
+  <p class="lead" data-i18n="w_p1">L'API Wakyi vous permet d'orchestrer des paiements Mobile Money B2C et C2B et de gérer vos wallets sur les opérateurs de Côte d'Ivoire. Elle est destinée aux intégrateurs B2B — e-commerce, fintechs, entreprises, institutions — et ne couvre que les endpoints publics destinés aux clients.</p>
+  <div class="ops">
+    <span class="op"><img class="l-om" src="logos/orange-money.png" alt="">Orange Money</span>
+    <span class="op"><img class="l-mtn" src="logos/mtn-momo.png" alt="">MTN MoMo</span>
+    <span class="op"><img class="l-wave" src="logos/wave.png" alt="">Wave</span>
+    <span class="op"><img class="l-moov" src="logos/moov-money.png" alt="">Moov Money</span>
+  </div>
+  <h3 data-i18n="w_h2">Par où commencer</h3>
+  <div class="cards">
+    <a class="card" href="#quickstart"><h4 data-i18n="w_c1t">Démarrage rapide</h4><p data-i18n="w_c1p">Générer une clé, faire un premier encaissement en 5 min.</p></a>
+    <a class="card" href="#authentication"><h4 data-i18n="w_c2t">Authentification</h4><p data-i18n="w_c2p">Headers X-API-Key + X-API-Secret, signature des webhooks.</p></a>
+    <a class="card" href="#sandbox"><h4 data-i18n="w_c3t">Sandbox</h4><p data-i18n="w_c3p">Tests gratuits avec de faux fonds, isolés de la production.</p></a>
+    <a class="card" href="#ep-c2b"><h4 data-i18n="w_c4t">Encaisser un paiement</h4><p data-i18n="w_c4p">Le workflow le plus courant, de bout en bout.</p></a>
+  </div>
+  <h3 data-i18n="w_h3">Modèle de l'API</h3>
+  <p data-i18n="w_p2">L'API est REST/JSON, versionnée sous <code>/api/v1</code>. Les opérations coûteuses (collecte, payout) sont asynchrones : l'API accuse réception (<code>202</code>), lance un traitement, puis vous notifie via webhook ou polling.</p>
+  <ul>
+    <li data-i18n="w_l1"><b>Méthodes mutantes</b> : POST, PATCH, DELETE — toujours avec <code>Idempotency-Key</code>.</li>
+    <li data-i18n="w_l2"><b>Lectures</b> : GET. Trois listes seulement sont paginées (taille 50, maximum 200) ; voir <a href="#pagination">Pagination &amp; filtres</a>.</li>
+    <li data-i18n="w_l3"><b>Fuseau horaire</b> : toutes les dates sont en UTC ISO-8601.</li>
+    <li data-i18n="w_l4"><b>Devise</b> : <code>XOF</code> uniquement. Les montants sont des entiers — le franc CFA n'a pas de subdivision. Un montant décimal est refusé en <code>400</code>.</li>
+    <li data-i18n="w_l5"><b>Numéros</b> : format international sans <code>+</code>, 12 chiffres : <code>225</code> + numéro à 10 chiffres (ex. <code>2250701234567</code>). L'opérateur est déduit du préfixe.</li>
+  </ul>
+  <div class="callout"><b data-i18n="w_cb">Périmètre de cette documentation</b><span data-i18n="w_cp">Seuls les endpoints publics sont décrits ici. Les routes d'administration, les analytiques internes et les callbacks opérateurs ne sont volontairement pas exposés.</span></div>
+</section>
+
+<!-- ===================== QUICKSTART ===================== -->
+<section class="doc" id="quickstart">
+  <div class="grp" data-i18n="s_start">Démarrage</div>
+  <h2 data-i18n="q_t">Démarrage rapide</h2>
+  <p class="lead" data-i18n="q_p">Passer de zéro à un premier appel API réussi en 5 minutes : création de clé, encaissement de test, lecture du statut.</p>
+  <div class="steps">
+    <div class="step"><div><b data-i18n="q_s1t">Récupérer vos identifiants.</b> <span data-i18n="q_s1p">Connectez-vous à votre tableau de bord Wakyi et générez une paire de clés : <code>X-API-Key</code> (identifiant public, préfixé <code>sk_live_</code> en production, <code>sk_test_</code> en sandbox) et <code>X-API-Secret</code>, affiché une seule fois à la création. Stockez-le dans votre coffre de secrets.</span></div></div>
+    <div class="step"><div><b data-i18n="q_s2t">Whitelister votre IP (production seulement).</b> <span data-i18n="q_s2p">Pour les clés <code>sk_live_</code>, votre serveur doit être déclaré dans la <a href="#ip-whitelist">liste blanche d'IP</a>. Les clés <code>sk_test_</code> n'ont pas cette contrainte.</span></div></div>
+    <div class="step"><div><b data-i18n="q_s3t">Faire votre premier appel.</b> <span data-i18n="q_s3p">Déclencher une collecte de 1 000 XOF vers un numéro Orange Money de test :</span></div></div>
+  </div>
+<pre><span class="lbl">bash</span>curl -X POST https://api.wakyi.com/api/v1/send-mobile-money/c2b \
+  -H <span class="s">"X-API-Key: sk_test_xxxxxxxxxxxxxxxxxxxxx"</span> \
+  -H <span class="s">"X-API-Secret: votre_secret_ici"</span> \
+  -H <span class="s">"Content-Type: application/json"</span> \
+  -H <span class="s">"Idempotency-Key: $(uuidgen)"</span> \
+  -d '{
+    <span class="k">"mobile_number"</span>: <span class="s">"2250700000001"</span>,
+    <span class="k">"amount"</span>: <span class="n">1000</span>,
+    <span class="k">"currency"</span>: <span class="s">"XOF"</span>,
+    <span class="k">"transaction_reference"</span>: <span class="s">"TEST0001"</span>
+  }'</pre>
+  <div class="resp"><span class="code2 acc">202</span> Accepted</div>
+<pre><span class="lbl">json</span>{
+  <span class="k">"message"</span>: <span class="s">"Transaction acceptée, traitement en cours"</span>,
+  <span class="k">"task_id"</span>: <span class="s">"a7f8e9c2-1234-4567-89ab-cdef01234567"</span>
+}</pre>
+  <div class="steps" style="counter-reset:s 3">
+    <div class="step"><div><b data-i18n="q_s4t">Récupérer le statut.</b> <span data-i18n="q_s4p">Deux options : polling via <code>GET /task-status/{task_id}/</code>, ou (recommandé) webhook sur les événements <code>transaction.completed</code> / <code>transaction.failed</code>.</span></div></div>
+  </div>
+  <div class="callout warn"><b data-i18n="q_cb">À lire avant d'écrire votre boucle de polling</b><span data-i18n="q_cp">Une réponse acceptée n'est pas un paiement abouti. <code>/task-status/</code> vous dit où en est le traitement de votre requête ; l'issue réelle est le statut de la transaction (<code>Completed</code>, <code>In Progress</code>, <code>Failed</code>). Ne marquez rien comme payé avant <code>Completed</code>.</span></div>
+</section>
+
+<!-- ===================== ENVIRONMENTS ===================== -->
+<section class="doc" id="environments">
+  <div class="grp" data-i18n="s_start">Démarrage</div>
+  <h2 data-i18n="e_t">Environnements</h2>
+  <p class="lead" data-i18n="e_p">Wakyi expose deux environnements totalement isolés : sandbox pour les tests, production pour le trafic réel.</p>
+  <table>
+    <tr><th data-i18n="th_env">Environnement</th><th>Description</th></tr>
+    <tr><td>Sandbox</td><td data-i18n="e_r1">Base URL <code>https://api.wakyi.com/api/v1</code> — clés <code>sk_test_*</code>, <code>livemode=false</code>. Aucun appel opérateur réel, faux fonds, simulation de succès/échecs.</td></tr>
+    <tr><td>Production</td><td data-i18n="e_r2">Base URL <code>https://api.wakyi.com/api/v1</code> — clés <code>sk_live_*</code>, <code>livemode=true</code>. Soumise à la liste blanche d'IP. Tous les débits sont réels.</td></tr>
+  </table>
+  <p data-i18n="e_p2">La base URL est identique ; c'est la clé (et son flag <code>is_test</code>) qui distingue les deux mondes. Vos données sandbox ne polluent jamais vos rapports de production.</p>
+</section>
+
+<!-- ===================== AUTH ===================== -->
+<section class="doc" id="authentication">
+  <div class="grp" data-i18n="s_concepts">Concepts</div>
+  <h2 data-i18n="a_t">Authentification</h2>
+  <p class="lead" data-i18n="a_p">Toutes les requêtes requièrent une paire clé/secret transmise en en-têtes HTTP. Aucune session ni token JWT n'est utilisé.</p>
+  <h3 data-i18n="a_h1">En-têtes requis</h3>
+  <table>
+    <tr><th data-i18n="th_name">Nom</th><th>Type</th><th>Description</th></tr>
+    <tr><td>X-API-Key<span class="req y">requis</span></td><td>string</td><td data-i18n="a_r1">Identifiant de votre clé. Format : <code>sk_live_*</code> ou <code>sk_test_*</code>.</td></tr>
+    <tr><td>X-API-Secret<span class="req y">requis</span></td><td>string</td><td data-i18n="a_r2">Secret associé. Renvoyé une seule fois à la création, jamais consultable ensuite.</td></tr>
+    <tr><td>Content-Type<span class="req y">requis</span></td><td>string</td><td data-i18n="a_r3">Toujours <code>application/json</code>, sauf pour le téléversement d'un lot (<code>multipart/form-data</code>).</td></tr>
+    <tr><td>Idempotency-Key<span class="req n">optionnel</span></td><td>string</td><td data-i18n="a_r4">Obligatoire sur les endpoints de paiement et de transfert (voir <a href="#idempotency">Idempotence</a>). Ignoré ailleurs. UUID v4 recommandé.</td></tr>
+  </table>
+<pre><span class="lbl">bash</span>curl https://api.wakyi.com/api/v1/wallet/ \
+  -H <span class="s">"X-API-Key: sk_live_5f3a..."</span> \
+  -H <span class="s">"X-API-Secret: wK4n9..."</span></pre>
+  <h3 data-i18n="a_h2">Réponses d'authentification</h3>
+  <table>
+    <tr><th data-i18n="th_status">Statut</th><th>Description</th></tr>
+    <tr><td>401 Unauthorized</td><td data-i18n="a_e1">Non authentifié : clé ou secret manquant, invalide ou révoqué.</td></tr>
+    <tr><td>403 Forbidden</td><td data-i18n="a_e2">Authentifié mais interdit : IP source non autorisée (production), service non activé pour le compte, ou clé sans droit de dépense tentant une écriture (code <code>api_key_read_only</code>).</td></tr>
+    <tr><td>429 Too Many Requests</td><td data-i18n="a_e3">Quota dépassé. Réessayez avec un backoff exponentiel.</td></tr>
+  </table>
+  <h3 data-i18n="a_h3">Clés sans droit de dépense</h3>
+  <p data-i18n="a_p2">Une clé peut être émise en lecture seule (<code>read_only: true</code>) : elle lit vos données et les exporte, mais ne peut ni les modifier ni engager de fonds. Toute écriture est refusée en <code>403 api_key_read_only</code>. Son plafond de requêtes est distinct de celui de vos clés de paiement : le trafic d'un tableau de bord ou d'un prestataire ne consomme pas le quota qui sert à payer.</p>
+  <div class="callout danger"><b data-i18n="a_cb">Sécurité</b><span data-i18n="a_cp">Ne commitez jamais le secret dans Git et ne l'exposez jamais côté frontend : c'est une clé serveur. Pour une rotation, générez la nouvelle clé, basculez votre intégration, vérifiez que tout le trafic l'utilise, puis révoquez l'ancienne.</span></div>
+</section>
+
+<!-- ===================== IP WHITELIST ===================== -->
+<section class="doc" id="ip-whitelist">
+  <div class="grp" data-i18n="s_concepts">Concepts</div>
+  <h2 data-i18n="ip_t">Liste blanche d'IP</h2>
+  <p class="lead" data-i18n="ip_p">En production, déclarer au moins une adresse IP est obligatoire : sans liste, une clé <code>sk_live_</code> ne sert à rien. Cette protection ne s'applique pas à la sandbox.</p>
+  <p data-i18n="ip_p2">Chaque clé <code>sk_live_*</code> est attachée à une liste d'adresses autorisées, IPv4 ou IPv6, déclarées une par une (pas de plage CIDR, comparaison en égalité stricte). L'IP retenue est celle du dernier maillon de <code>X-Forwarded-For</code>, c'est-à-dire le pair réellement connecté à notre proxy : si un NAT ou un proxy sortant se trouve devant vous, c'est <em>son</em> adresse que nous voyons.</p>
+  <h3 data-i18n="ip_h1">Deux refus, deux gestes</h3>
+  <ul>
+    <li data-i18n="ip_l1"><em>Aucune adresse IP autorisée n'est déclarée pour ce compte</em> — votre liste est vide : transmettez-nous vos adresses de sortie.</li>
+    <li data-i18n="ip_l2"><em>IP non autorisée pour cette clé API</em> — votre liste existe, mais l'appel vient d'ailleurs : il faut y ajouter cette adresse.</li>
+  </ul>
+  <div class="callout warn"><b data-i18n="ip_cb">Il n'y a pas d'auto-dépannage</b><span data-i18n="ip_cp">L'enregistrement n'est pas en libre-service : écrivez à <a href="mailto:developers@wakyi.com">developers@wakyi.com</a> en citant le message de refus. Avant toute migration d'infrastructure (nouveau serveur, nouvelle région cloud, passerelle NAT), envoyez-nous la nouvelle adresse et attendez notre confirmation.</span></div>
+</section>
+
+<!-- ===================== IDEMPOTENCY ===================== -->
+<section class="doc" id="idempotency">
+  <div class="grp" data-i18n="s_concepts">Concepts</div>
+  <h2 data-i18n="id_t">Idempotence</h2>
+  <p class="lead" data-i18n="id_p">Toute requête mutante doit porter un <code>Idempotency-Key</code>. C'est la garantie qu'un retry réseau ne provoquera jamais un double débit.</p>
+  <p data-i18n="id_p2">Vous générez une clé unique (UUID v4 recommandé) pour chaque opération logique. L'API mémorise la réponse pendant 24 h : tout appel ultérieur avec la même clé et le même payload renvoie la réponse en cache, sans rejouer l'opération. La clé est scopée à votre compte.</p>
+  <table>
+    <tr><th data-i18n="th_status">Statut</th><th>Description</th></tr>
+    <tr><td>200/202 (replay)</td><td data-i18n="id_r1">Même clé + même payload : réponse en cache renvoyée, aucune nouvelle écriture.</td></tr>
+    <tr><td>409 Conflict</td><td data-i18n="id_r2">Même clé, une requête précédente est toujours en cours de traitement.</td></tr>
+    <tr><td>422 Unprocessable</td><td data-i18n="id_r3">Même clé réutilisée avec un payload différent : refus pour éviter l'ambiguïté.</td></tr>
+    <tr><td>400 Bad Request</td><td data-i18n="id_r4">En-tête <code>Idempotency-Key</code> manquant sur un endpoint mutant.</td></tr>
+  </table>
+<pre><span class="lbl">bash</span><span class="c"># Première tentative</span>
+curl -X POST .../send-mobile-money/b2c -H <span class="s">"Idempotency-Key: 6fa4..."</span> \
+  -d '{"mobile_number":"2250700000001","amount":5000,"currency":"XOF"}'
+
+<span class="c"># Réseau coupé ? Le client retente AVEC LA MÊME CLÉ :</span>
+curl -X POST .../send-mobile-money/b2c -H <span class="s">"Idempotency-Key: 6fa4..."</span> \
+  -d '{"mobile_number":"2250700000001","amount":5000,"currency":"XOF"}'
+<span class="c"># -> renvoie la même réponse, n'envoie pas un deuxième payout</span></pre>
+  <p data-i18n="id_p3">Générez la clé côté client au moment où l'utilisateur final déclenche l'opération, et persistez-la jusqu'à réception de la réponse finale.</p>
+</section>
+
+<!-- ===================== APPROVAL ===================== -->
+<section class="doc" id="approval">
+  <div class="grp" data-i18n="s_concepts">Concepts</div>
+  <h2 data-i18n="ap_t">Approbation des paiements</h2>
+  <p class="lead" data-i18n="ap_p">Sur un compte qui délègue à des sous-utilisateurs, un paiement initié n'est pas envoyé : il attend la validation du titulaire. Sans délégation, rien ne change — vos appels partent immédiatement.</p>
+  <p data-i18n="ap_p2">Un sous-utilisateur initie un payout. Les fonds sont immédiatement engagés (ils sortent du solde dépensable), mais rien ne part chez l'opérateur. Le titulaire approuve — l'envoi part alors — ou refuse, et les fonds sont rendus.</p>
+  <h3 data-i18n="ap_h1">Ce que vous recevez à l'initiation</h3>
+  <p data-i18n="ap_p3">L'appel rend toujours <code>202</code>. C'est la présence de la clé <code>status</code> qui distingue les deux cas, et c'est le seul point que votre code doit tester :</p>
+<pre><span class="lbl">json</span><span class="c">// Parti chez l'opérateur — le cas habituel</span>
+{ <span class="k">"task_id"</span>: <span class="s">"8f3a..."</span>, <span class="k">"message"</span>: <span class="s">"Payout en cours"</span> }
+
+<span class="c">// EN ATTENTE de validation — aucun task_id</span>
+{ <span class="k">"status"</span>: <span class="s">"AWAITING_APPROVAL"</span>, <span class="k">"reference"</span>: <span class="s">"ORDER4821"</span>,
+  <span class="k">"message"</span>: <span class="s">"Payment awaiting approval"</span> }</pre>
+  <div class="callout"><b data-i18n="ap_cb">Pas de task_id tant que ce n'est pas approuvé</b><span data-i18n="ap_cp">Un paiement en attente n'a pas de <code>task_id</code> : aucune tâche n'a été lancée. Testez la présence de <code>status</code> avant de lire <code>task_id</code>. Les endpoints de file, d'approbation et de refus sont décrits dans <a href="#ep-pending">Paiements en attente</a>.</span></div>
+</section>
+
+<!-- ===================== ERRORS ===================== -->
+<section class="doc" id="errors">
+  <div class="grp" data-i18n="s_concepts">Concepts</div>
+  <h2 data-i18n="er_t">Modèle d'erreur</h2>
+  <p class="lead" data-i18n="er_p">Les refus produits par le cadre applicatif — authentification, autorisation, quota, idempotence, validation — portent une enveloppe structurée. Les refus métier des endpoints de paiement portent une chaîne simple.</p>
+  <p data-i18n="er_p2">Le champ <code>error</code> est toujours présent, mais son type change. Si <code>error</code> est un objet, vous disposez d'un code machine. Si c'est une chaîne, seuls la phrase et le statut HTTP font foi.</p>
+<pre><span class="lbl">json</span><span class="c">// Forme structurée — erreurs du cadre</span>
+{ <span class="k">"error"</span>: { <span class="k">"code"</span>: <span class="s">"permission_denied"</span>,
+             <span class="k">"message"</span>: <span class="s">"Service 'Mobile Money' non autorisé pour ce compte."</span>,
+             <span class="k">"details"</span>: null } }
+
+<span class="c">// Forme simple — refus métier des endpoints de paiement</span>
+{ <span class="k">"error"</span>: <span class="s">"Insufficient balance"</span> }</pre>
+  <h3 data-i18n="er_h1">Codes structurés</h3>
+  <table>
+    <tr><th>Code</th><th>Description</th></tr>
+    <tr><td>authentication_failed (401)</td><td data-i18n="er_c1">Clé ou secret invalide, clé révoquée, compte désactivé.</td></tr>
+    <tr><td>not_authenticated (401)</td><td data-i18n="er_c2">Aucun identifiant fourni sur une route protégée.</td></tr>
+    <tr><td>permission_denied (403)</td><td data-i18n="er_c3">IP hors liste blanche, service non activé, ou ressource appartenant à un autre compte.</td></tr>
+    <tr><td>api_key_read_only (403)</td><td data-i18n="er_c4">Clé sans droit de dépense tentant une écriture.</td></tr>
+    <tr><td>throttled (429)</td><td data-i18n="er_c5">Plafond horaire dépassé. Le message indique le délai d'attente.</td></tr>
+    <tr><td>invalid (400)</td><td data-i18n="er_c6">Validation de schéma (webhooks). <code>details</code> porte le détail champ par champ.</td></tr>
+    <tr><td>parse_error (400)</td><td data-i18n="er_c7">Corps JSON malformé.</td></tr>
+    <tr><td>not_found (404)</td><td data-i18n="er_c8">Ressource inexistante, ou numéro de page hors bornes.</td></tr>
+    <tr><td>idempotency_key_required (400)</td><td data-i18n="er_c9">En-tête <code>Idempotency-Key</code> absent sur un endpoint qui l'exige.</td></tr>
+    <tr><td>request_in_progress (409)</td><td data-i18n="er_c10">Une requête portant cette même clé est encore en cours.</td></tr>
+    <tr><td>idempotency_key_payload_mismatch (422)</td><td data-i18n="er_c11">Même clé réutilisée avec un corps différent.</td></tr>
+    <tr><td>request_failed (500)</td><td data-i18n="er_c12">La requête a échoué après avoir pu engager des fonds. Ne pas rejouer avec la même clé.</td></tr>
+    <tr><td>request_outcome_unknown (500)</td><td data-i18n="er_c13">Traitement interrompu, issue inconnue. Vérifier l'état avant toute nouvelle tentative.</td></tr>
+  </table>
+  <h3 data-i18n="er_h2">Refus métier des endpoints de paiement</h3>
+  <table>
+    <tr><th data-i18n="th_status">Statut</th><th>Description</th></tr>
+    <tr><td>400 Bad Request</td><td data-i18n="er_b1">Montant absent, non entier ou négatif ; champ requis manquant ; numéro mal formé ; opérateur non reconnu ; devise autre que XOF ; solde insuffisant (<code>"Insufficient balance"</code>) ; montant hors des bornes de l'opérateur ; <code>transaction_reference</code> trop longue ou au mauvais format.</td></tr>
+    <tr><td>404 Not Found</td><td data-i18n="er_b2"><code>"Wallet not found"</code> — vous n'avez pas de wallet du type demandé. Une clé <code>sk_test</code> ne voit que les wallets de test.</td></tr>
+    <tr><td>409 Conflict</td><td data-i18n="er_b3">La <code>transaction_reference</code> fournie est déjà utilisée.</td></tr>
+    <tr><td>502 Bad Gateway</td><td data-i18n="er_b4">La passerelle opérateur n'a pas pu traiter la transaction. Aucun fonds n'est engagé : vous pouvez rejouer, y compris avec la même <code>Idempotency-Key</code>.</td></tr>
+  </table>
+  <div class="callout"><b data-i18n="er_cb">Que retenter</b><span data-i18n="er_cp">Retentez sur <code>429</code> (avec backoff) et sur <code>502</code> (la clé d'idempotence reste valable). Ne retentez pas les autres 4xx sans corriger la requête — et si vous la corrigez, utilisez une nouvelle <code>Idempotency-Key</code>. Sur <code>500</code>, ne rejouez jamais avant d'avoir vérifié l'état réel via <code>GET /transactions/?reference=</code>.</span></div>
+</section>
+
+<!-- ===================== PAGINATION ===================== -->
+<section class="doc" id="pagination">
+  <div class="grp" data-i18n="s_concepts">Concepts</div>
+  <h2 data-i18n="pg_t">Pagination &amp; filtres</h2>
+  <p class="lead" data-i18n="pg_p">Trois endpoints de liste sont paginés par numéro de page : <code>GET /transactions/</code>, <code>GET /webhooks/</code> et <code>GET /webhooks/{id}/deliveries/</code>. Les autres listes renvoient un tableau JSON nu.</p>
+  <table>
+    <tr><th data-i18n="th_name">Nom</th><th>Type</th><th>Description</th></tr>
+    <tr><td>page<span class="req n">optionnel</span></td><td>integer</td><td data-i18n="pg_r1">Numéro de page, à partir de 1. Un numéro hors bornes renvoie <code>404 not_found</code>.</td></tr>
+    <tr><td>page_size<span class="req n">optionnel</span></td><td>integer</td><td data-i18n="pg_r2">Défaut 50, maximum 200 (au-delà, ramené à 200 sans erreur).</td></tr>
+  </table>
+<pre><span class="lbl">json</span>{
+  <span class="k">"count"</span>: <span class="n">142</span>,
+  <span class="k">"next"</span>: <span class="s">"https://api.wakyi.com/api/v1/transactions/?page=3"</span>,
+  <span class="k">"previous"</span>: <span class="s">"https://api.wakyi.com/api/v1/transactions/?page=1"</span>,
+  <span class="k">"results"</span>: [ <span class="c">/* ... */</span> ]
+}</pre>
+  <div class="callout warn"><b data-i18n="pg_cb">Un paramètre inconnu ne provoque pas d'erreur</b><span data-i18n="pg_cp">Tout paramètre non documenté est ignoré en silence et la liste complète est renvoyée en <code>200</code>. Vérifiez l'orthographe : les bornes de date se nomment <code>date_from</code> et <code>date_to</code>.</span></div>
+</section>
+
+<!-- ===================== WALLETS ===================== -->
+<section class="doc" id="wallets">
+  <div class="grp" data-i18n="s_concepts">Concepts</div>
+  <h2 data-i18n="wl_t">Wallets &amp; transferts</h2>
+  <p class="lead" data-i18n="wl_p">Votre compte dispose de deux wallets XOF distincts. L'argent ne passe jamais de l'un à l'autre tout seul : il faut le transférer explicitement avant de pouvoir le dépenser depuis l'autre wallet.</p>
+  <table>
+    <tr><th>Wallet</th><th>Description</th></tr>
+    <tr><td>Mobile Money Collection</td><td data-i18n="wl_r1">Crédité quand une collecte C2B aboutit — l'argent que vous avez encaissé auprès d'un payeur. Ne sert pas directement à financer un payout.</td></tr>
+    <tr><td>Mobile Money Credit</td><td data-i18n="wl_r2">Débité par chaque payout B2C. C'est le seul wallet dans lequel un payout peut puiser.</td></tr>
+  </table>
+  <div class="callout danger"><b data-i18n="wl_cb">Le piège : « Insufficient balance » juste après une collecte réussie</b><span data-i18n="wl_cp">Une collecte C2B qui aboutit place les fonds dans <em>Mobile Money Collection</em> — pas dans <em>Mobile Money Credit</em>. Si vous tentez ensuite un payout B2C, l'API vérifie le solde de <em>Credit</em>, le trouve inchangé, et renvoie <code>400 "Insufficient balance"</code>. Les fonds existent ; ils sont sur l'autre wallet. Transférez-les d'abord avec <a href="#ep-transfer"><code>POST /transfer-momo-collection-to-momo-credit/</code></a>.</span></div>
+  <p data-i18n="wl_p2">Le transfert est synchrone (la réponse donne le résultat immédiatement), sans conversion, au sein de votre propre compte uniquement, et exige un <code>Idempotency-Key</code> comme tout endpoint mutant.</p>
+</section>
+
+<!-- ===================== SANDBOX ===================== -->
+<section class="doc" id="sandbox">
+  <div class="grp" data-i18n="s_concepts">Concepts</div>
+  <h2 data-i18n="sb_t">Sandbox</h2>
+  <p class="lead" data-i18n="sb_p">Un environnement totalement isolé pour tester votre intégration sans dépenser un franc et sans appel opérateur réel.</p>
+  <ul>
+    <li data-i18n="sb_l1">Clés préfixées <code>sk_test_</code> (les <code>sk_live_</code> ne fonctionnent pas en sandbox).</li>
+    <li data-i18n="sb_l2">Aucun appel opérateur réel : un simulateur renvoie des réponses déterministes.</li>
+    <li data-i18n="sb_l3">Wallets de test isolés, alimentés avec du faux argent (plafond 10 000 000 XOF par wallet).</li>
+    <li data-i18n="sb_l4">Pas de liste blanche d'IP : n'importe quelle source est acceptée.</li>
+    <li data-i18n="sb_l5">Tous les événements webhook portent <code>livemode: false</code>.</li>
+  </ul>
+  <h3 data-i18n="sb_h1">Créditer un wallet de test</h3>
+  <div class="ep"><span class="m post">POST</span>/api/v1/test/fund-wallet/</div>
+  <p data-i18n="sb_p2">Ajoute de l'argent fictif sur un de vos wallets sandbox ; crée le wallet s'il n'existe pas. Authentification par le JWT du tableau de bord ou par une clé <code>sk_test_</code> existante.</p>
+<pre><span class="lbl">bash</span>curl -X POST https://api.wakyi.com/api/v1/test/fund-wallet/ \
+  -H <span class="s">"Authorization: Bearer &lt;jwt&gt;"</span> -H <span class="s">"Content-Type: application/json"</span> \
+  -d '{ <span class="k">"wallet_type"</span>: <span class="s">"Mobile Money Credit"</span>, <span class="k">"currency"</span>: <span class="s">"XOF"</span>, <span class="k">"amount"</span>: <span class="n">500000</span> }'</pre>
+  <div class="resp"><span class="code2 ok">200</span> OK</div>
+<pre><span class="lbl">json</span>{ <span class="k">"wallet_id"</span>: <span class="s">"5d3f-..."</span>, <span class="k">"wallet_type"</span>: <span class="s">"Mobile Money Credit"</span>, <span class="k">"currency"</span>: <span class="s">"XOF"</span>, <span class="k">"balance"</span>: <span class="s">"500000"</span>, <span class="k">"is_test"</span>: true }</pre>
+  <h3 data-i18n="sb_h2">Numéros de test</h3>
+  <table>
+    <tr><th data-i18n="th_num">Numéro</th><th data-i18n="th_op">Opérateur</th><th data-i18n="th_behav">Comportement simulé</th></tr>
+    <tr><td>2250700000001</td><td>Orange Money</td><td data-i18n="sb_n1">Succès (<code>Completed</code>) après ~3 s.</td></tr>
+    <tr><td>2250500000001</td><td>MTN MoMo</td><td data-i18n="sb_n1">Succès (<code>Completed</code>) après ~3 s.</td></tr>
+    <tr><td>2250100000001</td><td>Moov Money</td><td data-i18n="sb_n1">Succès (<code>Completed</code>) après ~3 s.</td></tr>
+    <tr><td>2250700000009</td><td>Orange Money</td><td data-i18n="sb_n2">Échec (<code>Failed</code>, « Insufficient funds » côté payeur).</td></tr>
+    <tr><td>2250500000008</td><td>MTN MoMo</td><td data-i18n="sb_n3">Timeout payeur (<code>Failed / timeout</code>) après 60 s.</td></tr>
+  </table>
+  <p data-i18n="sb_p3">Une fois prêt, basculez simplement vos clés vers <code>sk_live_</code> : les endpoints sont identiques.</p>
+</section>
+
+<!-- ===================== C2B ===================== -->
+<section class="doc" id="ep-c2b">
+  <div class="grp" data-i18n="s_ref">Référence API</div>
+  <h2 data-i18n="c2b_t">Collecte Mobile Money (C2B)</h2>
+  <p class="lead" data-i18n="c2b_p">Déclenche une demande de paiement vers le wallet Mobile Money du payeur. Le client final reçoit un prompt USSD / notification pour autoriser.</p>
+  <div class="ep"><span class="m post">POST</span>/api/v1/send-mobile-money/c2b</div>
+  <h3>Body</h3>
+  <table>
+    <tr><th data-i18n="th_name">Nom</th><th>Type</th><th>Description</th></tr>
+    <tr><td>mobile_number<span class="req y">requis</span></td><td>string</td><td data-i18n="c2b_r1">Numéro du payeur, 12 chiffres (<code>225</code> + 10 chiffres), sans <code>+</code>. L'opérateur est déduit du préfixe.</td></tr>
+    <tr><td>amount<span class="req y">requis</span></td><td>integer</td><td data-i18n="c2b_r2">Montant à collecter, en XOF, entier positif.</td></tr>
+    <tr><td>currency<span class="req y">requis</span></td><td>string</td><td data-i18n="c2b_r3">Toujours <code>XOF</code>. Toute autre valeur est refusée en <code>400</code>.</td></tr>
+    <tr><td>transaction_reference<span class="req n">optionnel</span></td><td>string</td><td data-i18n="c2b_r4">Votre référence métier (numéro de commande, ticket…). Recommandée : c'est la clé sur laquelle vous rapprocherez. Unique ; lettres et chiffres uniquement, 4 à 36 caractères. Omise, nous en générons une.</td></tr>
+    <tr><td>metadata<span class="req n">optionnel</span></td><td>object</td><td data-i18n="c2b_r5">Vos étiquettes libres, rendues à l'identique dans <code>GET /transactions/</code> et dans chaque webhook. 20 clés max (40 caractères, <code>A-Z a-z 0-9 _ -</code>) ; valeurs : chaîne (500 caractères max), nombre, booléen ou <code>null</code>. Ni objet imbriqué, ni tableau. <strong>Aucune donnée personnelle</strong> : ces valeurs sont stockées et rejouées 24 h dans les livraisons de webhook.</td></tr>
+  </table>
+<pre><span class="lbl">bash</span>curl -X POST https://api.wakyi.com/api/v1/send-mobile-money/c2b \
+  -H <span class="s">"X-API-Key: ..."</span> -H <span class="s">"X-API-Secret: ..."</span> \
+  -H <span class="s">"Idempotency-Key: $(uuidgen)"</span> -H <span class="s">"Content-Type: application/json"</span> \
+  -d '{
+    <span class="k">"mobile_number"</span>: <span class="s">"2250700000001"</span>,
+    <span class="k">"amount"</span>: <span class="n">2500</span>,
+    <span class="k">"currency"</span>: <span class="s">"XOF"</span>,
+    <span class="k">"transaction_reference"</span>: <span class="s">"TICKET4421"</span>,
+    <span class="k">"metadata"</span>: { <span class="k">"facture"</span>: <span class="s">"INV-2026-0912"</span>, <span class="k">"client_id"</span>: <span class="s">"CU-4471"</span> }
+  }'</pre>
+  <div class="resp"><span class="code2 acc">202</span> Accepted</div>
+<pre><span class="lbl">json</span>{ <span class="k">"message"</span>: <span class="s">"Transaction acceptée, traitement en cours"</span>, <span class="k">"task_id"</span>: <span class="s">"a7f8e9c2-..."</span> }</pre>
+  <div class="callout warn"><b data-i18n="c2b_cb">Délai côté payeur</b><span data-i18n="c2b_cp">Le payeur dispose de 60 secondes pour confirmer le prompt. Passé ce délai, la transaction passe en <code>Failed / timeout</code>. Le prompt affiché est celui de l'opérateur ; vous ne le pilotez pas.</span></div>
+</section>
+
+<!-- ===================== B2C ===================== -->
+<section class="doc" id="ep-b2c">
+  <div class="grp" data-i18n="s_ref">Référence API</div>
+  <h2 data-i18n="b2c_t">Payout Mobile Money (B2C)</h2>
+  <p class="lead" data-i18n="b2c_p">Effectue un payout depuis votre wallet <em>Mobile Money Credit</em> vers le wallet Mobile Money du bénéficiaire.</p>
+  <div class="ep"><span class="m post">POST</span>/api/v1/send-mobile-money/b2c</div>
+  <h3>Body</h3>
+  <table>
+    <tr><th data-i18n="th_name">Nom</th><th>Type</th><th>Description</th></tr>
+    <tr><td>mobile_number<span class="req y">requis</span></td><td>string</td><td data-i18n="b2c_r1">Numéro du bénéficiaire, 12 chiffres, sans <code>+</code>.</td></tr>
+    <tr><td>amount<span class="req y">requis</span></td><td>integer</td><td data-i18n="b2c_r2">Montant à payer, en XOF, entier positif.</td></tr>
+    <tr><td>currency<span class="req y">requis</span></td><td>string</td><td data-i18n="b2c_r3">Toujours <code>XOF</code>.</td></tr>
+    <tr><td>transaction_reference<span class="req n">optionnel</span></td><td>string</td><td data-i18n="b2c_r4">Votre référence métier. Unique, lettres et chiffres uniquement, 4 à 36 caractères. Une référence déjà utilisée est refusée en <code>409</code>, une référence invalide en <code>400</code> — dans les deux cas rien n'est débité.</td></tr>
+    <tr><td>metadata<span class="req n">optionnel</span></td><td>object</td><td data-i18n="b2c_r5">Mêmes règles que sur le C2B. Jamais transmis à l'opérateur ; n'est pas un critère de recherche.</td></tr>
+  </table>
+<pre><span class="lbl">bash</span>curl -X POST https://api.wakyi.com/api/v1/send-mobile-money/b2c \
+  -H <span class="s">"X-API-Key: ..."</span> -H <span class="s">"X-API-Secret: ..."</span> \
+  -H <span class="s">"Idempotency-Key: $(uuidgen)"</span> -H <span class="s">"Content-Type: application/json"</span> \
+  -d '{
+    <span class="k">"mobile_number"</span>: <span class="s">"2250500000001"</span>,
+    <span class="k">"amount"</span>: <span class="n">15000</span>,
+    <span class="k">"currency"</span>: <span class="s">"XOF"</span>,
+    <span class="k">"transaction_reference"</span>: <span class="s">"ORDER4821"</span>,
+    <span class="k">"metadata"</span>: { <span class="k">"facture"</span>: <span class="s">"INV-2026-0912"</span>, <span class="k">"agent_id"</span>: <span class="s">"AG-117"</span> }
+  }'</pre>
+  <div class="resp"><span class="code2 acc">202</span> Accepted</div>
+<pre><span class="lbl">json</span>{ <span class="k">"task_id"</span>: <span class="s">"..."</span>, <span class="k">"message"</span>: <span class="s">"Payout en cours"</span> }</pre>
+  <h3 data-i18n="b2c_h1">Pourquoi fournir votre propre référence</h3>
+  <p data-i18n="b2c_p2">Un payout est asynchrone : la réponse <code>202</code> ne porte que le <code>task_id</code>, et le statut définitif arrive plus tard. <code>transaction_reference</code> est la clé qui relie cette issue à votre commande : la valeur que vous envoyez ressort sous le nom <code>reference</code> — dans le webhook comme dans <code>GET /transactions/?reference=</code> — et vous la détenez avant même que l'appel ne parte.</p>
+  <div class="callout"><b data-i18n="b2c_cb">Les deux noms ne sont pas symétriques</b><span data-i18n="b2c_cp"><code>transaction_reference</code> (ce que vous envoyez) ressort sous <code>reference</code>. La réponse contient par ailleurs un champ nommé <code>transaction_reference</code> : c'est notre identifiant interne, pas le vôtre. Cherchez votre valeur avec <code>?reference=</code>, jamais avec <code>?transaction_reference=</code>. Une référence = une transaction ; tout le reste va dans <code>metadata</code>.</span></div>
+</section>
+
+<!-- ===================== TASK STATUS ===================== -->
+<section class="doc" id="ep-task">
+  <div class="grp" data-i18n="s_ref">Référence API</div>
+  <h2 data-i18n="ts_t">Suivre un job asynchrone</h2>
+  <p class="lead" data-i18n="ts_p">Retourne l'état d'une tâche asynchrone. Approche polling — alternative aux webhooks, utile en développement.</p>
+  <div class="ep"><span class="m get">GET</span>/api/v1/task-status/{task_id}/</div>
+  <div class="callout warn"><b data-i18n="ts_cb1">status est l'état de la tâche, pas l'issue du paiement</b><span data-i18n="ts_cp1"><code>status: "SUCCESS"</code> signifie « la tâche s'est exécutée sans planter », pas « la transaction a abouti ». Un paiement refusé par l'opérateur rend aussi <code>SUCCESS</code>, avec la clé <code>error</code> dans <code>result</code>. Lisez <code>result</code>, pas <code>status</code>. Une transaction <code>In Progress</code> n'est pas livrée : attendez <code>Completed</code> via <code>GET /transactions/?reference=</code> ou le webhook.</span></div>
+  <table>
+    <tr><th data-i18n="th_status">Statut</th><th>Description</th></tr>
+    <tr><td>404</td><td data-i18n="ts_r1">Tâche pas encore démarrée (cas normal juste après le POST — réessayez), inconnue, ou résultat expiré (&gt; 24 h).</td></tr>
+    <tr><td>200 — SUCCESS</td><td data-i18n="ts_r2">La tâche s'est exécutée. Lire <code>result</code> : <code>result.error</code> présent = refusé ; <code>result.success</code> présent = accepté, pas encore nécessairement livré.</td></tr>
+    <tr><td>200 — FAILURE</td><td data-i18n="ts_r3">La tâche elle-même a échoué (panne de notre côté) ; <code>error</code> porte le détail.</td></tr>
+  </table>
+<pre><span class="lbl">json</span>{
+  <span class="k">"task_id"</span>: <span class="s">"a7f8e9c2-1234-4567-89ab-cdef01234567"</span>,
+  <span class="k">"status"</span>: <span class="s">"SUCCESS"</span>,
+  <span class="k">"result"</span>: { <span class="k">"success"</span>: <span class="s">"Payment request sent"</span>, <span class="k">"mobile_number"</span>: <span class="s">"2250700000001"</span>, <span class="k">"originatingID"</span>: <span class="s">"ORDER4821"</span> },
+  <span class="k">"error"</span>: null
+}</pre>
+  <p data-i18n="ts_p2">Backoff conseillé : 2 s, puis 5 s, puis 10 s. Traitez les premiers <code>404</code> comme « pas encore prête » ; n'abandonnez qu'après environ 60 s sans transition.</p>
+</section>
+
+<!-- ===================== TRANSACTIONS ===================== -->
+<section class="doc" id="ep-transactions">
+  <div class="grp" data-i18n="s_ref">Référence API</div>
+  <h2 data-i18n="tx_t">Lister les transactions</h2>
+  <p class="lead" data-i18n="tx_p">Retourne vos transactions paginées, et permet de retrouver une transaction précise par sa référence ou son <code>task_id</code>.</p>
+  <div class="ep"><span class="m get">GET</span>/api/v1/transactions/</div>
+  <h3 data-i18n="tx_h1">Paramètres de requête</h3>
+  <table>
+    <tr><th data-i18n="th_name">Nom</th><th>Type</th><th>Description</th></tr>
+    <tr><td>reference</td><td>string</td><td data-i18n="tx_r1"><strong>Recommandé.</strong> Égalité exacte sur votre référence métier. Rend exactement une transaction.</td></tr>
+    <tr><td>task_id</td><td>string</td><td data-i18n="tx_r2">Égalité exacte sur le <code>task_id</code> rendu à la création. Votre repli si vous n'avez fourni aucune référence.</td></tr>
+    <tr><td>status</td><td>string</td><td data-i18n="tx_r3"><code>Completed</code>, <code>Failed</code>, <code>In Progress</code>, <code>Pending</code>. Insensible à la casse.</td></tr>
+    <tr><td>recipient</td><td>string</td><td data-i18n="tx_r4">Correspondance partielle : <code>0701234567</code> trouve aussi <code>2250701234567</code>.</td></tr>
+    <tr><td>search</td><td>string</td><td data-i18n="tx_r5">Correspondance partielle sur la référence ou le destinataire.</td></tr>
+    <tr><td>service</td><td>string</td><td data-i18n="tx_r6"><code>Mobile Money</code> ou <code>Mobile Money Collection</code>, liste séparée par des virgules.</td></tr>
+    <tr><td>network</td><td>string</td><td data-i18n="tx_r7"><code>Orange</code>, <code>MTN</code>, <code>Wave</code>, <code>Moov</code> — liste séparée par des virgules, insensible à la casse.</td></tr>
+    <tr><td>date_from / date_to</td><td>string</td><td data-i18n="tx_r8">Bornes <code>AAAA-MM-JJ</code>, incluses. Un <code>date_from</code> postérieur à <code>date_to</code> est refusé en <code>400</code>.</td></tr>
+    <tr><td>amount_min / amount_max</td><td>integer</td><td data-i18n="tx_r9">Bornes de montant, incluses.</td></tr>
+    <tr><td>batch_id</td><td>uuid</td><td data-i18n="tx_r10">Toutes les lignes d'un même lot.</td></tr>
+    <tr><td>ordering</td><td>string</td><td data-i18n="tx_r11"><code>transaction_date</code>, <code>amount</code> ou <code>status</code> ; préfixe <code>-</code> pour l'ordre décroissant. Défaut <code>-transaction_date</code>.</td></tr>
+    <tr><td>page, page_size</td><td>integer</td><td data-i18n="tx_r12">Pagination standard.</td></tr>
+  </table>
+<pre><span class="lbl">bash</span>curl <span class="s">"https://api.wakyi.com/api/v1/transactions/?reference=ORDER4821"</span> \
+  -H <span class="s">"X-API-Key: ..."</span> -H <span class="s">"X-API-Secret: ..."</span></pre>
+  <div class="resp"><span class="code2 ok">200</span> OK</div>
+<pre><span class="lbl">json</span>{
+  <span class="k">"count"</span>: <span class="n">1</span>, <span class="k">"next"</span>: null, <span class="k">"previous"</span>: null,
+  <span class="k">"results"</span>: [ {
+    <span class="k">"id"</span>: <span class="n">9821</span>,
+    <span class="k">"reference"</span>: <span class="s">"ORDER4821"</span>,
+    <span class="k">"transaction_reference"</span>: <span class="s">"bb774629-81b2-4964-9278-f5041cf25f1c"</span>,
+    <span class="k">"task_id"</span>: <span class="s">"b8dfa889-39db-47e7-b4fc-040d0e3eaa05"</span>,
+    <span class="k">"service"</span>: <span class="s">"Mobile Money"</span>,
+    <span class="k">"network"</span>: <span class="s">"MTN"</span>,
+    <span class="k">"currency"</span>: <span class="s">"XOF"</span>,
+    <span class="k">"amount"</span>: <span class="s">"15000"</span>,
+    <span class="k">"actual_amount"</span>: <span class="s">"15000"</span>,
+    <span class="k">"status"</span>: <span class="s">"Completed"</span>,
+    <span class="k">"error"</span>: null,
+    <span class="k">"recipient"</span>: <span class="s">"2250500000001"</span>,
+    <span class="k">"metadata"</span>: { <span class="k">"facture"</span>: <span class="s">"INV-2026-0912"</span> },
+    <span class="k">"transaction_date"</span>: <span class="s">"2026-10-23T06:03:21Z"</span>
+  } ]
+}</pre>
+  <div class="callout"><b data-i18n="tx_cb">Trois identifiants dans un même payload</b><span data-i18n="tx_cp"><code>reference</code> porte votre valeur, <code>transaction_reference</code> porte la nôtre, et <code>task_id</code> est celle rendue au POST. Rapprochez sur <code>reference</code>.</span></div>
+</section>
+
+<!-- ===================== WALLETS LIST ===================== -->
+<section class="doc" id="ep-wallets">
+  <div class="grp" data-i18n="s_ref">Référence API</div>
+  <h2 data-i18n="lw_t">Lister mes wallets</h2>
+  <p class="lead" data-i18n="lw_p">Retourne vos wallets (<em>Mobile Money Credit</em>, <em>Mobile Money Collection</em>) avec leur solde calculé à la demande.</p>
+  <div class="ep"><span class="m get">GET</span>/api/v1/wallet/</div>
+  <div class="resp"><span class="code2 ok">200</span> OK</div>
+<pre><span class="lbl">json</span>[
+  { <span class="k">"id"</span>: <span class="s">"5d3f9b12-7c44-4e08-a1f6-92b0c7e5d341"</span>, <span class="k">"currency"</span>: <span class="s">"XOF"</span>,
+    <span class="k">"wallet_type"</span>: <span class="s">"Mobile Money Credit"</span>, <span class="k">"balance"</span>: <span class="n">1250000</span>,
+    <span class="k">"created_at"</span>: <span class="s">"2026-10-11T09:24:07.512Z"</span> }
+]</pre>
+  <p data-i18n="lw_p2"><code>balance</code> est un nombre JSON, pas une chaîne. Le solde est calculé depuis le journal des transactions et inclut les débits encore <code>In Progress</code> : c'est le solde dépensable. Une clé <code>sk_test</code> ne rend que vos wallets de sandbox. Cette liste n'est pas paginée.</p>
+</section>
+
+<!-- ===================== BALANCE ===================== -->
+<section class="doc" id="ep-balance">
+  <div class="grp" data-i18n="s_ref">Référence API</div>
+  <h2 data-i18n="bl_t">Solde d'un wallet</h2>
+  <p class="lead" data-i18n="bl_p">Retourne le solde d'un wallet précis, identifié par l'<code>id</code> obtenu sur <code>GET /wallet/</code>.</p>
+  <div class="ep"><span class="m get">GET</span>/api/v1/wallet-balance/{wallet_id}</div>
+  <div class="resp"><span class="code2 ok">200</span> OK</div>
+<pre><span class="lbl">json</span>{ <span class="k">"wallet_id"</span>: <span class="s">"5d3f9b12-..."</span>, <span class="k">"wallet_type"</span>: <span class="s">"Mobile Money Credit"</span>, <span class="k">"wallet_currency"</span>: <span class="s">"XOF"</span>, <span class="k">"balance"</span>: <span class="n">1250000</span> }</pre>
+  <p data-i18n="bl_p2">Cette route s'écrit <strong>sans slash final</strong> ; un slash de fin donne un <code>404</code>. <code>404</code> : wallet inconnu ou de l'autre mode ; <code>403</code> : wallet d'un autre compte. La devise se lit sous <code>wallet_currency</code>.</p>
+</section>
+
+<!-- ===================== TRANSFER ===================== -->
+<section class="doc" id="ep-transfer">
+  <div class="grp" data-i18n="s_ref">Référence API</div>
+  <h2 data-i18n="tr_t">Transfert Collection → Credit</h2>
+  <p class="lead" data-i18n="tr_p">Déplace des fonds de votre wallet <em>Mobile Money Collection</em> vers votre wallet <em>Mobile Money Credit</em>, sans conversion, au sein de votre propre compte. C'est l'endpoint qu'il vous faut juste après une collecte C2B, avant un payout B2C avec le même argent.</p>
+  <div class="ep"><span class="m post">POST</span>/api/v1/transfer-momo-collection-to-momo-credit/</div>
+  <table>
+    <tr><th data-i18n="th_name">Nom</th><th>Type</th><th>Description</th></tr>
+    <tr><td>currency<span class="req y">requis</span></td><td>string</td><td data-i18n="tr_r1"><code>XOF</code>. Vous devez déjà avoir les deux wallets, sinon <code>404</code>.</td></tr>
+    <tr><td>amount<span class="req y">requis</span></td><td>integer</td><td data-i18n="tr_r2">Montant à déplacer, entier positif.</td></tr>
+  </table>
+<pre><span class="lbl">bash</span>curl -X POST https://api.wakyi.com/api/v1/transfer-momo-collection-to-momo-credit/ \
+  -H <span class="s">"X-API-Key: ..."</span> -H <span class="s">"X-API-Secret: ..."</span> -H <span class="s">"Idempotency-Key: $(uuidgen)"</span> \
+  -H <span class="s">"Content-Type: application/json"</span> -d '{ <span class="k">"currency"</span>: <span class="s">"XOF"</span>, <span class="k">"amount"</span>: <span class="n">100000</span> }'</pre>
+  <div class="resp"><span class="code2 ok">200</span> OK</div>
+<pre><span class="lbl">json</span>{
+  <span class="k">"message"</span>: <span class="s">"Transfert effectué avec succès."</span>,
+  <span class="k">"details"</span>: { <span class="k">"sender_balance_before"</span>: <span class="n">370000</span>, <span class="k">"sender_balance_after"</span>: <span class="n">270000</span>,
+               <span class="k">"receiver_balance_before"</span>: <span class="n">0</span>, <span class="k">"receiver_balance_after"</span>: <span class="n">100000</span> }
+}</pre>
+  <p data-i18n="tr_p2"><code>400</code> : devise ou montant manquant / non positif, ou solde insuffisant dans <em>Collection</em>. <code>404</code> : l'un des deux wallets n'existe pas. Les messages d'erreur de cet endpoint sont en français.</p>
+</section>
+
+<!-- ===================== PENDING / APPROVE ===================== -->
+<section class="doc" id="ep-pending">
+  <div class="grp" data-i18n="s_ref">Référence API</div>
+  <h2 data-i18n="pd_t">Paiements en attente</h2>
+  <p class="lead" data-i18n="pd_p">Liste les paiements initiés par un sous-utilisateur et en attente de décision du titulaire. Un compte sans délégation reçoit <code>200</code> avec <code>count: 0</code>, jamais un refus.</p>
+  <div class="ep"><span class="m get">GET</span>/api/v1/payments/pending/</div>
+  <div class="resp"><span class="code2 ok">200</span> OK</div>
+<pre><span class="lbl">json</span>{ <span class="k">"count"</span>: <span class="n">1</span>, <span class="k">"results"</span>: [
+  { <span class="k">"reference"</span>: <span class="s">"ORDER4821"</span>, <span class="k">"status"</span>: <span class="s">"AWAITING_APPROVAL"</span>,
+    <span class="k">"amount"</span>: <span class="s">"15150"</span>, <span class="k">"actual_amount"</span>: <span class="s">"15000"</span>, <span class="k">"currency"</span>: <span class="s">"XOF"</span>,
+    <span class="k">"service"</span>: <span class="s">"Mobile Money"</span>, <span class="k">"network"</span>: <span class="s">"MTN"</span>, <span class="k">"recipient"</span>: <span class="s">"2250500000001"</span>,
+    <span class="k">"initiated_by"</span>: <span class="s">"agent-abidjan"</span>, <span class="k">"initiated_at"</span>: <span class="s">"2026-10-23T10:00:00Z"</span> }
+] }</pre>
+</section>
+
+<section class="doc" id="ep-approve">
+  <div class="grp" data-i18n="s_ref">Référence API</div>
+  <h2 data-i18n="apv_t">Approuver / refuser un paiement</h2>
+  <div class="ep"><span class="m post">POST</span>/api/v1/payments/{reference}/approve/</div>
+  <p data-i18n="apv_p1">Rend <code>202</code> + <code>task_id</code> : l'envoi part chez l'opérateur ; suivez-le par <code>GET /task-status/</code> ou attendez le webhook.</p>
+  <div class="ep"><span class="m post">POST</span>/api/v1/payments/{reference}/reject/</div>
+<pre><span class="lbl">bash</span>curl -X POST <span class="s">"https://api.wakyi.com/api/v1/payments/ORDER4821/reject/"</span> \
+  -H <span class="s">"X-API-Key: ..."</span> -H <span class="s">"X-API-Secret: ..."</span> -H <span class="s">"Content-Type: application/json"</span> \
+  -d '{ <span class="k">"reason"</span>: <span class="s">"Bénéficiaire incorrect"</span> }'</pre>
+  <p data-i18n="apv_p2">Le motif est obligatoire (<code>400</code> sinon). La transaction passe à <code>Failed</code> et les fonds engagés redeviennent dépensables ; aucune écriture compensatoire n'est créée. Le motif ressort dans le champ <code>error</code> du webhook : n'y mettez rien de confidentiel.</p>
+  <table>
+    <tr><th data-i18n="th_status">Statut</th><th>Description</th></tr>
+    <tr><td>403</td><td data-i18n="apv_e1">Pas le droit d'approuver sur ce compte, ou tentative d'approuver un paiement que vous avez vous-même initié.</td></tr>
+    <tr><td>404</td><td data-i18n="apv_e2">Cette référence n'est pas sur votre compte.</td></tr>
+    <tr><td>409</td><td data-i18n="apv_e3">Le paiement n'attend plus de décision : quelqu'un a tranché entre-temps. Rechargez la file.</td></tr>
+  </table>
+  <p data-i18n="apv_p3">Ces deux endpoints n'exigent pas d'<code>Idempotency-Key</code> : une seconde approbation rend <code>409</code>, le verrou suffit.</p>
+</section>
+
+<!-- ===================== BULK ===================== -->
+<section class="doc" id="ep-bulk">
+  <div class="grp" data-i18n="s_ref">Référence API</div>
+  <h2 data-i18n="bk_t">Lancer un lot (Excel)</h2>
+  <p class="lead" data-i18n="bk_p">Téléverse un classeur <code>.xlsx</code> contenant des paiements en masse. Chaque ligne est traitée indépendamment. Réponse immédiate avec un <code>bulk_id</code> ; le suivi se fait sur <code>GET /bulk-batches/{bulk_id}/</code>.</p>
+  <div class="ep"><span class="m post">POST</span>/api/v1/bulk-upload/{service}/</div>
+  <table>
+    <tr><th data-i18n="th_name">Nom</th><th>Type</th><th>Description</th></tr>
+    <tr><td>service<span class="req y">requis</span></td><td>path</td><td data-i18n="bk_r1"><code>mobilemoneyb2c</code> ou <code>mobilemoneyc2b</code>. Sensible à la casse. <code>b2c</code> et <code>c2b</code> seuls ne sont pas valides.</td></tr>
+    <tr><td>file<span class="req y">requis</span></td><td>file</td><td data-i18n="bk_r2">Classeur <code>.xlsx</code> (un <code>.csv</code> est refusé). Maximum 20 Mo. <code>multipart/form-data</code>.</td></tr>
+    <tr><td>currency<span class="req y">requis</span></td><td>string</td><td data-i18n="bk_r3"><code>XOF</code>, appliquée à toutes les lignes.</td></tr>
+  </table>
+  <h3 data-i18n="bk_h1">Format du fichier</h3>
+  <p data-i18n="bk_p2">Première ligne = en-tête, noms de colonnes en MAJUSCULES : <code>NUMBER</code> (numéro du destinataire, 12 chiffres sans <code>+</code>), <code>AMOUNT</code> (entier, sans séparateur de milliers). Une colonne <code>NETWORK</code> est acceptée mais ignorée : l'opérateur est toujours déduit du numéro.</p>
+<pre><span class="lbl">bash</span>curl -X POST https://api.wakyi.com/api/v1/bulk-upload/mobilemoneyb2c/ \
+  -H <span class="s">"X-API-Key: ..."</span> -H <span class="s">"X-API-Secret: ..."</span> -H <span class="s">"Idempotency-Key: $(uuidgen)"</span> \
+  -F <span class="s">"file=@salaires-octobre.xlsx"</span> -F <span class="s">"currency=XOF"</span></pre>
+  <div class="resp"><span class="code2 acc">202</span> Accepted</div>
+<pre><span class="lbl">json</span>{ <span class="k">"message"</span>: <span class="s">"Batch enregistré, traitement en cours"</span>, <span class="k">"task_id"</span>: <span class="s">"3f21c8e0-..."</span>,
+  <span class="k">"bulk_id"</span>: <span class="s">"5d3f9b12-7c44-4e08-a1f6-92b0c7e5d341"</span>, <span class="k">"file_name"</span>: <span class="s">"salaires-octobre.xlsx"</span>, <span class="k">"total"</span>: <span class="n">142</span> }</pre>
+  <div class="callout warn"><b data-i18n="bk_cb">Arrêt sur fonds épuisés</b><span data-i18n="bk_cp">Si le solde est épuisé en cours de lot, les lignes suivantes ne sont pas tentées : elles passent en <code>FAILURE</code> avec <code>error_code: "NOT_ATTEMPTED"</code>. Le <code>task_id</code> rendu ici est celui du répartiteur, pas d'une transaction : suivez le lot par <code>bulk_id</code>.</span></div>
+  <p data-i18n="bk_p3">Cycle de vie — lot : <code>Pending</code> → <code>Processing</code> → <code>Completed | Partially failed | Failed | Cancelled</code>. Ligne : <code>QUEUED</code> → <code>PROCESSING</code> → <code>SUCCESS | FAILURE | CANCELLED</code>. Codes d'erreur par ligne (contractuels) : <code>INSUFFICIENT_FUNDS</code>, <code>NOT_ATTEMPTED</code>, <code>UNKNOWN_OPERATOR</code>, <code>AMOUNT_OUT_OF_BOUNDS</code>, <code>WALLET_NOT_FOUND</code>, <code>UNSUPPORTED_SERVICE</code>, <code>TECHNICAL</code>.</p>
+</section>
+
+<section class="doc" id="ep-bulk-detail">
+  <div class="grp" data-i18n="s_ref">Référence API</div>
+  <h2 data-i18n="bd_t">Détail &amp; items d'un lot</h2>
+  <div class="ep"><span class="m get">GET</span>/api/v1/bulk-batches/</div>
+  <p data-i18n="bd_p1">Vos lots, du plus récent au plus ancien (tableau JSON nu, non paginé).</p>
+  <div class="ep"><span class="m get">GET</span>/api/v1/bulk-batches/{bulk_id}/</div>
+  <div class="resp"><span class="code2 ok">200</span> OK</div>
+<pre><span class="lbl">json</span>{ <span class="k">"id"</span>: <span class="s">"5d3f9b12-..."</span>, <span class="k">"service_type"</span>: <span class="s">"mobilemoneyb2c"</span>, <span class="k">"status"</span>: <span class="s">"Processing"</span>, <span class="k">"currency"</span>: <span class="s">"XOF"</span>,
+  <span class="k">"file_name"</span>: <span class="s">"20261023100000_salaires-octobre.xlsx"</span>, <span class="k">"total_items"</span>: <span class="n">142</span>,
+  <span class="k">"success_count"</span>: <span class="n">84</span>, <span class="k">"failure_count"</span>: <span class="n">1</span>, <span class="k">"queued_count"</span>: <span class="n">57</span>, <span class="k">"processing_count"</span>: <span class="n">0</span>, <span class="k">"cancelled_count"</span>: <span class="n">0</span>,
+  <span class="k">"created_at"</span>: <span class="s">"2026-10-23T10:00:00Z"</span> }</pre>
+  <div class="ep"><span class="m get">GET</span>/api/v1/bulk-batches/{bulk_id}/items/?status=FAILURE</div>
+  <p data-i18n="bd_p2">Lignes individuelles avec le statut de chacune. Filtre <code>status</code> : <code>QUEUED</code>, <code>PROCESSING</code>, <code>SUCCESS</code>, <code>FAILURE</code>, <code>CANCELLED</code>. Branchez votre traitement sur <code>error_code</code>, contractuel ; <code>error</code> est un message libre.</p>
+<pre><span class="lbl">json</span>{ <span class="k">"bulk_id"</span>: <span class="s">"5d3f9b12-..."</span>, <span class="k">"total"</span>: <span class="n">142</span>, <span class="k">"success"</span>: <span class="n">140</span>, <span class="k">"failure"</span>: <span class="n">2</span>, <span class="k">"queued"</span>: <span class="n">0</span>,
+  <span class="k">"items"</span>: [ { <span class="k">"number"</span>: <span class="s">"2250900000001"</span>, <span class="k">"amount"</span>: <span class="s">"25000"</span>, <span class="k">"status"</span>: <span class="s">"FAILURE"</span>,
+              <span class="k">"error_code"</span>: <span class="s">"UNKNOWN_OPERATOR"</span>, <span class="k">"error"</span>: <span class="s">"..."</span> } ] }</pre>
+</section>
+
+<section class="doc" id="ep-bulk-cancel">
+  <div class="grp" data-i18n="s_ref">Référence API</div>
+  <h2 data-i18n="bc_t">Annuler un lot</h2>
+  <p class="lead" data-i18n="bc_p">Stoppe le traitement des lignes en attente. Les lignes déjà envoyées (<code>Completed</code> / <code>Failed</code>) ne sont pas modifiées.</p>
+  <div class="ep"><span class="m post">POST</span>/api/v1/bulk-batches/{bulk_id}/cancel/</div>
+  <div class="resp"><span class="code2 ok">200</span> OK</div>
+<pre><span class="lbl">json</span>{ <span class="k">"message"</span>: <span class="s">"Batch annulé — 57 transaction(s) annulée(s)"</span>, <span class="k">"cancelled"</span>: <span class="n">57</span>, <span class="k">"bulk_status"</span>: <span class="s">"Cancelled"</span> }</pre>
+</section>
+
+<!-- ===================== OPERATORS ===================== -->
+<section class="doc" id="ep-operators">
+  <div class="grp" data-i18n="s_ref">Référence API</div>
+  <h2 data-i18n="op_t">Lister les opérateurs</h2>
+  <p class="lead" data-i18n="op_p">Retourne la liste des opérateurs supportés et leur état d'activation.</p>
+  <div class="ep"><span class="m get">GET</span>/api/v1/telecom-operators/</div>
+  <div class="resp"><span class="code2 ok">200</span> OK</div>
+<pre><span class="lbl">json</span>[
+  { <span class="k">"id"</span>: <span class="n">1</span>, <span class="k">"network_name"</span>: <span class="s">"orange"</span>, <span class="k">"mobile_money_operator_id"</span>: <span class="s">"orange_money"</span>, <span class="k">"prefixes"</span>: [<span class="s">"07"</span>], <span class="k">"is_enabled"</span>: true, <span class="k">"network_down"</span>: false },
+  { <span class="k">"id"</span>: <span class="n">2</span>, <span class="k">"network_name"</span>: <span class="s">"mtn"</span>,    <span class="k">"mobile_money_operator_id"</span>: <span class="s">"mtn_momo"</span>,     <span class="k">"prefixes"</span>: [<span class="s">"05"</span>], <span class="k">"is_enabled"</span>: true, <span class="k">"network_down"</span>: false },
+  { <span class="k">"id"</span>: <span class="n">3</span>, <span class="k">"network_name"</span>: <span class="s">"moov"</span>,   <span class="k">"mobile_money_operator_id"</span>: <span class="s">"moov_money"</span>,   <span class="k">"prefixes"</span>: [<span class="s">"01"</span>], <span class="k">"is_enabled"</span>: true, <span class="k">"network_down"</span>: false },
+  { <span class="k">"id"</span>: <span class="n">4</span>, <span class="k">"network_name"</span>: <span class="s">"wave"</span>,   <span class="k">"mobile_money_operator_id"</span>: <span class="s">"wave"</span>,         <span class="k">"prefixes"</span>: [<span class="s">"01"</span>,<span class="s">"05"</span>,<span class="s">"07"</span>], <span class="k">"is_enabled"</span>: true, <span class="k">"network_down"</span>: false }
+]</pre>
+  <div class="callout"><b data-i18n="op_cb">Wave n'est pas lié à un préfixe</b><span data-i18n="op_cp">Un wallet Wave peut exister sur n'importe quel numéro ivoirien. Pour router vers Wave plutôt que vers l'opérateur du préfixe, passez <code>"network": "wave"</code> explicitement dans le corps du C2B / B2C. Sans ce champ, le routage suit le préfixe (07 → Orange Money, 05 → MTN MoMo, 01 → Moov Money).</span></div>
+</section>
+
+<!-- ===================== KEYS ===================== -->
+<section class="doc" id="ep-keys">
+  <div class="grp" data-i18n="s_ref">Référence API</div>
+  <h2 data-i18n="ky_t">Clés d'API</h2>
+  <div class="ep"><span class="m get">GET</span>/api/v1/api-keys/{user_id}/</div>
+  <p data-i18n="ky_p1">Retourne toutes les clés actives du compte ; les secrets ne sont jamais renvoyés. Le mode se lit au préfixe (<code>sk_live_</code> / <code>sk_test_</code>), la portée au champ <code>read_only</code>, et <code>label</code> est le nom donné à la création.</p>
+<pre><span class="lbl">json</span>[ { <span class="k">"key"</span>: <span class="s">"sk_live_a7f8..."</span>, <span class="k">"revoked"</span>: false, <span class="k">"created"</span>: <span class="s">"2026-10-12T08:33:00Z"</span>, <span class="k">"read_only"</span>: false, <span class="k">"label"</span>: <span class="s">"Backend prod"</span> } ]</pre>
+  <div class="ep"><span class="m post">POST</span>/api/v1/api-keys/revoke/{user_id}/{api_key_value}/</div>
+  <p data-i18n="ky_p2">Désactive immédiatement et irréversiblement une clé ; toute requête la portant renvoie <code>401</code> à partir de cet appel. Générez la clé de remplacement avant de révoquer l'ancienne.</p>
+  <div class="ep"><span class="m post">POST</span>/api/v1/test/keys/</div>
+  <p data-i18n="ky_p3">Crée une nouvelle paire <code>sk_test_</code> (authentification par le JWT du tableau de bord). Le secret n'est renvoyé qu'une seule fois.</p>
+</section>
+
+<!-- ===================== WEBHOOKS ===================== -->
+<section class="doc" id="wh-concept">
+  <div class="grp">Webhooks</div>
+  <h2 data-i18n="wh_t">Concept &amp; signature</h2>
+  <p class="lead" data-i18n="wh_p">Recevez les changements de statut de vos transactions en push sur l'URL HTTPS de votre choix. Plus efficace que le polling, recommandé en production.</p>
+  <ol>
+    <li data-i18n="wh_l1">Vous enregistrez une URL via <code>POST /webhooks/</code>.</li>
+    <li data-i18n="wh_l2">À chaque événement, Wakyi envoie un POST JSON sur cette URL, signé HMAC-SHA256 avec le secret de l'endpoint.</li>
+    <li data-i18n="wh_l3">Répondez <code>2xx</code> pour accuser réception. Sinon, nous retentons selon l'échéancier ci-dessous.</li>
+    <li data-i18n="wh_l4">Les événements sandbox (<code>livemode: false</code>) et production (<code>livemode: true</code>) sont envoyés sur des endpoints séparés.</li>
+  </ol>
+  <h3 data-i18n="wh_h1">En-têtes de la requête</h3>
+  <table>
+    <tr><th data-i18n="th_header">En-tête</th><th>Description</th></tr>
+    <tr><td>X-Webhook-Event</td><td data-i18n="wh_r1">Le type de l'événement (ex. <code>transaction.completed</code>).</td></tr>
+    <tr><td>X-Webhook-Delivery-Id</td><td data-i18n="wh_r2">Identifiant de cette tentative de livraison — un entier rendu en chaîne, identique au champ <code>id</code> de <code>GET /webhooks/{id}/deliveries/</code>.</td></tr>
+    <tr><td>X-Webhook-Signature</td><td data-i18n="wh_r3">Signature au format <code>t=&lt;timestamp&gt;,v1=&lt;hmac&gt;</code>. Pas d'en-tête de timestamp séparé.</td></tr>
+  </table>
+<pre><span class="lbl">http</span>POST /votre-url HTTP/1.1
+Content-Type: application/json
+X-Webhook-Event: transaction.completed
+X-Webhook-Delivery-Id: 4213
+X-Webhook-Signature: t=1761213600,v1=5257a869e7a...
+
+{
+  <span class="k">"id"</span>: <span class="s">"evt_79d9f944cbf0432ba9d2a6f8"</span>,
+  <span class="k">"type"</span>: <span class="s">"transaction.completed"</span>,
+  <span class="k">"created"</span>: <span class="n">1761213600</span>,
+  <span class="k">"livemode"</span>: false,
+  <span class="k">"data"</span>: { <span class="k">"object"</span>: {
+    <span class="k">"id"</span>: <span class="n">10042</span>,
+    <span class="k">"transaction_reference"</span>: <span class="s">"9f1c2b7a-0000-4e00-8000-0000000000aa"</span>,
+    <span class="k">"reference"</span>: <span class="s">"TICKET4421"</span>,
+    <span class="k">"service"</span>: <span class="s">"Mobile Money Collection"</span>,
+    <span class="k">"network"</span>: <span class="s">"Orange"</span>,
+    <span class="k">"currency"</span>: <span class="s">"XOF"</span>,
+    <span class="k">"amount"</span>: <span class="s">"2500"</span>,
+    <span class="k">"actual_amount"</span>: <span class="s">"2500"</span>,
+    <span class="k">"status"</span>: <span class="s">"Completed"</span>,
+    <span class="k">"error"</span>: null,
+    <span class="k">"recipient"</span>: <span class="s">"2250700000001"</span>,
+    <span class="k">"metadata"</span>: { <span class="k">"facture"</span>: <span class="s">"INV-2026-0912"</span> },
+    <span class="k">"transaction_date"</span>: <span class="s">"2026-10-23T10:13:57.939015Z"</span>
+  } }
+}</pre>
+  <h3 data-i18n="wh_h2">Vérifier la signature</h3>
+  <p data-i18n="wh_p2">La signature est <code>HMAC-SHA256(timestamp + "." + corps_brut, secret)</code>. Vérifiez sur les <strong>octets bruts reçus</strong>, pas sur un JSON re-sérialisé ; validez que le timestamp est récent (&lt; 5 min) pour rejeter les replays ; comparez en temps constant.</p>
+<pre><span class="lbl">javascript</span>const crypto = require('crypto');
+<span class="c">// Express : app.use(express.json({ verify: (req, _res, buf) => { req.rawBody = buf; } }))</span>
+function verify(req, secret) {
+  const header = req.headers['x-webhook-signature'] || '';
+  const ts  = header.match(/t=([^,]+)/)?.[1];
+  const sig = header.match(/v1=([0-9a-f]+)/)?.[1];
+  if (!ts || !sig) return false;
+  const expected = crypto.createHmac('sha256', secret)
+    .update(ts + '.' + req.rawBody.toString('utf8')).digest('hex');
+  return sig.length === expected.length &amp;&amp;
+         crypto.timingSafeEqual(Buffer.from(sig), Buffer.from(expected));
+}</pre>
+  <h3 data-i18n="wh_h3">Nouvelles tentatives</h3>
+  <table>
+    <tr><th data-i18n="th_resp">Votre réponse</th><th data-i18n="th_behav2">Comportement</th></tr>
+    <tr><td>2xx</td><td data-i18n="wh_t1">Livraison acquittée. Aucune nouvelle tentative.</td></tr>
+    <tr><td>5xx, 408, 429, timeout</td><td data-i18n="wh_t2">Échec temporaire : 9 tentatives au total sur ~20 h (+5 s, +30 s, +5 min, +30 min, +2 h, +6 h, +12 h…).</td></tr>
+    <tr><td data-i18n="wh_t3k">Autres 4xx</td><td data-i18n="wh_t3">Échec définitif dès la première tentative : nous considérons que votre endpoint nous refuse. Corrigez puis <a href="#wh-deliveries">renvoyez la livraison</a>.</td></tr>
+  </table>
+</section>
+
+<section class="doc" id="wh-events">
+  <div class="grp">Webhooks</div>
+  <h2 data-i18n="we_t">Catalogue d'événements</h2>
+  <table>
+    <tr><th data-i18n="th_event">Événement</th><th>Description</th></tr>
+    <tr><td>transaction.completed</td><td data-i18n="we_r1">Une transaction (C2B, B2C) a abouti. <code>data.object.status = "Completed"</code>, <code>error = null</code>.</td></tr>
+    <tr><td>transaction.failed</td><td data-i18n="we_r2">Une transaction a échoué. <code>status = "Failed"</code> et <code>error</code> contient la raison (message opérateur ou motif de refus).</td></tr>
+    <tr><td>webhook.test</td><td data-i18n="we_r3">Événement synthétique pour tester votre endpoint (via <code>POST /webhooks/{id}/test/</code>). <code>data.object = { message, endpoint_id }</code>.</td></tr>
+  </table>
+  <div class="callout"><b data-i18n="we_cb">Pas de webhook intermédiaire</b><span data-i18n="we_cp">Aucun webhook n'est émis pour l'état <code>In Progress</code>. Vous n'êtes notifié qu'à l'état final. Recommandations : répondre en moins de 5 s et traiter en asynchrone ; brancher votre logique sur le champ <code>type</code> ; stocker <code>id</code> (<code>evt_…</code>) pour dédupliquer en cas de retry ; logger le payload intégral.</span></div>
+</section>
+
+<section class="doc" id="wh-register">
+  <div class="grp">Webhooks</div>
+  <h2 data-i18n="wr_t">Enregistrer un endpoint</h2>
+  <div class="ep"><span class="m post">POST</span>/api/v1/webhooks/</div>
+  <table>
+    <tr><th data-i18n="th_name">Nom</th><th>Type</th><th>Description</th></tr>
+    <tr><td>url<span class="req y">requis</span></td><td>string</td><td data-i18n="wr_r1">URL de votre serveur, 500 caractères max. HTTPS fortement recommandé.</td></tr>
+    <tr><td>events<span class="req n">optionnel</span></td><td>array</td><td data-i18n="wr_r2">Types d'événements à recevoir. Omis, l'endpoint est créé mais ne recevra jamais rien.</td></tr>
+    <tr><td>enabled<span class="req n">optionnel</span></td><td>boolean</td><td data-i18n="wr_r3">Défaut <code>true</code>. <code>false</code> suspend les livraisons sans supprimer l'endpoint.</td></tr>
+  </table>
+  <p data-i18n="wr_p1">Le mode test/live est déduit de la clé utilisée et ressort en lecture seule sous <code>is_test</code>.</p>
+<pre><span class="lbl">bash</span>curl -X POST https://api.wakyi.com/api/v1/webhooks/ \
+  -H <span class="s">"X-API-Key: ..."</span> -H <span class="s">"X-API-Secret: ..."</span> -H <span class="s">"Content-Type: application/json"</span> \
+  -d '{ <span class="k">"url"</span>: <span class="s">"https://app.exemple.ci/hooks/wakyi"</span>, <span class="k">"events"</span>: [<span class="s">"transaction.completed"</span>, <span class="s">"transaction.failed"</span>] }'</pre>
+  <div class="resp"><span class="code2 ok">201</span> Created</div>
+<pre><span class="lbl">json</span>{ <span class="k">"id"</span>: <span class="n">7</span>, <span class="k">"url"</span>: <span class="s">"https://app.exemple.ci/hooks/wakyi"</span>, <span class="k">"events"</span>: [<span class="s">"transaction.completed"</span>, <span class="s">"transaction.failed"</span>],
+  <span class="k">"enabled"</span>: true, <span class="k">"is_test"</span>: false, <span class="k">"secret"</span>: <span class="s">"whsec_Zx8Qq1r7Vn3s..."</span>, <span class="k">"created_at"</span>: <span class="s">"2026-10-23T10:31:00.412907Z"</span> }</pre>
+  <div class="callout danger"><b data-i18n="wr_cb">Le secret n'est rendu qu'une fois, et ne peut pas être tourné</b><span data-i18n="wr_cp">Stockez <code>secret</code> maintenant ; les lectures ultérieures n'en renvoient qu'une empreinte masquée. Pour changer de secret : supprimer l'endpoint et en créer un nouveau. Prévoyez d'accepter temporairement deux secrets pendant une bascule.</span></div>
+</section>
+
+<section class="doc" id="wh-manage">
+  <div class="grp">Webhooks</div>
+  <h2 data-i18n="wm_t">Gérer un endpoint</h2>
+  <div class="ep"><span class="m get">GET</span>/api/v1/webhooks/</div>
+  <p data-i18n="wm_p1">Vos endpoints du mode courant (liste paginée), secret masqué.</p>
+  <div class="ep"><span class="m patch">PATCH</span>/api/v1/webhooks/{id}/</div>
+  <p data-i18n="wm_p2">Met à jour <code>url</code>, <code>events</code> (remplace la liste — ce n'est pas un ajout) ou <code>enabled</code>. <code>id</code>, <code>is_test</code>, <code>secret</code> et <code>created_at</code> sont en lecture seule.</p>
+  <div class="ep"><span class="m del">DELETE</span>/api/v1/webhooks/{id}/</div>
+  <p data-i18n="wm_p3"><code>204</code>. Définitif ; efface aussi l'historique des livraisons. Pour suspendre temporairement sans rien perdre, préférez <code>PATCH { "enabled": false }</code>.</p>
+  <div class="ep"><span class="m post">POST</span>/api/v1/webhooks/{id}/test/</div>
+  <p data-i18n="wm_p4">Met en file un événement <code>webhook.test</code> (<code>202</code> + <code>delivery_id</code>). Le <code>202</code> n'est pas un accusé de réception : relisez les livraisons pour le verdict.</p>
+</section>
+
+<section class="doc" id="wh-deliveries">
+  <div class="grp">Webhooks</div>
+  <h2 data-i18n="wd_t">Livraisons &amp; renvoi</h2>
+  <div class="ep"><span class="m get">GET</span>/api/v1/webhooks/{id}/deliveries/</div>
+  <p data-i18n="wd_p1">Livraisons de cet endpoint, les plus récentes d'abord, avec leur état, le nombre de tentatives et le dernier code HTTP reçu. Paginé.</p>
+<pre><span class="lbl">json</span>{ <span class="k">"count"</span>: <span class="n">23</span>, <span class="k">"results"</span>: [
+  { <span class="k">"id"</span>: <span class="n">41827</span>, <span class="k">"event_type"</span>: <span class="s">"transaction.completed"</span>, <span class="k">"event_id"</span>: <span class="s">"evt_79d9f944cbf0432ba9d2a6f8"</span>,
+    <span class="k">"target_url"</span>: <span class="s">"https://app.exemple.ci/hooks/wakyi"</span>, <span class="k">"state"</span>: <span class="s">"SUCCESS"</span>, <span class="k">"attempts"</span>: <span class="n">1</span>, <span class="k">"response_status"</span>: <span class="n">200</span>,
+    <span class="k">"last_attempt_at"</span>: <span class="s">"2026-10-23T10:31:01.884210Z"</span>, <span class="k">"next_attempt_at"</span>: null } ] }</pre>
+  <table>
+    <tr><th>state</th><th>Description</th></tr>
+    <tr><td>PENDING</td><td data-i18n="wd_s1">En attente d'une tentative ; <code>next_attempt_at</code> indique quand.</td></tr>
+    <tr><td>SUCCESS</td><td data-i18n="wd_s2">Votre serveur a répondu 2xx. Terminal.</td></tr>
+    <tr><td>FAILED</td><td data-i18n="wd_s3">Votre serveur a répondu un 4xx autre que 408/429. Terminal : corrigez puis renvoyez.</td></tr>
+    <tr><td>EXHAUSTED</td><td data-i18n="wd_s4">Les 9 tentatives ont été consommées sans 2xx. Terminal, renvoyable.</td></tr>
+  </table>
+  <div class="ep"><span class="m post">POST</span>/api/v1/webhooks/{id}/deliveries/{delivery_id}/resend/</div>
+  <p data-i18n="wd_p2">Rejoue une livraison passée en conservant son <code>event_id</code> (votre déduplication sur <code>id</code> continue de s'appliquer) ; <code>attempts</code> repart à 0 et le calendrier de réessai du début. <code>409</code> si la livraison est encore <code>PENDING</code> ou si un renvoi a eu lieu il y a moins d'une minute ; <code>404</code> si elle n'appartient pas à cet endpoint ou n'est pas dans le mode de votre clé.</p>
+  <div class="callout"><b data-i18n="wd_cb">Besoin d'aide ?</b><span data-i18n="wd_cp">Accès sandbox, liste blanche d'IP, questions d'intégration : <a href="mailto:developers@wakyi.com">developers@wakyi.com</a>.</span></div>
+</section>
+
+</main>
+</div>
+
+<footer>
+  <img src="logos/wakyi-logo.png" alt="Wakyi by YSB Technologies">
+  <p data-i18n="ft_p">© 2026 YSB Technologies SARL — Tous droits réservés. Wakyi est une marque de YSB Technologies. Abidjan, Côte d'Ivoire</p>
+  <p style="margin-top:8px"><a href="mailto:developers@wakyi.com">developers@wakyi.com</a> · <a href="/solutions/wakyi.html">wakyi.com</a> · <a href="/">www.ysbtechno.com</a></p>
+</footer>
+
+<script>
+// active section highlight
+const links=[...document.querySelectorAll('#sidenav a')];const secs=[...document.querySelectorAll('section.doc')];
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id))}})},{rootMargin:'-20% 0px -70% 0px'});
+secs.forEach(s=>io.observe(s));
+</script>
+<script>
+const T={en:{
+nav_back:"← Wakyi page",nav_cta:"Sandbox access",
+h_ey:"Developer documentation",h_t:"Wakyi API — Mobile Money payments in Côte d'Ivoire",
+h_p:"The Wakyi API lets you collect (C2B), pay out (B2C) and track Mobile Money transactions on Orange Money, MTN MoMo, Wave and Moov Money through a single REST/JSON integration. This documentation covers the public endpoints for B2B integrators: request examples, response schemas and error codes.",
+s_start:"Getting started",s_welcome:"Welcome",s_quick:"Quickstart",s_env:"Environments",s_concepts:"Concepts",s_auth:"Authentication",s_ip:"IP whitelist",s_idem:"Idempotency",s_appr:"Payment approval",s_err:"Error model",s_pag:"Pagination & filters",s_wal:"Wallets & transfers",s_sbx:"Sandbox",s_ref:"API reference",
+s_c2b:"Collection (C2B)",s_b2c:"Payout (B2C)",s_task:"Track a job",s_tx:"List transactions",s_lw:"List my wallets",s_bal:"Wallet balance",s_tr:"Transfer Collection → Credit",s_pend:"Pending payments",s_appr2:"Approve / reject",s_bulk:"Run a batch (Excel)",s_bd:"Batch detail & items",s_bc:"Cancel a batch",s_ops:"List operators",s_keys:"API keys",
+s_whc:"Concept & signature",s_whe:"Event catalogue",s_whr:"Register an endpoint",s_whm:"Manage an endpoint",s_whd:"Deliveries & resend",
+th_env:"Environment",th_name:"Name",th_status:"Status",th_num:"Number",th_op:"Operator",th_behav:"Simulated behaviour",th_header:"Header",th_resp:"Your response",th_behav2:"Behaviour",th_event:"Event",
+w_t:"Welcome to the Wakyi API",w_p1:"The Wakyi API lets you orchestrate B2C and C2B Mobile Money payments and manage your wallets across the operators of Côte d'Ivoire. It is intended for B2B integrators — e-commerce, fintechs, companies, institutions — and only covers the public, customer-facing endpoints.",
+w_h2:"Where to start",w_c1t:"Quickstart",w_c1p:"Generate a key, run a first collection in 5 min.",w_c2t:"Authentication",w_c2p:"X-API-Key + X-API-Secret headers, webhook signature.",w_c3t:"Sandbox",w_c3p:"Free tests with fake funds, isolated from production.",w_c4t:"Collect a payment",w_c4p:"The most common workflow, end to end.",
+w_h3:"API model",w_p2:"The API is REST/JSON, versioned under <code>/api/v1</code>. Costly operations (collection, payout) are asynchronous: the API acknowledges (<code>202</code>), starts processing, then notifies you via webhook or polling.",
+w_l1:"<b>Mutating methods</b>: POST, PATCH, DELETE — always with <code>Idempotency-Key</code>.",w_l2:"<b>Reads</b>: GET. Only three lists are paginated (size 50, max 200); see <a href='#pagination'>Pagination & filters</a>.",w_l3:"<b>Time zone</b>: all dates are UTC ISO-8601.",w_l4:"<b>Currency</b>: <code>XOF</code> only. Amounts are integers — the CFA franc has no subunit. A decimal amount is rejected with <code>400</code>.",w_l5:"<b>Numbers</b>: international format without <code>+</code>, 12 digits: <code>225</code> + 10-digit number (e.g. <code>2250701234567</code>). The operator is inferred from the prefix.",
+w_cb:"Scope of this documentation",w_cp:"Only public endpoints are described here. Admin routes, internal analytics and operator callbacks are deliberately not exposed.",
+q_t:"Quickstart",q_p:"From zero to a first successful API call in 5 minutes: key creation, test collection, status read.",
+q_s1t:"Get your credentials.",q_s1p:"Sign in to your Wakyi dashboard and generate a key pair: <code>X-API-Key</code> (public identifier, prefixed <code>sk_live_</code> in production, <code>sk_test_</code> in sandbox) and <code>X-API-Secret</code>, shown once at creation. Store it in your secrets vault.",
+q_s2t:"Whitelist your IP (production only).",q_s2p:"For <code>sk_live_</code> keys your server must be declared in the <a href='#ip-whitelist'>IP whitelist</a>. <code>sk_test_</code> keys have no such constraint.",
+q_s3t:"Make your first call.",q_s3p:"Trigger a 1,000 XOF collection to an Orange Money test number:",
+q_s4t:"Get the status.",q_s4p:"Two options: polling via <code>GET /task-status/{task_id}/</code>, or (recommended) a webhook on <code>transaction.completed</code> / <code>transaction.failed</code>.",
+q_cb:"Read this before writing your polling loop",q_cp:"An accepted response is not a completed payment. <code>/task-status/</code> tells you where the processing of your request stands; the real outcome is the transaction status (<code>Completed</code>, <code>In Progress</code>, <code>Failed</code>). Mark nothing as paid before <code>Completed</code>.",
+e_t:"Environments",e_p:"Wakyi exposes two fully isolated environments: sandbox for testing, production for real traffic.",e_r1:"Base URL <code>https://api.wakyi.com/api/v1</code> — <code>sk_test_*</code> keys, <code>livemode=false</code>. No real operator call, fake funds, simulated successes/failures.",e_r2:"Base URL <code>https://api.wakyi.com/api/v1</code> — <code>sk_live_*</code> keys, <code>livemode=true</code>. Subject to the IP whitelist. All debits are real.",e_p2:"The base URL is identical; the key (and its <code>is_test</code> flag) tells the two worlds apart. Sandbox data never pollutes your production reports.",
+a_t:"Authentication",a_p:"Every request requires a key/secret pair sent as HTTP headers. No session or JWT token is used.",a_h1:"Required headers",a_r1:"Your key identifier. Format: <code>sk_live_*</code> or <code>sk_test_*</code>.",a_r2:"Associated secret. Returned once at creation, never retrievable afterwards.",a_r3:"Always <code>application/json</code>, except for batch upload (<code>multipart/form-data</code>).",a_r4:"Mandatory on payment and transfer endpoints (see <a href='#idempotency'>Idempotency</a>). Ignored elsewhere. UUID v4 recommended.",
+a_h2:"Authentication responses",a_e1:"Not authenticated: key or secret missing, invalid or revoked.",a_e2:"Authenticated but forbidden: source IP not allowed (production), service not enabled for the account, or read-only key attempting a write (code <code>api_key_read_only</code>).",a_e3:"Quota exceeded. Retry with exponential backoff.",
+a_h3:"Read-only keys",a_p2:"A key can be issued read-only (<code>read_only: true</code>): it reads and exports your data but can neither modify it nor commit funds. Any write is refused with <code>403 api_key_read_only</code>. Its rate limit is separate from your payment keys: dashboard or vendor traffic never consumes the quota you pay with.",
+a_cb:"Security",a_cp:"Never commit the secret to Git or expose it in a frontend: it is a server key. To rotate, generate the new key, switch your integration, check all traffic uses it, then revoke the old one.",
+ip_t:"IP whitelist",ip_p:"In production, declaring at least one IP address is mandatory: without a list, an <code>sk_live_</code> key is useless. This does not apply to the sandbox.",ip_p2:"Each <code>sk_live_*</code> key is attached to a list of allowed addresses, IPv4 or IPv6, declared one by one (no CIDR ranges, strict equality). The IP considered is the last hop of <code>X-Forwarded-For</code>, i.e. the peer actually connected to our proxy: if a NAT or outbound proxy sits in front of you, we see <em>its</em> address.",
+ip_h1:"Two refusals, two actions",ip_l1:"<em>No authorised IP address is declared for this account</em> — your list is empty: send us your egress addresses.",ip_l2:"<em>IP not authorised for this API key</em> — your list exists, but the call comes from elsewhere: that address must be added.",
+ip_cb:"There is no self-service fix",ip_cp:"Registration is not self-service: write to <a href='mailto:developers@wakyi.com'>developers@wakyi.com</a> quoting the refusal message. Before any infrastructure migration (new server, cloud region, NAT gateway), send us the new address and wait for our confirmation.",
+id_t:"Idempotency",id_p:"Every mutating request must carry an <code>Idempotency-Key</code>. It guarantees a network retry never causes a double debit.",id_p2:"You generate a unique key (UUID v4 recommended) per logical operation. The API caches the response for 24 h: any later call with the same key and same payload returns the cached response without replaying the operation. The key is scoped to your account.",
+id_r1:"Same key + same payload: cached response returned, no new write.",id_r2:"Same key, a previous request is still being processed.",id_r3:"Same key reused with a different payload: refused to avoid ambiguity.",id_r4:"<code>Idempotency-Key</code> header missing on a mutating endpoint.",id_p3:"Generate the key client-side when the end user triggers the operation, and persist it until the final response is received.",
+ap_t:"Payment approval",ap_p:"On an account that delegates to sub-users, an initiated payment is not sent: it awaits the account holder's validation. Without delegation nothing changes — your calls go out immediately.",ap_p2:"A sub-user initiates a payout. Funds are committed immediately (they leave the spendable balance), but nothing goes to the operator. The holder approves — the payout is then sent — or rejects, and funds are returned.",
+ap_h1:"What you get at initiation",ap_p3:"The call always returns <code>202</code>. The presence of the <code>status</code> key tells the two cases apart, and that is the only thing your code must test:",
+ap_cb:"No task_id until approved",ap_cp:"A pending payment has no <code>task_id</code>: no task has been started. Test for <code>status</code> before reading <code>task_id</code>. Queue, approve and reject endpoints are described under <a href='#ep-pending'>Pending payments</a>.",
+er_t:"Error model",er_p:"Refusals produced by the framework — authentication, authorisation, quota, idempotency, validation — carry a structured envelope. Business refusals from payment endpoints carry a plain string.",er_p2:"The <code>error</code> field is always present, but its type changes. If <code>error</code> is an object you have a machine code. If it is a string, only the sentence and the HTTP status apply.",
+er_h1:"Structured codes",er_c1:"Invalid key or secret, revoked key, disabled account.",er_c2:"No credentials supplied on a protected route.",er_c3:"IP outside whitelist, service not enabled, or resource belonging to another account.",er_c4:"Read-only key attempting a write.",er_c5:"Hourly cap exceeded. The message states the wait time.",er_c6:"Schema validation (webhooks). <code>details</code> holds the field-by-field detail.",er_c7:"Malformed JSON body.",er_c8:"Resource not found, or page number out of range.",er_c9:"<code>Idempotency-Key</code> header missing on an endpoint that requires it.",er_c10:"A request with the same key is still in progress.",er_c11:"Same key reused with a different body.",er_c12:"The request failed after funds may have been committed. Do not replay with the same key.",er_c13:"Processing interrupted, outcome unknown. Check state before retrying.",
+er_h2:"Business refusals from payment endpoints",er_b1:"Amount missing, non-integer or negative; required field missing; malformed number; unknown operator; currency other than XOF; insufficient balance (<code>\"Insufficient balance\"</code>); amount outside operator bounds; <code>transaction_reference</code> too long or badly formatted.",er_b2:"<code>\"Wallet not found\"</code> — you have no wallet of the requested type. An <code>sk_test</code> key only sees test wallets.",er_b3:"The supplied <code>transaction_reference</code> is already used.",er_b4:"The operator gateway could not process the transaction. No funds committed: you may replay, including with the same <code>Idempotency-Key</code>.",
+er_cb:"What to retry",er_cp:"Retry on <code>429</code> (with backoff) and <code>502</code> (the idempotency key remains valid). Do not retry other 4xx without fixing the request — and if you fix it, use a new <code>Idempotency-Key</code>. On <code>500</code>, never replay before checking the real state via <code>GET /transactions/?reference=</code>.",
+pg_t:"Pagination & filters",pg_p:"Three list endpoints are page-number paginated: <code>GET /transactions/</code>, <code>GET /webhooks/</code> and <code>GET /webhooks/{id}/deliveries/</code>. Other lists return a bare JSON array.",pg_r1:"Page number, from 1. Out of range returns <code>404 not_found</code>.",pg_r2:"Default 50, max 200 (above, clamped to 200 without error).",
+pg_cb:"An unknown parameter raises no error",pg_cp:"Any undocumented parameter is silently ignored and the full list is returned with <code>200</code>. Check spelling: date bounds are <code>date_from</code> and <code>date_to</code>.",
+wl_t:"Wallets & transfers",wl_p:"Your account has two distinct XOF wallets. Money never moves from one to the other by itself: it must be transferred explicitly before it can be spent from the other wallet.",wl_r1:"Credited when a C2B collection succeeds — the money you collected from a payer. Cannot directly fund a payout.",wl_r2:"Debited by every B2C payout. The only wallet a payout can draw from.",
+wl_cb:"The trap: “Insufficient balance” right after a successful collection",wl_cp:"A successful C2B collection lands funds in <em>Mobile Money Collection</em> — not <em>Mobile Money Credit</em>. If you then attempt a B2C payout, the API checks the <em>Credit</em> balance, finds it unchanged, and returns <code>400 \"Insufficient balance\"</code>. The funds exist; they are in the other wallet. Transfer them first with <a href='#ep-transfer'><code>POST /transfer-momo-collection-to-momo-credit/</code></a>.",wl_p2:"The transfer is synchronous (the response gives the result immediately), without conversion, within your own account only, and requires an <code>Idempotency-Key</code> like any mutating endpoint.",
+sb_t:"Sandbox",sb_p:"A fully isolated environment to test your integration without spending a franc and without any real operator call.",sb_l1:"Keys prefixed <code>sk_test_</code> (<code>sk_live_</code> keys do not work in sandbox).",sb_l2:"No real operator call: a simulator returns deterministic responses.",sb_l3:"Isolated test wallets funded with fake money (cap 10,000,000 XOF per wallet).",sb_l4:"No IP whitelist: any source is accepted.",sb_l5:"All webhook events carry <code>livemode: false</code>.",
+sb_h1:"Fund a test wallet",sb_p2:"Adds fake money to one of your sandbox wallets; creates the wallet if needed. Authenticate with the dashboard JWT or an existing <code>sk_test_</code> key.",sb_h2:"Test numbers",sb_n1:"Success (<code>Completed</code>) after ~3 s.",sb_n2:"Failure (<code>Failed</code>, “Insufficient funds” on the payer side).",sb_n3:"Payer timeout (<code>Failed / timeout</code>) after 60 s.",sb_p3:"When ready, simply switch your keys to <code>sk_live_</code>: the endpoints are identical.",
+c2b_t:"Mobile Money collection (C2B)",c2b_p:"Triggers a payment request to the payer's Mobile Money wallet. The end customer receives a USSD prompt / notification to authorise.",c2b_r1:"Payer's number, 12 digits (<code>225</code> + 10 digits), without <code>+</code>. The operator is inferred from the prefix.",c2b_r2:"Amount to collect, in XOF, positive integer.",c2b_r3:"Always <code>XOF</code>. Any other value is refused with <code>400</code>.",c2b_r4:"Your business reference (order number, ticket…). Recommended: it is the key you will reconcile on. Unique; letters and digits only, 4 to 36 characters. If omitted, we generate one.",c2b_r5:"Your free-form labels, returned verbatim in <code>GET /transactions/</code> and every webhook. Max 20 keys (40 chars, <code>A-Z a-z 0-9 _ -</code>); values: string (max 500 chars), number, boolean or <code>null</code>. No nested objects or arrays. <strong>No personal data</strong>: these values are stored and replayed for 24 h in webhook deliveries.",
+c2b_cb:"Payer-side timeout",c2b_cp:"The payer has 60 seconds to confirm the prompt. After that, the transaction becomes <code>Failed / timeout</code>. The prompt shown is the operator's; you do not control it.",
+b2c_t:"Mobile Money payout (B2C)",b2c_p:"Performs a payout from your <em>Mobile Money Credit</em> wallet to the beneficiary's Mobile Money wallet.",b2c_r1:"Beneficiary's number, 12 digits, without <code>+</code>.",b2c_r2:"Amount to pay, in XOF, positive integer.",b2c_r3:"Always <code>XOF</code>.",b2c_r4:"Your business reference. Unique, letters and digits only, 4 to 36 characters. An already-used reference is refused with <code>409</code>, an invalid one with <code>400</code> — in both cases nothing is debited.",b2c_r5:"Same rules as on C2B. Never sent to the operator; not a search criterion.",
+b2c_h1:"Why supply your own reference",b2c_p2:"A payout is asynchronous: the <code>202</code> response only carries the <code>task_id</code>, and the final status arrives later. <code>transaction_reference</code> is the key linking that outcome to your order: the value you send comes back as <code>reference</code> — in the webhook and in <code>GET /transactions/?reference=</code> — and you hold it before the call even leaves.",
+b2c_cb:"The two names are not symmetrical",b2c_cp:"<code>transaction_reference</code> (what you send) comes back as <code>reference</code>. The response also contains a field named <code>transaction_reference</code>: that is our internal identifier, not yours. Search your value with <code>?reference=</code>, never <code>?transaction_reference=</code>. One reference = one transaction; everything else goes in <code>metadata</code>.",
+ts_t:"Track an asynchronous job",ts_p:"Returns the state of an asynchronous task. Polling approach — alternative to webhooks, useful in development.",ts_cb1:"status is the task state, not the payment outcome",ts_cp1:"<code>status: \"SUCCESS\"</code> means “the task ran without crashing”, not “the transaction succeeded”. A payment refused by the operator also returns <code>SUCCESS</code>, with an <code>error</code> key in <code>result</code>. Read <code>result</code>, not <code>status</code>. An <code>In Progress</code> transaction is not delivered: wait for <code>Completed</code> via <code>GET /transactions/?reference=</code> or the webhook.",
+ts_r1:"Task not started yet (normal right after the POST — retry), unknown, or result expired (> 24 h).",ts_r2:"The task ran. Read <code>result</code>: <code>result.error</code> present = refused; <code>result.success</code> present = accepted, not necessarily delivered yet.",ts_r3:"The task itself failed (our side); <code>error</code> holds the detail.",ts_p2:"Suggested backoff: 2 s, then 5 s, then 10 s. Treat the first <code>404</code>s as “not ready yet”; give up only after about 60 s without a transition.",
+tx_t:"List transactions",tx_p:"Returns your paginated transactions, and lets you find a specific one by its reference or <code>task_id</code>.",tx_h1:"Query parameters",tx_r1:"<strong>Recommended.</strong> Exact match on your business reference. Returns exactly one transaction.",tx_r2:"Exact match on the <code>task_id</code> returned at creation. Your fallback if you supplied no reference.",tx_r3:"<code>Completed</code>, <code>Failed</code>, <code>In Progress</code>, <code>Pending</code>. Case-insensitive.",tx_r4:"Partial match: <code>0701234567</code> also finds <code>2250701234567</code>.",tx_r5:"Partial match on reference or recipient.",tx_r6:"<code>Mobile Money</code> or <code>Mobile Money Collection</code>, comma-separated list.",tx_r7:"<code>Orange</code>, <code>MTN</code>, <code>Wave</code>, <code>Moov</code> — comma-separated, case-insensitive.",tx_r8:"<code>YYYY-MM-DD</code> bounds, inclusive. A <code>date_from</code> after <code>date_to</code> is refused with <code>400</code>.",tx_r9:"Amount bounds, inclusive.",tx_r10:"All lines of one batch.",tx_r11:"<code>transaction_date</code>, <code>amount</code> or <code>status</code>; prefix <code>-</code> for descending. Default <code>-transaction_date</code>.",tx_r12:"Standard pagination.",
+tx_cb:"Three identifiers in one payload",tx_cp:"<code>reference</code> holds your value, <code>transaction_reference</code> holds ours, and <code>task_id</code> is the one returned at POST. Reconcile on <code>reference</code>.",
+lw_t:"List my wallets",lw_p:"Returns your wallets (<em>Mobile Money Credit</em>, <em>Mobile Money Collection</em>) with their on-demand balance.",lw_p2:"<code>balance</code> is a JSON number, not a string. The balance is computed from the transaction ledger and includes debits still <code>In Progress</code>: it is the spendable balance. An <code>sk_test</code> key only returns sandbox wallets. This list is not paginated.",
+bl_t:"Wallet balance",bl_p:"Returns the balance of one wallet, identified by the <code>id</code> from <code>GET /wallet/</code>.",bl_p2:"This route is written <strong>without a trailing slash</strong>; a trailing slash yields <code>404</code>. <code>404</code>: unknown wallet or other mode; <code>403</code>: another account's wallet. Currency is under <code>wallet_currency</code>.",
+tr_t:"Transfer Collection → Credit",tr_p:"Moves funds from your <em>Mobile Money Collection</em> wallet to your <em>Mobile Money Credit</em> wallet, without conversion, within your own account. This is the endpoint you need right after a C2B collection, before a B2C payout with the same money.",tr_r1:"<code>XOF</code>. You must already have both wallets, otherwise <code>404</code>.",tr_r2:"Amount to move, positive integer.",tr_p2:"<code>400</code>: currency or amount missing / non-positive, or insufficient balance in <em>Collection</em>. <code>404</code>: one of the two wallets does not exist. This endpoint's error messages are in French.",
+pd_t:"Pending payments",pd_p:"Lists payments initiated by a sub-user and awaiting the holder's decision. An account without delegation gets <code>200</code> with <code>count: 0</code>, never a refusal.",
+apv_t:"Approve / reject a payment",apv_p1:"Returns <code>202</code> + <code>task_id</code>: the payout goes to the operator; track it with <code>GET /task-status/</code> or wait for the webhook.",apv_p2:"The reason is mandatory (<code>400</code> otherwise). The transaction becomes <code>Failed</code> and committed funds become spendable again; no compensating entry is created. The reason appears in the webhook's <code>error</code> field: put nothing confidential there.",apv_e1:"No right to approve on this account, or attempting to approve a payment you initiated yourself.",apv_e2:"This reference is not on your account.",apv_e3:"The payment no longer awaits a decision: someone decided in the meantime. Reload the queue.",apv_p3:"These two endpoints do not require an <code>Idempotency-Key</code>: a second approval returns <code>409</code>; the lock is enough.",
+bk_t:"Run a batch (Excel)",bk_p:"Uploads an <code>.xlsx</code> workbook of bulk payments. Each row is processed independently. Immediate response with a <code>bulk_id</code>; track on <code>GET /bulk-batches/{bulk_id}/</code>.",bk_r1:"<code>mobilemoneyb2c</code> or <code>mobilemoneyc2b</code>. Case-sensitive. Bare <code>b2c</code> and <code>c2b</code> are not valid.",bk_r2:"<code>.xlsx</code> workbook (<code>.csv</code> refused). Max 20 MB. <code>multipart/form-data</code>.",bk_r3:"<code>XOF</code>, applied to all rows.",
+bk_h1:"File format",bk_p2:"First row = header, column names in UPPERCASE: <code>NUMBER</code> (recipient number, 12 digits without <code>+</code>), <code>AMOUNT</code> (integer, no thousands separator). A <code>NETWORK</code> column is accepted but ignored: the operator is always inferred from the number.",
+bk_cb:"Stops when funds run out",bk_cp:"If the balance runs out mid-batch, remaining rows are not attempted: they become <code>FAILURE</code> with <code>error_code: \"NOT_ATTEMPTED\"</code>. The <code>task_id</code> returned here is the dispatcher's, not a transaction's: track the batch by <code>bulk_id</code>.",
+bk_p3:"Lifecycle — batch: <code>Pending</code> → <code>Processing</code> → <code>Completed | Partially failed | Failed | Cancelled</code>. Row: <code>QUEUED</code> → <code>PROCESSING</code> → <code>SUCCESS | FAILURE | CANCELLED</code>. Per-row error codes (contractual): <code>INSUFFICIENT_FUNDS</code>, <code>NOT_ATTEMPTED</code>, <code>UNKNOWN_OPERATOR</code>, <code>AMOUNT_OUT_OF_BOUNDS</code>, <code>WALLET_NOT_FOUND</code>, <code>UNSUPPORTED_SERVICE</code>, <code>TECHNICAL</code>.",
+bd_t:"Batch detail & items",bd_p1:"Your batches, newest first (bare JSON array, not paginated).",bd_p2:"Individual rows with each one's status. <code>status</code> filter: <code>QUEUED</code>, <code>PROCESSING</code>, <code>SUCCESS</code>, <code>FAILURE</code>, <code>CANCELLED</code>. Branch on <code>error_code</code>, which is contractual; <code>error</code> is a free-text message.",
+bc_t:"Cancel a batch",bc_p:"Stops processing of pending rows. Rows already sent (<code>Completed</code> / <code>Failed</code>) are unchanged.",
+op_t:"List operators",op_p:"Returns the supported operators and their activation state.",op_cb:"Wave is not tied to a prefix",op_cp:"A Wave wallet can exist on any Ivorian number. To route to Wave rather than the prefix's operator, pass <code>\"network\": \"wave\"</code> explicitly in the C2B / B2C body. Without it, routing follows the prefix (07 → Orange Money, 05 → MTN MoMo, 01 → Moov Money).",
+ky_t:"API keys",ky_p1:"Returns all active keys of the account; secrets are never returned. Mode is read from the prefix (<code>sk_live_</code> / <code>sk_test_</code>), scope from <code>read_only</code>, and <code>label</code> is the name given at creation.",ky_p2:"Immediately and irreversibly disables a key; any request carrying it returns <code>401</code> from this call on. Generate the replacement key before revoking the old one.",ky_p3:"Creates a new <code>sk_test_</code> pair (dashboard JWT authentication). The secret is returned only once.",
+wh_t:"Concept & signature",wh_p:"Receive your transactions' status changes pushed to the HTTPS URL of your choice. More efficient than polling, recommended in production.",wh_l1:"You register a URL via <code>POST /webhooks/</code>.",wh_l2:"On every event, Wakyi sends a JSON POST to that URL, HMAC-SHA256-signed with the endpoint's secret.",wh_l3:"Reply <code>2xx</code> to acknowledge. Otherwise we retry on the schedule below.",wh_l4:"Sandbox (<code>livemode: false</code>) and production (<code>livemode: true</code>) events go to separate endpoints.",
+wh_h1:"Request headers",wh_r1:"The event type (e.g. <code>transaction.completed</code>).",wh_r2:"Identifier of this delivery attempt — an integer as a string, identical to the <code>id</code> field of <code>GET /webhooks/{id}/deliveries/</code>.",wh_r3:"Signature in <code>t=&lt;timestamp&gt;,v1=&lt;hmac&gt;</code> format. No separate timestamp header.",
+wh_h2:"Verify the signature",wh_p2:"The signature is <code>HMAC-SHA256(timestamp + \".\" + raw_body, secret)</code>. Verify on the <strong>raw bytes received</strong>, not on re-serialised JSON; check the timestamp is recent (< 5 min) to reject replays; compare in constant time.",
+wh_h3:"Retries",wh_t1:"Delivery acknowledged. No retry.",wh_t2:"Temporary failure: 9 attempts in total over ~20 h (+5 s, +30 s, +5 min, +30 min, +2 h, +6 h, +12 h…).",wh_t3k:"Other 4xx",wh_t3:"Final failure from the first attempt: we consider your endpoint refuses us. Fix, then <a href='#wh-deliveries'>resend the delivery</a>.",
+we_t:"Event catalogue",we_r1:"A transaction (C2B, B2C) succeeded. <code>data.object.status = \"Completed\"</code>, <code>error = null</code>.",we_r2:"A transaction failed. <code>status = \"Failed\"</code> and <code>error</code> holds the reason (operator message or rejection reason).",we_r3:"Synthetic event to test your endpoint (via <code>POST /webhooks/{id}/test/</code>). <code>data.object = { message, endpoint_id }</code>.",
+we_cb:"No intermediate webhook",we_cp:"No webhook is emitted for the <code>In Progress</code> state. You are only notified at the final state. Recommendations: reply in under 5 s and process asynchronously; branch on the <code>type</code> field; store <code>id</code> (<code>evt_…</code>) to deduplicate on retry; log the full payload.",
+wr_t:"Register an endpoint",wr_r1:"Your server's URL, max 500 chars. HTTPS strongly recommended.",wr_r2:"Event types to receive. If omitted, the endpoint is created but will never receive anything.",wr_r3:"Default <code>true</code>. <code>false</code> suspends deliveries without deleting the endpoint.",wr_p1:"Test/live mode is inferred from the key used and is returned read-only as <code>is_test</code>.",
+wr_cb:"The secret is returned once and cannot be rotated",wr_cp:"Store <code>secret</code> now; later reads only return a masked fingerprint. To change the secret: delete the endpoint and create a new one. Plan to temporarily accept two secrets during a switch.",
+wm_t:"Manage an endpoint",wm_p1:"Your endpoints for the current mode (paginated list), secret masked.",wm_p2:"Updates <code>url</code>, <code>events</code> (replaces the list — not an append) or <code>enabled</code>. <code>id</code>, <code>is_test</code>, <code>secret</code> and <code>created_at</code> are read-only.",wm_p3:"<code>204</code>. Permanent; also erases the delivery history. To suspend temporarily without losing anything, prefer <code>PATCH { \"enabled\": false }</code>.",wm_p4:"Queues a <code>webhook.test</code> event (<code>202</code> + <code>delivery_id</code>). The <code>202</code> is not an acknowledgement: read the deliveries for the verdict.",
+wd_t:"Deliveries & resend",wd_p1:"Deliveries of this endpoint, newest first, with their state, attempt count and last HTTP code received. Paginated.",wd_s1:"Awaiting an attempt; <code>next_attempt_at</code> says when.",wd_s2:"Your server replied 2xx. Terminal.",wd_s3:"Your server replied a 4xx other than 408/429. Terminal: fix then resend.",wd_s4:"All 9 attempts used without a 2xx. Terminal, resendable.",
+wd_p2:"Replays a past delivery keeping its <code>event_id</code> (your deduplication on <code>id</code> still applies); <code>attempts</code> resets to 0 and the retry schedule restarts. <code>409</code> if the delivery is still <code>PENDING</code> or a resend happened less than a minute ago; <code>404</code> if it does not belong to this endpoint or is not in your key's mode.",
+wd_cb:"Need help?",wd_cp:"Sandbox access, IP whitelist, integration questions: <a href='mailto:developers@wakyi.com'>developers@wakyi.com</a>.",
+ft_p:"© 2026 YSB Technologies SARL — All rights reserved. Wakyi is a brand of YSB Technologies. Abidjan, Côte d'Ivoire"
+},fr:{}};
+// FR = DOM defaults: snapshot them once so we can switch back
+document.querySelectorAll("[data-i18n]").forEach(el=>{T.fr[el.getAttribute("data-i18n")]=el.innerHTML});
+let cL=localStorage.getItem("ysb_lang")||"fr";
+function setLang(l){cL=l;localStorage.setItem("ysb_lang",l);document.documentElement.lang=l;
+document.querySelectorAll(".lang-btn").forEach(b=>b.classList.toggle("active",b.textContent.trim()===l.toUpperCase()));
+document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.getAttribute("data-i18n");if(T[l]&&T[l][k]!==undefined)el.innerHTML=T[l][k]});
+document.title=l==="en"?"Wakyi API Documentation — Mobile Money payments (XOF) | YSB Technologies":"Documentation API Wakyi — Paiements Mobile Money (XOF) | YSB Technologies";}
+document.addEventListener("DOMContentLoaded",()=>setLang(cL));
+</script>
+</body>
+</html>
