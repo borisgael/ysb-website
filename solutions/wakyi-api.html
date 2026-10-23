@@ -113,7 +113,7 @@ footer img{height:36px;margin-bottom:14px}
     <div class="nav-right">
       <a href="/solutions/wakyi.html" class="nav-back" data-i18n="nav_back">← Page Wakyi</a>
       <div class="lang-switch"><button class="lang-btn active" onclick="setLang('fr')">FR</button><button class="lang-btn" onclick="setLang('en')">EN</button></div>
-      <a href="mailto:developers@wakyi.com?subject=Wakyi%20API%20%E2%80%94%20Demande%20d%27acc%C3%A8s%20sandbox" class="nav-cta" data-i18n="nav_cta">Accès sandbox</a>
+      <a href="mailto:infos@wakyi.com?subject=Wakyi%20API%20%E2%80%94%20Demande%20d%27acc%C3%A8s%20sandbox" class="nav-cta" data-i18n="nav_cta">Accès sandbox</a>
     </div>
   </div>
 </nav>
@@ -287,7 +287,7 @@ footer img{height:36px;margin-bottom:14px}
     <li data-i18n="ip_l1"><em>Aucune adresse IP autorisée n'est déclarée pour ce compte</em> — votre liste est vide : transmettez-nous vos adresses de sortie.</li>
     <li data-i18n="ip_l2"><em>IP non autorisée pour cette clé API</em> — votre liste existe, mais l'appel vient d'ailleurs : il faut y ajouter cette adresse.</li>
   </ul>
-  <div class="callout warn"><b data-i18n="ip_cb">Il n'y a pas d'auto-dépannage</b><span data-i18n="ip_cp">L'enregistrement n'est pas en libre-service : écrivez à <a href="mailto:developers@wakyi.com">developers@wakyi.com</a> en citant le message de refus. Avant toute migration d'infrastructure (nouveau serveur, nouvelle région cloud, passerelle NAT), envoyez-nous la nouvelle adresse et attendez notre confirmation.</span></div>
+  <div class="callout warn"><b data-i18n="ip_cb">Il n'y a pas d'auto-dépannage</b><span data-i18n="ip_cp">L'enregistrement n'est pas en libre-service : écrivez à <a href="mailto:infos@wakyi.com">infos@wakyi.com</a> en citant le message de refus. Avant toute migration d'infrastructure (nouveau serveur, nouvelle région cloud, passerelle NAT), envoyez-nous la nouvelle adresse et attendez notre confirmation.</span></div>
 </section>
 
 <!-- ===================== IDEMPOTENCY ===================== -->
@@ -862,7 +862,7 @@ function verify(req, secret) {
   </table>
   <div class="ep"><span class="m post">POST</span>/api/v1/webhooks/{id}/deliveries/{delivery_id}/resend/</div>
   <p data-i18n="wd_p2">Rejoue une livraison passée en conservant son <code>event_id</code> (votre déduplication sur <code>id</code> continue de s'appliquer) ; <code>attempts</code> repart à 0 et le calendrier de réessai du début. <code>409</code> si la livraison est encore <code>PENDING</code> ou si un renvoi a eu lieu il y a moins d'une minute ; <code>404</code> si elle n'appartient pas à cet endpoint ou n'est pas dans le mode de votre clé.</p>
-  <div class="callout"><b data-i18n="wd_cb">Besoin d'aide ?</b><span data-i18n="wd_cp">Accès sandbox, liste blanche d'IP, questions d'intégration : <a href="mailto:developers@wakyi.com">developers@wakyi.com</a>.</span></div>
+  <div class="callout"><b data-i18n="wd_cb">Besoin d'aide ?</b><span data-i18n="wd_cp">Accès sandbox, liste blanche d'IP, questions d'intégration : <a href="mailto:infos@wakyi.com">infos@wakyi.com</a>.</span></div>
 </section>
 
 </main>
@@ -871,7 +871,7 @@ function verify(req, secret) {
 <footer>
   <img src="logos/wakyi-logo.png" alt="Wakyi by YSB Technologies">
   <p data-i18n="ft_p">© 2026 YSB Technologies SARL — Tous droits réservés. Wakyi est une marque de YSB Technologies. Abidjan, Côte d'Ivoire</p>
-  <p style="margin-top:8px"><a href="mailto:developers@wakyi.com">developers@wakyi.com</a> · <a href="/solutions/wakyi.html">wakyi.com</a> · <a href="/">www.ysbtechno.com</a></p>
+  <p style="margin-top:8px"><a href="mailto:infos@wakyi.com">infos@wakyi.com</a> · <a href="/solutions/wakyi.html">wakyi.com</a> · <a href="/">www.ysbtechno.com</a></p>
 </footer>
 
 <script>
@@ -907,7 +907,7 @@ a_h3:"Read-only keys",a_p2:"A key can be issued read-only (<code>read_only: true
 a_cb:"Security",a_cp:"Never commit the secret to Git or expose it in a frontend: it is a server key. To rotate, generate the new key, switch your integration, check all traffic uses it, then revoke the old one.",
 ip_t:"IP whitelist",ip_p:"In production, declaring at least one IP address is mandatory: without a list, an <code>sk_live_</code> key is useless. This does not apply to the sandbox.",ip_p2:"Each <code>sk_live_*</code> key is attached to a list of allowed addresses, IPv4 or IPv6, declared one by one (no CIDR ranges, strict equality). The IP considered is the last hop of <code>X-Forwarded-For</code>, i.e. the peer actually connected to our proxy: if a NAT or outbound proxy sits in front of you, we see <em>its</em> address.",
 ip_h1:"Two refusals, two actions",ip_l1:"<em>No authorised IP address is declared for this account</em> — your list is empty: send us your egress addresses.",ip_l2:"<em>IP not authorised for this API key</em> — your list exists, but the call comes from elsewhere: that address must be added.",
-ip_cb:"There is no self-service fix",ip_cp:"Registration is not self-service: write to <a href='mailto:developers@wakyi.com'>developers@wakyi.com</a> quoting the refusal message. Before any infrastructure migration (new server, cloud region, NAT gateway), send us the new address and wait for our confirmation.",
+ip_cb:"There is no self-service fix",ip_cp:"Registration is not self-service: write to <a href='mailto:infos@wakyi.com'>infos@wakyi.com</a> quoting the refusal message. Before any infrastructure migration (new server, cloud region, NAT gateway), send us the new address and wait for our confirmation.",
 id_t:"Idempotency",id_p:"Every mutating request must carry an <code>Idempotency-Key</code>. It guarantees a network retry never causes a double debit.",id_p2:"You generate a unique key (UUID v4 recommended) per logical operation. The API caches the response for 24 h: any later call with the same key and same payload returns the cached response without replaying the operation. The key is scoped to your account.",
 id_r1:"Same key + same payload: cached response returned, no new write.",id_r2:"Same key, a previous request is still being processed.",id_r3:"Same key reused with a different payload: refused to avoid ambiguity.",id_r4:"<code>Idempotency-Key</code> header missing on a mutating endpoint.",id_p3:"Generate the key client-side when the end user triggers the operation, and persist it until the final response is received.",
 ap_t:"Payment approval",ap_p:"On an account that delegates to sub-users, an initiated payment is not sent: it awaits the account holder's validation. Without delegation nothing changes — your calls go out immediately.",ap_p2:"A sub-user initiates a payout. Funds are committed immediately (they leave the spendable balance), but nothing goes to the operator. The holder approves — the payout is then sent — or rejects, and funds are returned.",
@@ -956,7 +956,7 @@ wr_cb:"The secret is returned once and cannot be rotated",wr_cp:"Store <code>sec
 wm_t:"Manage an endpoint",wm_p1:"Your endpoints for the current mode (paginated list), secret masked.",wm_p2:"Updates <code>url</code>, <code>events</code> (replaces the list — not an append) or <code>enabled</code>. <code>id</code>, <code>is_test</code>, <code>secret</code> and <code>created_at</code> are read-only.",wm_p3:"<code>204</code>. Permanent; also erases the delivery history. To suspend temporarily without losing anything, prefer <code>PATCH { \"enabled\": false }</code>.",wm_p4:"Queues a <code>webhook.test</code> event (<code>202</code> + <code>delivery_id</code>). The <code>202</code> is not an acknowledgement: read the deliveries for the verdict.",
 wd_t:"Deliveries & resend",wd_p1:"Deliveries of this endpoint, newest first, with their state, attempt count and last HTTP code received. Paginated.",wd_s1:"Awaiting an attempt; <code>next_attempt_at</code> says when.",wd_s2:"Your server replied 2xx. Terminal.",wd_s3:"Your server replied a 4xx other than 408/429. Terminal: fix then resend.",wd_s4:"All 9 attempts used without a 2xx. Terminal, resendable.",
 wd_p2:"Replays a past delivery keeping its <code>event_id</code> (your deduplication on <code>id</code> still applies); <code>attempts</code> resets to 0 and the retry schedule restarts. <code>409</code> if the delivery is still <code>PENDING</code> or a resend happened less than a minute ago; <code>404</code> if it does not belong to this endpoint or is not in your key's mode.",
-wd_cb:"Need help?",wd_cp:"Sandbox access, IP whitelist, integration questions: <a href='mailto:developers@wakyi.com'>developers@wakyi.com</a>.",
+wd_cb:"Need help?",wd_cp:"Sandbox access, IP whitelist, integration questions: <a href='mailto:infos@wakyi.com'>infos@wakyi.com</a>.",
 ft_p:"© 2026 YSB Technologies SARL — All rights reserved. Wakyi is a brand of YSB Technologies. Abidjan, Côte d'Ivoire"
 },fr:{}};
 // FR = DOM defaults: snapshot them once so we can switch back
