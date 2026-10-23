@@ -289,10 +289,14 @@ footer a{color:rgba(255,255,255,.3);text-decoration:none;transition:color .3s}fo
 .ops-row{display:flex;gap:14px;flex-wrap:wrap}
 .op{font-family:'Manrope',sans-serif;font-size:.82rem;font-weight:800;padding:12px 22px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:var(--white);display:flex;align-items:center;gap:10px}
 .op::before{content:'';width:10px;height:10px;border-radius:50%}
+.op-logo{height:84px;width:150px;border-radius:14px;overflow:hidden;background:#fff;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.1);transition:transform .3s}
+.op-logo:hover{transform:translateY(-3px)}
+.op-logo img{height:100%;width:100%;object-fit:contain;padding:6px}
+.op-logo.l-om{background:#010101}.op-logo.l-mtn{background:#f4cc46}.op-logo.l-wave{background:#58b5e7}.op-logo.l-moov{background:#2b65ad}
 .op-orange::before{background:#FF7900}.op-mtn::before{background:#FFCC00}.op-wave::before{background:#1DC3F0}.op-moov::before{background:#0072CE}
 .svc-grid.campaign-grid{grid-template-columns:repeat(3,1fr)}
 @media(max-width:1100px){.svc-grid.campaign-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:768px){.svc-grid.campaign-grid{grid-template-columns:1fr}.ops-strip{padding:24px}.ops-strip .s-inner{gap:16px}}
+@media(max-width:768px){.svc-grid.campaign-grid{grid-template-columns:1fr}.ops-strip{padding:24px}.ops-strip .s-inner{gap:16px}.ops-row{display:grid;grid-template-columns:1fr 1fr;width:100%}.op-logo{width:100%}}
 </style>
 </head>
 <body>
@@ -336,10 +340,10 @@ footer a{color:rgba(255,255,255,.3);text-decoration:none;transition:color .3s}fo
   <div class="s-inner">
     <div class="ops-label" data-i18n="ops_l">Opérateurs couverts</div>
     <div class="ops-row">
-      <div class="op op-orange">Orange Money</div>
-      <div class="op op-mtn">MTN MoMo</div>
-      <div class="op op-wave">Wave</div>
-      <div class="op op-moov">Moov Money</div>
+      <div class="op-logo l-om"><img src="logos/orange-money.png" alt="Orange Money"></div>
+      <div class="op-logo l-mtn"><img src="logos/mtn-momo.png" alt="MTN MoMo"></div>
+      <div class="op-logo l-wave"><img src="logos/wave.png" alt="Wave"></div>
+      <div class="op-logo l-moov"><img src="logos/moov-money.png" alt="Moov Money"></div>
     </div>
   </div>
 </div>
