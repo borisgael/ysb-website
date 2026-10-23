@@ -215,7 +215,7 @@
   .trust-text strong { color: rgba(255,255,255,0.7); }
 
   .hero-visual { position: relative; animation: fadeUp 1s ease 0.4s both; }
-  .hero-card-stack { position: relative; height: 520px; }
+  .hero-card-stack { position: relative; height: 620px; }
   .h-card {
     position: absolute; background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.08); border-radius: 20px;
@@ -224,8 +224,10 @@
   }
   .h-card:hover { transform: translateY(-8px) !important; }
   .hc1 { width: 320px; top: 0; right: 0; animation: cf1 8s ease-in-out infinite; }
-  .hc2 { width: 280px; top: 160px; left: 0; animation: cf2 10s ease-in-out infinite; }
-  .hc3 { width: 300px; bottom: 0; right: 20px; animation: cf3 9s ease-in-out infinite; }
+  .hc2 { width: 280px; top: 150px; left: 0; animation: cf2 10s ease-in-out infinite; }
+  .hc3 { width: 290px; top: 300px; right: 24px; animation: cf3 9s ease-in-out infinite; }
+  .hc4 { width: 270px; bottom: 0; left: 30px; animation: cf2 11s ease-in-out infinite; }
+  .h-card.hc0 { border-color: rgba(0,194,203,0.28); background: rgba(0,194,203,0.06); }
   @keyframes cf1 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
   @keyframes cf2 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(10px); } }
   @keyframes cf3 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
@@ -238,6 +240,7 @@
   .hc-icon.ic1 { background: rgba(0,194,203,0.15); }
   .hc-icon.ic2 { background: rgba(109,54,219,0.15); }
   .hc-icon.ic3 { background: rgba(0,74,173,0.15); }
+  .hc-icon.ic4 { background: rgba(0,194,203,0.22); }
   .hc-title { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
   .hc-desc { font-size: 0.8rem; color: rgba(255,255,255,0.4); line-height: 1.55; }
   .hc-bar { margin-top: 16px; height: 4px; border-radius: 4px; background: rgba(255,255,255,0.06); overflow: hidden; }
@@ -245,6 +248,7 @@
   .hc-bar-fill.bf1 { background: var(--cyan); width: 78%; }
   .hc-bar-fill.bf2 { background: var(--purple); width: 65%; animation-delay: 1s; }
   .hc-bar-fill.bf3 { background: var(--blue); width: 85%; animation-delay: 0.5s; }
+  .hc-bar-fill.bf4 { background: linear-gradient(90deg, var(--cyan), var(--purple-light)); width: 92%; animation-delay: 1.5s; }
   @keyframes barPulse { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
 
   /* ═══ MARQUEE ═══ */
@@ -358,6 +362,10 @@
   .ei-conseil { background: rgba(109,54,219,0.1); } .ei-telecom { background: rgba(19,46,82,0.08); }
   .ei-ia { background: linear-gradient(135deg, rgba(0,194,203,0.1), rgba(109,54,219,0.1)); }
   .ei-support { background: rgba(0,194,203,0.06); }
+  .ei-pay { background: linear-gradient(135deg, rgba(0,194,203,0.14), rgba(0,74,173,0.1)); }
+  .ecard-wide { grid-column: span 2; background: linear-gradient(135deg, #fff 55%, rgba(0,194,203,0.07)); border-color: rgba(0,194,203,0.18); }
+  .ecard-wide .ecard-list { columns: 2; column-gap: 32px; }
+  .ecard-wide .ecard-list li { break-inside: avoid; }
   .ecard-num { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; font-weight: 700; color: var(--gray); letter-spacing: 0.05em; }
   .ecard h3 { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--navy); margin-bottom: 20px; letter-spacing: -0.01em; line-height: 1.3; }
   .ecard-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
@@ -369,7 +377,7 @@
   .solutions{background:var(--white);position:relative;overflow:hidden}
   .solutions::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,194,203,.15),transparent)}
   .solutions-header{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-bottom:72px;align-items:end}
-  .solutions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .solutions-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
   .sol-card{position:relative;border-radius:24px;overflow:hidden;background:var(--navy-deep);transition:all .6s cubic-bezier(.16,1,.3,1);cursor:pointer;text-decoration:none;display:block;min-height:440px}
   .sol-card:hover{transform:translateY(-10px);box-shadow:0 32px 72px rgba(19,46,82,.18)}
   .sol-card-bg{position:absolute;inset:0;transition:transform .6s cubic-bezier(.16,1,.3,1)}
@@ -381,6 +389,12 @@
   .sol-card.tombola{background:linear-gradient(160deg,#0a1d38,#132E52)}
   .sol-card.tombola .orb1{background:var(--cyan);top:-60px;right:-60px}
   .sol-card.tombola .orb2{background:var(--purple);bottom:-40px;left:-30px}
+  .sol-card.wakyi{background:linear-gradient(160deg,#061629,#0f2a4d 60%,#0a3a55)}
+  .sol-card.wakyi .orb1{background:var(--cyan);bottom:-70px;left:-50px}
+  .sol-card.wakyi .orb2{background:var(--blue);top:-40px;right:-30px;opacity:.45}
+  .sol-card.wakyi .sol-ops{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+  .sol-card.wakyi .sol-op{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.04em;padding:5px 10px;border-radius:6px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.1)}
+  .sol-brand{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.14em;margin-bottom:6px}
   .sol-card.coming{background:linear-gradient(160deg,#1a1a2e,#16213e)}
   .sol-card.coming .orb1{background:var(--purple);top:-40px;left:-60px}
   .sol-card.coming2{background:linear-gradient(160deg,#0d1b2a,#1b2838)}
@@ -546,7 +560,7 @@
     .values-grid { grid-template-columns: repeat(2, 1fr); }
     .expertise-header { grid-template-columns: 1fr; gap: 20px; }
     .expertise-grid { grid-template-columns: repeat(2, 1fr); }
-    .solutions-header{grid-template-columns:1fr;gap:20px}.solutions-grid{grid-template-columns:repeat(2,1fr)}
+    .solutions-header{grid-template-columns:1fr;gap:20px}.solutions-grid{grid-template-columns:repeat(2,1fr)}.hero-card-stack{height:560px}
     .method-timeline { grid-template-columns: repeat(3, 1fr); gap: 32px; }
     .method-timeline::before { display: none; }
     .why-grid { grid-template-columns: 1fr; }
@@ -563,7 +577,7 @@
     .hero-content { padding: 110px 24px 60px; }
     .about-cards { grid-template-columns: 1fr; }
     .values-grid { grid-template-columns: 1fr; }
-    .expertise-grid { grid-template-columns: 1fr; }
+    .expertise-grid { grid-template-columns: 1fr; } .ecard-wide { grid-column: span 1; } .ecard-wide .ecard-list { columns: 1; }
     .solutions-grid{grid-template-columns:1fr}.sol-card{min-height:360px}
     .method-timeline { grid-template-columns: 1fr; gap: 20px; }
     .mstep { text-align: left; display: flex; gap: 20px; align-items: flex-start; }
@@ -715,9 +729,10 @@
     </div>
     <div class="hero-visual">
       <div class="hero-card-stack">
-        <div class="h-card hc1"><div class="hc-icon ic1">⚡</div><div class="hc-title" data-i18n="hc1_t">Développement Digital</div><div class="hc-desc" data-i18n="hc1_d">Applications web, mobile et desktop sur mesure pour votre écosystème</div><div class="hc-bar"><div class="hc-bar-fill bf1"></div></div></div>
-        <div class="h-card hc2"><div class="hc-icon ic2">🛡️</div><div class="hc-title" data-i18n="hc2_t">Cybersécurité</div><div class="hc-desc" data-i18n="hc2_d">Audit, durcissement et supervision pour protéger vos actifs numériques</div><div class="hc-bar"><div class="hc-bar-fill bf2"></div></div></div>
-        <div class="h-card hc3"><div class="hc-icon ic3">🤖</div><div class="hc-title" data-i18n="hc3_t">Intelligence Artificielle</div><div class="hc-desc" data-i18n="hc3_d">Chatbots, Computer Vision et reconnaissance faciale avancée</div><div class="hc-bar"><div class="hc-bar-fill bf3"></div></div></div>
+        <a href="solutions/wakyi.html" class="h-card hc0 hc1" style="text-decoration:none"><div class="hc-icon ic4">💳</div><div class="hc-title" data-i18n="hc0_t">Paiements & Mobile Money — Wakyi</div><div class="hc-desc" data-i18n="hc0_d">Agrégation Mobile Money : encaissements, paiements de masse, QR &amp; liens de paiement</div><div class="hc-bar"><div class="hc-bar-fill bf4"></div></div></a>
+        <div class="h-card hc2"><div class="hc-icon ic1">⚡</div><div class="hc-title" data-i18n="hc1_t">Développement Digital</div><div class="hc-desc" data-i18n="hc1_d">Applications web, mobile et desktop sur mesure pour votre écosystème</div><div class="hc-bar"><div class="hc-bar-fill bf1"></div></div></div>
+        <div class="h-card hc3"><div class="hc-icon ic2">🛡️</div><div class="hc-title" data-i18n="hc2_t">Cybersécurité</div><div class="hc-desc" data-i18n="hc2_d">Audit, durcissement et supervision pour protéger vos actifs numériques</div><div class="hc-bar"><div class="hc-bar-fill bf2"></div></div></div>
+        <div class="h-card hc4"><div class="hc-icon ic3">🤖</div><div class="hc-title" data-i18n="hc3_t">Intelligence Artificielle</div><div class="hc-desc" data-i18n="hc3_d">Chatbots, Computer Vision et reconnaissance faciale avancée</div><div class="hc-bar"><div class="hc-bar-fill bf3"></div></div></div>
       </div>
     </div>
   </div>
@@ -726,8 +741,8 @@
 <!-- MARQUEE -->
 <div class="marquee-wrap">
   <div class="marquee-track" data-i18n-html="marquee">
-    <span class="marquee-item">Cloud & Infrastructure</span><span class="marquee-item">Intelligence Artificielle</span><span class="marquee-item">Cybersécurité</span><span class="marquee-item">Développement Web & Mobile</span><span class="marquee-item">Conseil & Stratégie</span><span class="marquee-item">DevOps & Infogérance</span><span class="marquee-item">Télécommunications</span><span class="marquee-item">Support N1/N2/N3</span>
-    <span class="marquee-item">Cloud & Infrastructure</span><span class="marquee-item">Intelligence Artificielle</span><span class="marquee-item">Cybersécurité</span><span class="marquee-item">Développement Web & Mobile</span><span class="marquee-item">Conseil & Stratégie</span><span class="marquee-item">DevOps & Infogérance</span><span class="marquee-item">Télécommunications</span><span class="marquee-item">Support N1/N2/N3</span>
+    <span class="marquee-item">Paiements & Mobile Money</span><span class="marquee-item">Cloud & Infrastructure</span><span class="marquee-item">Intelligence Artificielle</span><span class="marquee-item">Cybersécurité</span><span class="marquee-item">Développement Web & Mobile</span><span class="marquee-item">Conseil & Stratégie</span><span class="marquee-item">DevOps & Infogérance</span><span class="marquee-item">Télécommunications</span><span class="marquee-item">Support N1/N2/N3</span>
+    <span class="marquee-item">Paiements & Mobile Money</span><span class="marquee-item">Cloud & Infrastructure</span><span class="marquee-item">Intelligence Artificielle</span><span class="marquee-item">Cybersécurité</span><span class="marquee-item">Développement Web & Mobile</span><span class="marquee-item">Conseil & Stratégie</span><span class="marquee-item">DevOps & Infogérance</span><span class="marquee-item">Télécommunications</span><span class="marquee-item">Support N1/N2/N3</span>
   </div>
 </div>
 
@@ -773,12 +788,13 @@
       <div><p class="section-desc reveal" data-i18n="exp_desc">Nous couvrons l'intégralité du cycle de vie de vos projets technologiques, de la vision stratégique à la maintenance opérationnelle.</p></div>
     </div>
     <div class="expertise-grid">
-      <div class="ecard reveal"><div class="ecard-top"><div class="ecard-icon ei-dev">⚡</div><span class="ecard-num">01</span></div><h3 data-i18n-html="e1t">Développement &<br>Écosystèmes Digitaux</h3><ul class="ecard-list"><li data-i18n="e1a">Logiciels et applications web, mobile et desktop</li><li data-i18n="e1b">Systèmes d'information, portails et back-office</li><li data-i18n="e1c">Intégrations API et connecteurs inter-systèmes</li></ul></div>
-      <div class="ecard reveal reveal-d1"><div class="ecard-top"><div class="ecard-icon ei-infra">☁️</div><span class="ecard-num">02</span></div><h3 data-i18n-html="e2t">Infrastructure, Cloud<br>& Infogérance</h3><ul class="ecard-list"><li data-i18n="e2a">Installation et intégration technique complète</li><li data-i18n="e2b">Hébergement cloud et on-premise avec supervision</li><li data-i18n="e2c">Maintenance préventive et amélioration continue</li></ul></div>
-      <div class="ecard reveal reveal-d2"><div class="ecard-top"><div class="ecard-icon ei-conseil">🧠</div><span class="ecard-num">03</span></div><h3 data-i18n-html="e3t">Conseil &<br>Capital Humain</h3><ul class="ecard-list"><li data-i18n="e3a">AMOA/MOE, architecture et stratégie digitale</li><li data-i18n="e3b">Expertise à la demande : développeurs, DevOps, QA</li><li data-i18n="e3c">Formation technique et assistance sur site</li></ul></div>
-      <div class="ecard reveal"><div class="ecard-top"><div class="ecard-icon ei-telecom">🔒</div><span class="ecard-num">04</span></div><h3 data-i18n-html="e4t">Télécoms &<br>Cybersécurité</h3><ul class="ecard-list"><li data-i18n="e4a">Solutions SI et télécommunications d'entreprise</li><li data-i18n="e4b">Audit de sécurité, contrôle d'accès et durcissement</li><li data-i18n="e4c">Supervision continue et gestion proactive des risques</li></ul></div>
-      <div class="ecard reveal reveal-d1"><div class="ecard-top"><div class="ecard-icon ei-ia">🤖</div><span class="ecard-num">05</span></div><h3 data-i18n-html="e5t">Intelligence Artificielle<br>& Innovation</h3><ul class="ecard-list"><li data-i18n="e5a">Chatbots et assistants virtuels intelligents</li><li data-i18n="e5b">Reconnaissance faciale pour le contrôle d'accès</li><li data-i18n="e5c">Surveillance intelligente et Computer Vision</li></ul></div>
-      <div class="ecard reveal reveal-d2"><div class="ecard-top"><div class="ecard-icon ei-support">🎧</div><span class="ecard-num">06</span></div><h3 data-i18n-html="e6t">Support &<br>Maintenance</h3><ul class="ecard-list"><li data-i18n="e6a">Support multi-niveaux N1, N2 et N3 selon périmètre</li><li data-i18n="e6b">SLA contractuels et monitoring 24/7</li><li data-i18n="e6c">Documentation complète et transfert de compétences</li></ul></div>
+      <div class="ecard ecard-wide reveal"><div class="ecard-top"><div class="ecard-icon ei-pay">💳</div><span class="ecard-num">01</span></div><h3 data-i18n-html="e7t">Paiements Digitaux<br>& Agrégation Mobile Money</h3><ul class="ecard-list"><li data-i18n="e7a">Encaissements (C2B) et paiements de masse (B2C) multi-opérateurs</li><li data-i18n="e7b">API d'agrégation unique, QR et liens de paiement marchands</li><li data-i18n="e7c">Chatbot WhatsApp de vérification des transactions</li></ul></div>
+      <div class="ecard reveal"><div class="ecard-top"><div class="ecard-icon ei-dev">⚡</div><span class="ecard-num">02</span></div><h3 data-i18n-html="e1t">Développement &<br>Écosystèmes Digitaux</h3><ul class="ecard-list"><li data-i18n="e1a">Logiciels et applications web, mobile et desktop</li><li data-i18n="e1b">Systèmes d'information, portails et back-office</li><li data-i18n="e1c">Intégrations API et connecteurs inter-systèmes</li></ul></div>
+      <div class="ecard reveal reveal-d1"><div class="ecard-top"><div class="ecard-icon ei-infra">☁️</div><span class="ecard-num">03</span></div><h3 data-i18n-html="e2t">Infrastructure, Cloud<br>& Infogérance</h3><ul class="ecard-list"><li data-i18n="e2a">Installation et intégration technique complète</li><li data-i18n="e2b">Hébergement cloud et on-premise avec supervision</li><li data-i18n="e2c">Maintenance préventive et amélioration continue</li></ul></div>
+      <div class="ecard reveal reveal-d2"><div class="ecard-top"><div class="ecard-icon ei-conseil">🧠</div><span class="ecard-num">04</span></div><h3 data-i18n-html="e3t">Conseil &<br>Capital Humain</h3><ul class="ecard-list"><li data-i18n="e3a">AMOA/MOE, architecture et stratégie digitale</li><li data-i18n="e3b">Expertise à la demande : développeurs, DevOps, QA</li><li data-i18n="e3c">Formation technique et assistance sur site</li></ul></div>
+      <div class="ecard reveal"><div class="ecard-top"><div class="ecard-icon ei-telecom">🔒</div><span class="ecard-num">05</span></div><h3 data-i18n-html="e4t">Télécoms &<br>Cybersécurité</h3><ul class="ecard-list"><li data-i18n="e4a">Solutions SI et télécommunications d'entreprise</li><li data-i18n="e4b">Audit de sécurité, contrôle d'accès et durcissement</li><li data-i18n="e4c">Supervision continue et gestion proactive des risques</li></ul></div>
+      <div class="ecard reveal reveal-d1"><div class="ecard-top"><div class="ecard-icon ei-ia">🤖</div><span class="ecard-num">06</span></div><h3 data-i18n-html="e5t">Intelligence Artificielle<br>& Innovation</h3><ul class="ecard-list"><li data-i18n="e5a">Chatbots et assistants virtuels intelligents</li><li data-i18n="e5b">Reconnaissance faciale pour le contrôle d'accès</li><li data-i18n="e5c">Surveillance intelligente et Computer Vision</li></ul></div>
+      <div class="ecard reveal reveal-d2"><div class="ecard-top"><div class="ecard-icon ei-support">🎧</div><span class="ecard-num">07</span></div><h3 data-i18n-html="e6t">Support &<br>Maintenance</h3><ul class="ecard-list"><li data-i18n="e6a">Support multi-niveaux N1, N2 et N3 selon périmètre</li><li data-i18n="e6b">SLA contractuels et monitoring 24/7</li><li data-i18n="e6c">Documentation complète et transfert de compétences</li></ul></div>
     </div>
   </div>
 </section>
@@ -814,7 +830,28 @@
           </div>
         </div>
       </a>
-      <div class="sol-card coming reveal reveal-d1">
+      <a href="solutions/wakyi.html" class="sol-card wakyi reveal reveal-d1">
+        <div class="sol-card-bg"><div class="noise"></div><div class="orb1"></div><div class="orb2"></div></div>
+        <div class="sol-card-content">
+          <div class="sol-badge live"><span class="dot"></span> <span data-i18n="sol_live">Solution active</span></div>
+          <div class="sol-icon">💳</div>
+          <div class="sol-brand">Wakyi by YSB Technologies</div>
+          <h3 data-i18n-html="sol4_t">Paiements &amp;<br>Mobile Money</h3>
+          <p data-i18n="sol4_desc">Plateforme d'agrégation de paiements Mobile Money pour la Côte d'Ivoire : encaissements, paiements de masse, QR et liens de paiement marchands — via une API unique, avec vérification des transactions par chatbot WhatsApp.</p>
+          <div class="sol-ops"><span class="sol-op">Orange Money</span><span class="sol-op">MTN MoMo</span><span class="sol-op">Wave</span><span class="sol-op">Moov Money</span></div>
+          <div class="sol-tags">
+            <span class="sol-tag cyan">API unique</span>
+            <span class="sol-tag cyan">C2B · B2C</span>
+            <span class="sol-tag purple">QR &amp; PayLink</span>
+            <span class="sol-tag purple">WhatsApp</span>
+          </div>
+          <div class="sol-arrow">
+            <span data-i18n="sol_discover">Découvrir la solution</span>
+            <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </a>
+      <div class="sol-card coming reveal reveal-d2">
         <div class="sol-card-bg"><div class="noise"></div><div class="orb1"></div></div>
         <div class="sol-coming-overlay"><div class="sol-coming-text" data-i18n="sol_soon">Bientôt disponible</div></div>
         <div class="sol-card-content">
@@ -826,7 +863,7 @@
           <div class="sol-arrow"><span data-i18n="sol_more">En savoir plus</span> <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         </div>
       </div>
-      <div class="sol-card coming2 reveal reveal-d2">
+      <div class="sol-card coming2 reveal reveal-d3">
         <div class="sol-card-bg"><div class="noise"></div><div class="orb1"></div></div>
         <div class="sol-coming-overlay"><div class="sol-coming-text" data-i18n="sol_soon">Bientôt disponible</div></div>
         <div class="sol-card-content">
@@ -916,7 +953,7 @@
           <input type="text" name="_honey" style="display:none">
           <div class="form-row"><div class="form-group"><label data-i18n="fm_name">Nom complet *</label><input type="text" name="name" data-i18n-ph="fm_name_ph" placeholder="Votre nom" required></div><div class="form-group"><label data-i18n="fm_co">Entreprise</label><input type="text" name="company" data-i18n-ph="fm_co_ph" placeholder="Nom de votre entreprise"></div></div>
           <div class="form-row"><div class="form-group"><label>Email *</label><input type="email" name="email" placeholder="votre@email.com" required></div><div class="form-group"><label data-i18n="fm_phone">Téléphone</label><input type="tel" name="phone" placeholder="+225 ..."></div></div>
-          <div class="form-group"><label data-i18n="fm_serv">Service qui vous intéresse</label><select id="serviceSelect" name="service"><option value="" data-i18n="fm_sel">Sélectionnez un domaine...</option><option data-i18n="fm_o1">Développement & Écosystèmes Digitaux</option><option data-i18n="fm_o2">Infrastructure, Cloud & Infogérance</option><option data-i18n="fm_o3">Conseil & Capital Humain</option><option data-i18n="fm_o4">Télécoms & Cybersécurité</option><option data-i18n="fm_o5">Intelligence Artificielle & Innovation</option><option data-i18n="fm_o6">Support & Maintenance</option><option data-i18n="fm_o7">Autre / Plusieurs domaines</option></select></div>
+          <div class="form-group"><label data-i18n="fm_serv">Service qui vous intéresse</label><select id="serviceSelect" name="service"><option value="" data-i18n="fm_sel">Sélectionnez un domaine...</option><option data-i18n="fm_o1">Développement & Écosystèmes Digitaux</option><option data-i18n="fm_o2">Infrastructure, Cloud & Infogérance</option><option data-i18n="fm_o3">Conseil & Capital Humain</option><option data-i18n="fm_o4">Télécoms & Cybersécurité</option><option data-i18n="fm_o5">Intelligence Artificielle & Innovation</option><option data-i18n="fm_o6">Support & Maintenance</option><option data-i18n="fm_o8">Paiements & Mobile Money (Wakyi)</option><option data-i18n="fm_o7">Autre / Plusieurs domaines</option></select></div>
           <div class="form-group"><label>Message *</label><textarea name="message" data-i18n-ph="fm_msg_ph" placeholder="Décrivez brièvement votre projet, vos besoins ou vos questions..." required></textarea></div>
           <button type="submit" class="btn-send" data-i18n-html="fm_send">Envoyer le message <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </form>
@@ -961,7 +998,7 @@ hero_trust:"<strong>Entreprises & Institutions</strong><br>nous font déjà conf
 hc1_t:"Développement Digital",hc1_d:"Applications web, mobile et desktop sur mesure pour votre écosystème",
 hc2_t:"Cybersécurité",hc2_d:"Audit, durcissement et supervision pour protéger vos actifs numériques",
 hc3_t:"Intelligence Artificielle",hc3_d:"Chatbots, Computer Vision et reconnaissance faciale avancée",
-marquee:'<span class="marquee-item">Cloud & Infrastructure</span><span class="marquee-item">Intelligence Artificielle</span><span class="marquee-item">Cybersécurité</span><span class="marquee-item">Développement Web & Mobile</span><span class="marquee-item">Conseil & Stratégie</span><span class="marquee-item">DevOps & Infogérance</span><span class="marquee-item">Télécommunications</span><span class="marquee-item">Support N1/N2/N3</span><span class="marquee-item">Cloud & Infrastructure</span><span class="marquee-item">Intelligence Artificielle</span><span class="marquee-item">Cybersécurité</span><span class="marquee-item">Développement Web & Mobile</span><span class="marquee-item">Conseil & Stratégie</span><span class="marquee-item">DevOps & Infogérance</span><span class="marquee-item">Télécommunications</span><span class="marquee-item">Support N1/N2/N3</span>',
+marquee:'<span class="marquee-item">Paiements & Mobile Money</span><span class="marquee-item">Cloud & Infrastructure</span><span class="marquee-item">Intelligence Artificielle</span><span class="marquee-item">Cybersécurité</span><span class="marquee-item">Développement Web & Mobile</span><span class="marquee-item">Conseil & Stratégie</span><span class="marquee-item">DevOps & Infogérance</span><span class="marquee-item">Télécommunications</span><span class="marquee-item">Support N1/N2/N3</span><span class="marquee-item">Paiements & Mobile Money</span><span class="marquee-item">Cloud & Infrastructure</span><span class="marquee-item">Intelligence Artificielle</span><span class="marquee-item">Cybersécurité</span><span class="marquee-item">Développement Web & Mobile</span><span class="marquee-item">Conseil & Stratégie</span><span class="marquee-item">DevOps & Infogérance</span><span class="marquee-item">Télécommunications</span><span class="marquee-item">Support N1/N2/N3</span>',
 about_ey:"Qui sommes-nous",
 about_main:'YSB Technologies est une <strong>société de services numériques</strong> dédiée à l\'accompagnement des entreprises et institutions dans leur transformation digitale en <strong>Afrique</strong>.',
 about_p1:"En Afrique, la transformation digitale n'est plus une option, c'est le moteur de notre souveraineté et de notre croissance. Mais pour que cette transformation soit réelle, elle doit reposer sur des fondations inébranlables.",
@@ -980,6 +1017,9 @@ e3t:"Conseil &<br>Capital Humain",e3a:"AMOA/MOE, architecture et stratégie digi
 e4t:"Télécoms &<br>Cybersécurité",e4a:"Solutions SI et télécommunications d'entreprise",e4b:"Audit de sécurité, contrôle d'accès et durcissement",e4c:"Supervision continue et gestion proactive des risques",
 e5t:"Intelligence Artificielle<br>& Innovation",e5a:"Chatbots et assistants virtuels intelligents",e5b:"Reconnaissance faciale pour le contrôle d'accès",e5c:"Surveillance intelligente et Computer Vision",
 e6t:"Support &<br>Maintenance",e6a:"Support multi-niveaux N1, N2 et N3 selon périmètre",e6b:"SLA contractuels et monitoring 24/7",e6c:"Documentation complète et transfert de compétences",
+e7t:"Paiements Digitaux<br>& Agrégation Mobile Money",e7a:"Encaissements (C2B) et paiements de masse (B2C) multi-opérateurs",e7b:"API d'agrégation unique, QR et liens de paiement marchands",e7c:"Chatbot WhatsApp de vérification des transactions",
+hc0_t:"Paiements & Mobile Money — Wakyi",hc0_d:"Agrégation Mobile Money : encaissements, paiements de masse, QR & liens de paiement",
+sol4_t:"Paiements &<br>Mobile Money",sol4_desc:"Plateforme d'agrégation de paiements Mobile Money pour la Côte d'Ivoire : encaissements, paiements de masse, QR et liens de paiement marchands — via une API unique, avec vérification des transactions par chatbot WhatsApp.",
 nav_solutions:"Solutions",
 sol_ey:"Nos solutions",sol_title:"Des produits conçus pour<br>le marché africain",sol_desc:"Au-delà du conseil et de l'intégration, nous développons nos propres solutions digitales pour répondre aux besoins concrets de nos partenaires.",
 sol_live:"Solution active",sol_soon:"Bientôt disponible",sol_dev:"En développement",sol_discover:"Découvrir la solution",sol_more:"En savoir plus",
@@ -1002,7 +1042,7 @@ ct_title:"Parlons de votre projet",ct_desc:"Remplissez le formulaire ou contacte
 ct_hq:"Siège social",ct_ph:"Téléphone",ct_web:"Site web",ct_leg:"Siège : Abidjan, Côte d'Ivoire",
 fm_t:"Envoyez-nous un message",fm_sub:"Tous les champs marqués d'un * sont obligatoires.",
 fm_name:"Nom complet *",fm_name_ph:"Votre nom",fm_co:"Entreprise",fm_co_ph:"Nom de votre entreprise",fm_phone:"Téléphone",fm_serv:"Service qui vous intéresse",
-fm_sel:"Sélectionnez un domaine...",fm_o1:"Développement & Écosystèmes Digitaux",fm_o2:"Infrastructure, Cloud & Infogérance",fm_o3:"Conseil & Capital Humain",fm_o4:"Télécoms & Cybersécurité",fm_o5:"Intelligence Artificielle & Innovation",fm_o6:"Support & Maintenance",fm_o7:"Autre / Plusieurs domaines",
+fm_sel:"Sélectionnez un domaine...",fm_o1:"Développement & Écosystèmes Digitaux",fm_o2:"Infrastructure, Cloud & Infogérance",fm_o3:"Conseil & Capital Humain",fm_o4:"Télécoms & Cybersécurité",fm_o5:"Intelligence Artificielle & Innovation",fm_o6:"Support & Maintenance",fm_o7:"Autre / Plusieurs domaines",fm_o8:"Paiements & Mobile Money (Wakyi)",
 fm_msg_ph:"Décrivez brièvement votre projet, vos besoins ou vos questions...",
 fm_send:'Envoyer le message <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
 fm_ok:"Merci ! Votre message a bien été envoyé. Notre équipe vous contactera sous 24h.",
@@ -1022,7 +1062,7 @@ hero_trust:"<strong>Companies & Institutions</strong><br>already trust us",
 hc1_t:"Digital Development",hc1_d:"Custom web, mobile and desktop applications for your ecosystem",
 hc2_t:"Cybersecurity",hc2_d:"Auditing, hardening and monitoring to protect your digital assets",
 hc3_t:"Artificial Intelligence",hc3_d:"Chatbots, Computer Vision and advanced facial recognition",
-marquee:'<span class="marquee-item">Cloud & Infrastructure</span><span class="marquee-item">Artificial Intelligence</span><span class="marquee-item">Cybersecurity</span><span class="marquee-item">Web & Mobile Development</span><span class="marquee-item">Consulting & Strategy</span><span class="marquee-item">DevOps & Managed Services</span><span class="marquee-item">Telecommunications</span><span class="marquee-item">L1/L2/L3 Support</span><span class="marquee-item">Cloud & Infrastructure</span><span class="marquee-item">Artificial Intelligence</span><span class="marquee-item">Cybersecurity</span><span class="marquee-item">Web & Mobile Development</span><span class="marquee-item">Consulting & Strategy</span><span class="marquee-item">DevOps & Managed Services</span><span class="marquee-item">Telecommunications</span><span class="marquee-item">L1/L2/L3 Support</span>',
+marquee:'<span class="marquee-item">Payments & Mobile Money</span><span class="marquee-item">Cloud & Infrastructure</span><span class="marquee-item">Artificial Intelligence</span><span class="marquee-item">Cybersecurity</span><span class="marquee-item">Web & Mobile Development</span><span class="marquee-item">Consulting & Strategy</span><span class="marquee-item">DevOps & Managed Services</span><span class="marquee-item">Telecommunications</span><span class="marquee-item">L1/L2/L3 Support</span><span class="marquee-item">Payments & Mobile Money</span><span class="marquee-item">Cloud & Infrastructure</span><span class="marquee-item">Artificial Intelligence</span><span class="marquee-item">Cybersecurity</span><span class="marquee-item">Web & Mobile Development</span><span class="marquee-item">Consulting & Strategy</span><span class="marquee-item">DevOps & Managed Services</span><span class="marquee-item">Telecommunications</span><span class="marquee-item">L1/L2/L3 Support</span>',
 about_ey:"Who we are",
 about_main:'YSB Technologies is a <strong>digital services company</strong> dedicated to supporting businesses and institutions in their digital transformation across <strong>Africa</strong>.',
 about_p1:"In Africa, digital transformation is no longer optional — it is the engine of our sovereignty and growth. But for this transformation to be real, it must rest on unshakeable foundations.",
@@ -1041,6 +1081,9 @@ e3t:"Consulting &<br>Human Capital",e3a:"Project management, architecture and di
 e4t:"Telecoms &<br>Cybersecurity",e4a:"Enterprise IT and telecommunications solutions",e4b:"Security audits, access control and hardening",e4c:"Continuous monitoring and proactive risk management",
 e5t:"Artificial Intelligence<br>& Innovation",e5a:"Intelligent chatbots and virtual assistants",e5b:"Facial recognition for access control",e5c:"Smart surveillance and Computer Vision",
 e6t:"Support &<br>Maintenance",e6a:"Multi-tier L1, L2 and L3 support by scope",e6b:"Contractual SLAs and 24/7 monitoring",e6c:"Complete documentation and knowledge transfer",
+e7t:"Digital Payments<br>& Mobile Money Aggregation",e7a:"Multi-operator collections (C2B) and bulk payouts (B2C)",e7b:"Single aggregation API, merchant QR and payment links",e7c:"WhatsApp chatbot for transaction verification",
+hc0_t:"Payments & Mobile Money — Wakyi",hc0_d:"Mobile Money aggregation: collections, bulk payouts, QR & payment links",
+sol4_t:"Payments &<br>Mobile Money",sol4_desc:"Mobile Money payment aggregation platform for Côte d'Ivoire: collections, bulk payouts, merchant QR and payment links — through a single API, with WhatsApp-chatbot transaction verification.",
 nav_solutions:"Solutions",
 sol_ey:"Our solutions",sol_title:"Products built for<br>the African market",sol_desc:"Beyond consulting and integration, we develop our own digital solutions to meet our partners' real-world needs.",
 sol_live:"Live solution",sol_soon:"Coming soon",sol_dev:"In development",sol_discover:"Discover the solution",sol_more:"Learn more",
@@ -1063,7 +1106,7 @@ ct_title:"Let's talk about your project",ct_desc:"Fill out the form or contact u
 ct_hq:"Headquarters",ct_ph:"Phone",ct_web:"Website",ct_leg:"HQ: Abidjan, Côte d'Ivoire",
 fm_t:"Send us a message",fm_sub:"All fields marked with * are required.",
 fm_name:"Full name *",fm_name_ph:"Your name",fm_co:"Company",fm_co_ph:"Your company name",fm_phone:"Phone",fm_serv:"Service you're interested in",
-fm_sel:"Select an area...",fm_o1:"Development & Digital Ecosystems",fm_o2:"Infrastructure, Cloud & Managed Services",fm_o3:"Consulting & Human Capital",fm_o4:"Telecoms & Cybersecurity",fm_o5:"Artificial Intelligence & Innovation",fm_o6:"Support & Maintenance",fm_o7:"Other / Multiple areas",
+fm_sel:"Select an area...",fm_o1:"Development & Digital Ecosystems",fm_o2:"Infrastructure, Cloud & Managed Services",fm_o3:"Consulting & Human Capital",fm_o4:"Telecoms & Cybersecurity",fm_o5:"Artificial Intelligence & Innovation",fm_o6:"Support & Maintenance",fm_o7:"Other / Multiple areas",fm_o8:"Payments & Mobile Money (Wakyi)",
 fm_msg_ph:"Briefly describe your project, needs or questions...",
 fm_send:'Send message <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
 fm_ok:"Thank you! Your message has been sent. Our team will contact you within 24 hours.",

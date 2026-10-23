@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q2RGCX0JKX"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Q2RGCX0JKX');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wakyi — Paiements & Mobile Money | YSB Technologies</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="description" content="Wakyi by YSB Technologies : plateforme d'agrégation de paiements Mobile Money en Côte d'Ivoire — encaissements, paiements de masse, QR et liens de paiement, vérification WhatsApp. Orange Money, MTN MoMo, Wave, Moov Money.">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#132E52;--navy-deep:#0a1d38;--cyan:#00C2CB;--purple:#6D36DB;--purple-light:#8B5CF6;--blue:#004AAD;--gray:#B4B4B4;--gray-light:#F4F5F7;--gray-medium:#E8EAED;--white:#FFFFFF;--success:#10B981;--amber:#F59E0B}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;font-size:16px}body{font-family:'Open Sans',sans-serif;color:var(--navy);background:var(--white);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+
+/* LANG SWITCHER */
+.lang-switch{display:flex;align-items:center;gap:4px;background:rgba(19,46,82,.06);border-radius:8px;padding:3px;margin-right:12px}
+.lang-btn{font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;padding:6px 12px;border:none;border-radius:6px;cursor:pointer;background:transparent;color:rgba(19,46,82,.4);transition:all .2s;letter-spacing:.04em}
+.lang-btn.active{background:var(--cyan);color:var(--navy)}
+.lang-btn:hover:not(.active){color:var(--navy)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.95);backdrop-filter:blur(24px);box-shadow:0 1px 0 rgba(19,46,82,.06)}
+.nav-inner{max-width:1340px;margin:0 auto;padding:0 48px;height:72px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none}
+.logo-mark{position:relative;width:38px;height:38px;flex-shrink:0}
+.logo-mark .c1{position:absolute;width:28px;height:28px;border-radius:50%;background:var(--cyan);top:0;left:0}
+.logo-mark .c2{position:absolute;width:17px;height:17px;border-radius:50%;background:var(--purple);bottom:2px;right:3px}
+.nav-brand{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.1rem;color:var(--navy);letter-spacing:-.02em}
+.nav-back{display:flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:600;color:rgba(19,46,82,.5);text-decoration:none;transition:color .3s}
+.nav-back:hover{color:var(--cyan)}
+.nav-cta{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.78rem;background:var(--cyan);color:var(--navy);border:none;padding:10px 24px;border-radius:8px;cursor:pointer;letter-spacing:.04em;text-transform:uppercase;transition:all .3s;text-decoration:none}
+.nav-cta:hover{background:var(--navy);color:var(--white);transform:translateY(-1px)}
+
+/* HERO */
+.product-hero{padding:140px 48px 100px;background:var(--navy-deep);position:relative;overflow:hidden}
+.product-hero .noise{position:absolute;inset:0;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:256px}
+.product-hero .orb1{position:absolute;width:600px;height:600px;border-radius:50%;background:rgba(0,194,203,.1);filter:blur(100px);top:-200px;right:-100px;animation:orbF 18s ease-in-out infinite}
+.product-hero .orb2{position:absolute;width:400px;height:400px;border-radius:50%;background:rgba(109,54,219,.08);filter:blur(80px);bottom:-150px;left:-50px;animation:orbF 22s ease-in-out infinite reverse}
+@keyframes orbF{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(20px,-15px) scale(1.05)}}
+.hero-inner{max-width:1340px;margin:0 auto;position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:72px;align-items:center}
+.hero-breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:28px;font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;animation:fadeUp .6s ease both}
+.hero-breadcrumb a{color:rgba(255,255,255,.3);text-decoration:none;transition:color .3s}.hero-breadcrumb a:hover{color:var(--cyan)}.hero-breadcrumb span{color:rgba(255,255,255,.15)}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,194,203,.1);border:1px solid rgba(0,194,203,.2);border-radius:40px;padding:8px 20px;font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:.1em;margin-bottom:24px;animation:fadeUp .6s ease .08s both}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--success);animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.product-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(2.6rem,4.5vw,3.8rem);font-weight:900;color:var(--white);line-height:1.08;letter-spacing:-.035em;margin-bottom:24px;animation:fadeUp .6s ease .16s both}
+.product-hero h1 .grad{background:linear-gradient(135deg,var(--cyan),var(--purple-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-tagline{font-family:'Montserrat',sans-serif;font-size:1.15rem;font-weight:600;color:var(--cyan);margin-bottom:20px;animation:fadeUp .6s ease .24s both}
+.hero-desc{font-size:1.05rem;line-height:1.8;color:rgba(255,255,255,.5);max-width:520px;margin-bottom:40px;animation:fadeUp .6s ease .32s both}
+.hero-desc strong{color:rgba(255,255,255,.8);font-weight:600}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp .6s ease .4s both}
+.btn{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.85rem;padding:15px 32px;border-radius:10px;cursor:pointer;transition:all .35s cubic-bezier(.16,1,.3,1);text-decoration:none;display:inline-flex;align-items:center;gap:10px;border:none}
+.btn-cyan{background:var(--cyan);color:var(--navy)}.btn-cyan:hover{background:var(--white);transform:translateY(-2px);box-shadow:0 16px 48px rgba(0,194,203,.3)}
+.btn-ghost{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,.15)}.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+.btn-navy{background:var(--navy);color:var(--white)}.btn-navy:hover{background:var(--cyan);color:var(--navy);transform:translateY(-2px)}
+.hero-features{display:grid;grid-template-columns:1fr 1fr;gap:16px;animation:fadeUp .8s ease .5s both}
+.hf-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:28px 24px;transition:all .4s cubic-bezier(.16,1,.3,1)}
+.hf-card:hover{background:rgba(255,255,255,.08);transform:translateY(-4px)}
+.hf-icon{font-size:1.6rem;margin-bottom:14px}
+.hf-card h4{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:800;color:var(--white);margin-bottom:6px}
+.hf-card p{font-size:.78rem;color:rgba(255,255,255,.4);line-height:1.55}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+/* COMMON */
+section{padding:112px 48px}.s-inner{max-width:1340px;margin:0 auto}
+.eyebrow{font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:.18em;margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.ey-line{width:32px;height:2px;background:var(--cyan);border-radius:2px}
+.s-title{font-family:'Montserrat',sans-serif;font-size:clamp(2rem,3.5vw,2.8rem);font-weight:900;color:var(--navy);letter-spacing:-.03em;line-height:1.12;margin-bottom:20px}
+.s-desc{font-size:1.05rem;line-height:1.8;color:rgba(19,46,82,.55);max-width:600px}
+.reveal{opacity:0;transform:translateY(40px);transition:all .9s cubic-bezier(.16,1,.3,1)}.reveal.visible{opacity:1;transform:translateY(0)}
+.rd1{transition-delay:.08s}.rd2{transition-delay:.16s}.rd3{transition-delay:.24s}.rd4{transition-delay:.32s}.rd5{transition-delay:.4s}
+
+/* PLATFORM MOCKUPS */
+.platform-preview{background:var(--navy-deep);position:relative;overflow:hidden}
+.platform-preview::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,194,203,.2),transparent)}
+.platform-preview .s-title{color:var(--white)}.platform-preview .s-desc{color:rgba(255,255,255,.4)}
+.mockup-tabs{display:flex;gap:4px;margin:48px 0 32px;background:rgba(255,255,255,.04);border-radius:12px;padding:4px;width:fit-content}
+.mockup-tab{font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:700;padding:10px 24px;border-radius:8px;border:none;cursor:pointer;background:transparent;color:rgba(255,255,255,.4);transition:all .3s;text-transform:uppercase;letter-spacing:.06em}
+.mockup-tab.active{background:var(--cyan);color:var(--navy)}
+.mockup-tab:hover:not(.active){color:var(--white)}
+.mockup-container{position:relative;min-height:480px}
+.mockup-screen{display:none;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden}
+.mockup-screen.active{display:block}
+.mockup-topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 28px;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.06)}
+.mockup-dots{display:flex;gap:6px}.mockup-dots span{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.1)}
+.mockup-dots span:first-child{background:#ff5f57}.mockup-dots span:nth-child(2){background:#ffbd2e}.mockup-dots span:last-child{background:#28c840}
+.mockup-url{font-family:'Montserrat',sans-serif;font-size:.65rem;color:rgba(255,255,255,.25);background:rgba(255,255,255,.04);padding:6px 16px;border-radius:6px;letter-spacing:.02em}
+.mockup-body{padding:32px 28px}
+
+/* Dashboard mockup */
+.dash-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
+.dash-stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:20px 18px}
+.dash-stat-label{font-size:.65rem;color:rgba(255,255,255,.3);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.dash-stat-val{font-family:'Montserrat',sans-serif;font-size:1.6rem;font-weight:900;color:var(--white)}
+.dash-stat-val .up{color:var(--success);font-size:.7rem;font-weight:700}
+.dash-chart{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:12px;padding:24px;margin-bottom:20px}
+.dash-chart-title{font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:700;color:rgba(255,255,255,.5);margin-bottom:16px}
+.chart-bars{display:flex;align-items:flex-end;gap:8px;height:120px}
+.chart-bar{flex:1;border-radius:6px 6px 0 0;transition:height .5s;min-width:20px}
+.dash-table{width:100%}
+.dash-table th{font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;text-align:left;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06)}
+.dash-table td{font-size:.78rem;color:rgba(255,255,255,.5);padding:12px;border-bottom:1px solid rgba(255,255,255,.03)}
+.status-badge{padding:3px 10px;border-radius:12px;font-family:'Montserrat',sans-serif;font-size:.6rem;font-weight:700;text-transform:uppercase}
+.status-badge.active{background:rgba(16,185,129,.15);color:var(--success)}
+.status-badge.ended{background:rgba(255,255,255,.06);color:rgba(255,255,255,.3)}
+
+/* Participant mockup */
+.phone-frame{max-width:340px;margin:0 auto;background:#111;border-radius:36px;padding:12px;border:2px solid rgba(255,255,255,.1)}
+.phone-screen{border-radius:28px;overflow:hidden;background:var(--white)}
+.phone-header{background:var(--cyan);padding:40px 24px 24px;text-align:center}
+.phone-header h3{font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:4px}
+.phone-header p{font-size:.75rem;color:rgba(19,46,82,.6)}
+.phone-body{padding:24px}
+.phone-field{margin-bottom:16px}
+.phone-field label{display:block;font-family:'Montserrat',sans-serif;font-size:.65rem;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.phone-field .input-mock{background:var(--gray-light);border:1.5px solid var(--gray-medium);border-radius:10px;padding:12px 14px;font-size:.82rem;color:var(--gray)}
+.phone-btn{width:100%;padding:14px;background:var(--cyan);color:var(--navy);font-family:'Montserrat',sans-serif;font-weight:800;font-size:.85rem;border:none;border-radius:12px;text-align:center;margin-top:8px}
+.phone-wheel{width:160px;height:160px;margin:20px auto;border-radius:50%;background:conic-gradient(var(--cyan) 0deg 60deg,var(--purple) 60deg 120deg,var(--blue) 120deg 180deg,var(--amber) 180deg 240deg,var(--success) 240deg 300deg,var(--cyan) 300deg 360deg);display:flex;align-items:center;justify-content:center;animation:spinWheel 8s linear infinite}
+@keyframes spinWheel{to{transform:rotate(360deg)}}
+.phone-wheel-center{width:60px;height:60px;border-radius:50%;background:var(--white);display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:800;box-shadow:0 4px 16px rgba(0,0,0,.15)}
+
+/* PROBLEM */
+.problem{background:var(--gray-light)}
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;margin-top:56px}
+.problem-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pcard{background:var(--white);border:1px solid rgba(19,46,82,.06);border-radius:16px;padding:32px 24px;transition:all .4s;position:relative;overflow:hidden}
+.pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:#E74C3C;border-radius:3px 3px 0 0}
+.pcard:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(19,46,82,.06)}
+.pcard-icon{font-size:1.8rem;margin-bottom:16px}
+.pcard h4{font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:800;color:var(--navy);margin-bottom:8px}
+.pcard p{font-size:.85rem;color:rgba(19,46,82,.5);line-height:1.6}
+.problem-text h3{font-family:'Montserrat',sans-serif;font-size:1.8rem;font-weight:900;color:var(--navy);margin-bottom:20px;letter-spacing:-.02em;line-height:1.2}
+.problem-text p{font-size:1rem;line-height:1.8;color:rgba(19,46,82,.55);margin-bottom:16px}
+.cost-compare{background:var(--white);border:1px solid rgba(19,46,82,.06);border-radius:16px;padding:32px;margin-top:32px}
+.cost-compare h4{font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:.1em;margin-bottom:20px}
+.cost-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid rgba(19,46,82,.05)}
+.cost-row:last-child{border-bottom:none}
+.cost-label{font-size:.9rem;font-weight:600;color:var(--navy)}
+.cost-val{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem}
+.cost-val.old{color:#E74C3C}.cost-val.new{color:var(--success)}
+.cost-val.savings{background:linear-gradient(135deg,var(--cyan),var(--success));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:1.2rem}
+
+/* HOW IT WORKS */
+.how-it-works{background:var(--white)}
+.flow-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:64px;position:relative}
+.flow-steps::before{content:'';position:absolute;top:48px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,var(--cyan),var(--purple),var(--blue),var(--cyan),var(--purple))}
+.flow-step{text-align:center;position:relative;z-index:1;padding:0 10px}
+.flow-step-num{width:32px;height:32px;border-radius:50%;margin:32px auto 24px;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:800;color:var(--white)}
+.flow-step:nth-child(1) .flow-step-num{background:var(--cyan)}.flow-step:nth-child(2) .flow-step-num{background:var(--purple)}.flow-step:nth-child(3) .flow-step-num{background:var(--blue)}.flow-step:nth-child(4) .flow-step-num{background:var(--cyan)}.flow-step:nth-child(5) .flow-step-num{background:var(--success)}
+.flow-step-icon{font-size:2rem;margin-bottom:4px}
+.flow-step h4{font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:800;color:var(--navy);margin-bottom:8px}
+.flow-step p{font-size:.8rem;color:rgba(19,46,82,.45);line-height:1.6}
+
+/* CAMPAIGNS */
+.campaigns{background:var(--navy-deep);position:relative;overflow:hidden}
+.campaigns::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,194,203,.2),transparent)}
+.campaigns .bg-text{position:absolute;font-family:'Montserrat',sans-serif;font-size:16vw;font-weight:900;color:rgba(255,255,255,.012);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none}
+.campaigns .s-title{color:var(--white)}.campaigns .s-desc{color:rgba(255,255,255,.4)}
+.campaign-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px}
+.camp-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:44px 32px;position:relative;overflow:hidden;transition:all .5s cubic-bezier(.16,1,.3,1)}
+.camp-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.camp-card:hover{background:rgba(255,255,255,.06);transform:translateY(-8px);border-color:rgba(0,194,203,.15)}
+.camp-card:hover::after{transform:scaleX(1)}
+.camp-card:nth-child(1)::after{background:linear-gradient(90deg,var(--cyan),var(--blue))}.camp-card:nth-child(2)::after{background:linear-gradient(90deg,var(--purple),var(--cyan))}.camp-card:nth-child(3)::after{background:linear-gradient(90deg,var(--amber),#E74C3C)}
+.camp-icon{font-size:2.4rem;margin-bottom:24px}
+.camp-card h3{font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:900;color:var(--white);margin-bottom:12px}
+.camp-card>p{font-size:.9rem;color:rgba(255,255,255,.4);line-height:1.7;margin-bottom:24px}
+.camp-features{list-style:none;display:flex;flex-direction:column;gap:10px}
+.camp-features li{font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.5;padding-left:20px;position:relative}
+.camp-features li::before{content:'✓';position:absolute;left:0;color:var(--cyan);font-weight:700;font-size:.75rem}
+
+/* REWARDS */
+.rewards{background:var(--gray-light)}
+.rewards-header{text-align:center;max-width:720px;margin:0 auto 64px}
+.rewards-header .eyebrow{justify-content:center}.rewards-header .s-desc{margin:0 auto}
+.rewards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.rcard{background:var(--white);border:1px solid rgba(19,46,82,.05);border-radius:20px;padding:40px 28px;text-align:center;transition:all .5s cubic-bezier(.16,1,.3,1)}
+.rcard:hover{transform:translateY(-8px);box-shadow:0 20px 56px rgba(19,46,82,.07)}
+.rcard-icon{font-size:2.4rem;margin-bottom:20px}
+.rcard h4{font-family:'Montserrat',sans-serif;font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:10px}
+.rcard p{font-size:.85rem;color:rgba(19,46,82,.5);line-height:1.6}
+.rcard .tag{display:inline-block;margin-top:16px;padding:5px 12px;border-radius:6px;font-family:'Montserrat',sans-serif;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.rcard .tag.instant{background:rgba(0,194,203,.1);color:var(--cyan)}.rcard .tag.managed{background:rgba(109,54,219,.1);color:var(--purple)}
+
+/* Rewards mix banner */
+.rewards-mix{max-width:800px;margin:40px auto 0;background:linear-gradient(135deg,rgba(0,194,203,.06),rgba(109,54,219,.06));border:1px solid rgba(0,194,203,.12);border-radius:16px;padding:32px 40px;text-align:center}
+.rewards-mix h4{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:10px}
+.rewards-mix p{font-size:.9rem;color:rgba(19,46,82,.55);line-height:1.7}
+
+/* DATA */
+.data-section{background:var(--white)}
+.data-layout{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;margin-top:56px}
+.data-points{display:flex;flex-direction:column;gap:24px}
+.dp{display:flex;gap:20px;align-items:flex-start;background:var(--gray-light);border-radius:16px;padding:28px 24px;transition:all .4s}
+.dp:hover{transform:translateX(6px);box-shadow:0 8px 32px rgba(19,46,82,.04)}
+.dp-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;background:rgba(0,194,203,.08)}
+.dp h4{font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:800;color:var(--navy);margin-bottom:6px}
+.dp p{font-size:.85rem;color:rgba(19,46,82,.5);line-height:1.55}
+.data-visual{background:var(--navy-deep);border-radius:24px;padding:48px 40px;position:relative;overflow:hidden}
+.data-visual::before{content:'';position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(0,194,203,.1),transparent 70%);top:-100px;right:-80px}
+.data-visual h3{font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:900;color:var(--white);margin-bottom:8px;position:relative;z-index:1}
+.data-visual>p{font-size:.88rem;color:rgba(255,255,255,.4);margin-bottom:32px;position:relative;z-index:1}
+.ai-domains{display:flex;flex-direction:column;gap:12px;position:relative;z-index:1}
+.ai-d{display:flex;align-items:center;gap:12px;padding:14px 18px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:12px;font-size:.85rem;color:rgba(255,255,255,.6);transition:all .3s}
+.ai-d:hover{background:rgba(0,194,203,.08);border-color:rgba(0,194,203,.15)}
+.ai-d span{font-size:1rem}
+
+/* DIFFERENTIATORS */
+.diff{background:var(--gray-light)}.diff-header{text-align:center;max-width:680px;margin:0 auto 64px}.diff-header .eyebrow{justify-content:center}.diff-header .s-desc{margin:0 auto}
+.diff-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.dcard{display:flex;gap:24px;align-items:flex-start;background:var(--white);border:1px solid rgba(19,46,82,.05);border-radius:20px;padding:36px 32px;transition:all .5s cubic-bezier(.16,1,.3,1)}
+.dcard:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(19,46,82,.06);border-color:rgba(0,194,203,.12)}
+.dcard-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;background:rgba(0,194,203,.08)}
+.dcard h4{font-family:'Montserrat',sans-serif;font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:6px}
+.dcard p{font-size:.88rem;color:rgba(19,46,82,.5);line-height:1.6}
+
+/* DEPLOYMENT */
+.deployment{background:var(--white)}
+.deploy-card{background:var(--navy);border-radius:24px;padding:72px;position:relative;overflow:hidden;margin-top:56px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.deploy-card::before{content:'';position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(0,194,203,.1),transparent 70%);right:-100px;top:-100px}
+.deploy-left{position:relative;z-index:1}
+.deploy-left h3{font-family:'Montserrat',sans-serif;font-size:2.2rem;font-weight:900;color:var(--white);margin-bottom:16px;letter-spacing:-.02em}
+.deploy-left h3 .accent{color:var(--cyan)}
+.deploy-left p{font-size:1rem;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:32px}
+.deploy-timeline{position:relative;z-index:1;display:flex;flex-direction:column}
+.dt-step{display:flex;gap:20px;align-items:flex-start;padding:20px 0;position:relative}
+.dt-step::before{content:'';position:absolute;left:19px;top:44px;bottom:-4px;width:2px;background:rgba(255,255,255,.08)}
+.dt-step:last-child::before{display:none}
+.dt-dot{width:40px;height:40px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:800;color:var(--navy);background:var(--cyan)}
+.dt-step h4{font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:800;color:var(--white);margin-bottom:4px}
+.dt-step p{font-size:.82rem;color:rgba(255,255,255,.4);line-height:1.5}
+
+/* CTA */
+.product-cta{background:linear-gradient(135deg,var(--navy-deep),var(--navy));padding:100px 48px;text-align:center;position:relative;overflow:hidden}
+.product-cta .orb{position:absolute;width:400px;height:400px;border-radius:50%;background:rgba(0,194,203,.08);filter:blur(80px);top:-100px;left:50%;transform:translateX(-50%)}
+.product-cta h2{font-family:'Montserrat',sans-serif;font-size:clamp(2rem,3.5vw,2.8rem);font-weight:900;color:var(--white);margin-bottom:16px;letter-spacing:-.03em;position:relative;z-index:1}
+.product-cta>p{font-size:1.05rem;color:rgba(255,255,255,.45);max-width:560px;margin:0 auto 24px;line-height:1.7;position:relative;z-index:1}
+.cta-contacts{display:flex;flex-wrap:wrap;justify-content:center;gap:24px;margin-bottom:36px;position:relative;z-index:1}
+.cta-contact{display:flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:600;color:rgba(255,255,255,.6)}
+.cta-contact a{color:var(--cyan);text-decoration:none;transition:color .3s}
+.cta-contact a:hover{color:var(--white)}
+.product-cta .btn-group{display:flex;gap:14px;justify-content:center;position:relative;z-index:1;flex-wrap:wrap}
+
+/* FOOTER */
+footer{background:#060d18;padding:48px;text-align:center}
+.footer-inner{max-width:1340px;margin:0 auto}
+.footer-logo{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:16px}
+.footer-logo span{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1rem;color:rgba(255,255,255,.5)}
+footer p{font-size:.78rem;color:rgba(255,255,255,.2);line-height:1.6}
+footer a{color:rgba(255,255,255,.3);text-decoration:none;transition:color .3s}footer a:hover{color:var(--cyan)}
+
+/* RESPONSIVE */
+@media(max-width:1100px){.hero-inner{grid-template-columns:1fr;gap:48px}.problem-grid{grid-template-columns:1fr;gap:48px}.campaign-grid{grid-template-columns:1fr}.rewards-grid{grid-template-columns:1fr}.data-layout{grid-template-columns:1fr}.diff-grid{grid-template-columns:1fr}.deploy-card{grid-template-columns:1fr;padding:48px}.dash-stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){section{padding:80px 24px}.nav-inner{padding:0 24px}.nav-back{display:none}.product-hero{padding:110px 24px 60px}.hero-features{grid-template-columns:1fr}.problem-cards{grid-template-columns:1fr}.flow-steps{grid-template-columns:1fr;gap:16px}.flow-steps::before{display:none}.flow-step{text-align:left;display:flex;gap:16px;align-items:flex-start}.flow-step-num{margin:0}.rewards-grid{grid-template-columns:1fr}.deploy-card{padding:36px 24px}.product-cta .btn-group{flex-direction:column;align-items:center}.mockup-tabs{flex-wrap:wrap}.cta-contacts{flex-direction:column;align-items:center}}
+
+  /* ═══ WHATSAPP BUTTON ═══ */
+  .wa-float{position:fixed;bottom:28px;right:28px;z-index:900;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+  .wa-tooltip{background:var(--white);color:var(--navy);font-family:'Montserrat',sans-serif;font-size:.78rem;font-weight:600;padding:10px 18px;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,.12);opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;white-space:nowrap}
+  .wa-float:hover .wa-tooltip{opacity:1;transform:translateY(0)}
+  .wa-btn{width:60px;height:60px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.35);transition:all .3s;text-decoration:none;border:none;cursor:pointer}
+  .wa-btn:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,.45)}
+  .wa-btn svg{width:32px;height:32px;fill:#fff}
+  @media(max-width:768px){.wa-float{bottom:20px;right:20px}.wa-btn{width:54px;height:54px}.wa-btn svg{width:28px;height:28px}}
+
+/* WAKYI-SPECIFIC */
+.wk-brand{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.3rem;color:var(--cyan);letter-spacing:-.02em;margin-bottom:14px;animation:fadeUp .6s ease .1s both}
+.wk-brand span{font-weight:600;font-size:.8rem;color:rgba(255,255,255,.35);letter-spacing:.1em;text-transform:uppercase;margin-left:10px}
+.ops-strip{background:var(--navy);padding:28px 48px;border-top:1px solid rgba(255,255,255,.05)}
+.ops-strip .s-inner{display:flex;align-items:center;gap:40px;flex-wrap:wrap}
+.ops-label{font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.16em;white-space:nowrap}
+.ops-row{display:flex;gap:14px;flex-wrap:wrap}
+.op{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:800;padding:12px 22px;border-radius:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:var(--white);display:flex;align-items:center;gap:10px}
+.op::before{content:'';width:10px;height:10px;border-radius:50%}
+.op-orange::before{background:#FF7900}.op-mtn::before{background:#FFCC00}.op-wave::before{background:#1DC3F0}.op-moov::before{background:#0072CE}
+.svc-grid.campaign-grid{grid-template-columns:repeat(3,1fr)}
+@media(max-width:1100px){.svc-grid.campaign-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){.svc-grid.campaign-grid{grid-template-columns:1fr}.ops-strip{padding:24px}.ops-strip .s-inner{gap:16px}}
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo"><div class="logo-mark"><div class="c1"></div><div class="c2"></div></div><span class="nav-brand">YSB Technologies</span></a>
+    <a href="/" class="nav-back"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3m0 0l4 4M3 8l4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> <span data-i18n="nav_back">Retour au site</span></a>
+    <div class="lang-switch"><button class="lang-btn active" onclick="setLang('fr')">FR</button><button class="lang-btn" onclick="setLang('en')">EN</button></div><a href="#contact-cta" class="nav-cta" data-i18n="nav_cta">Nous contacter</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="product-hero">
+  <div class="noise"></div><div class="orb1"></div><div class="orb2"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-breadcrumb"><a href="/" data-i18n="bc_home">Accueil</a><span>/</span><a href="/#solutions" data-i18n="bc_sol">Solutions</a><span>/</span>Wakyi</div>
+      <div class="hero-badge"><span class="badge-dot"></span> <span data-i18n="hero_badge">Solution active · Côte d'Ivoire</span></div>
+      <div class="wk-brand">Wakyi <span>by YSB Technologies</span></div>
+      <h1 data-i18n="hero_h1">Paiements &amp;<br>Mobile Money<br><span class="grad">en une seule API</span></h1>
+      <div class="hero-tagline" data-i18n="hero_tag">Encaissez, payez et vérifiez — sur tous les wallets ivoiriens.</div>
+      <p class="hero-desc" data-i18n="hero_desc">Wakyi est la plateforme d'agrégation de paiements Mobile Money de YSB Technologies. Une <strong>intégration unique</strong> pour accepter les paiements de vos clients, effectuer vos paiements de masse et suivre chaque transaction — Orange Money, MTN MoMo, Wave et Moov Money.</p>
+      <div class="hero-actions">
+        <a href="#contact-cta" class="btn btn-cyan"><span data-i18n="hero_b1">Demander un accès</span> <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#services" class="btn btn-ghost" data-i18n="hero_b2">Découvrir les services</a>
+      </div>
+    </div>
+    <div class="hero-features">
+      <div class="hf-card"><div class="hf-icon">📥</div><h4 data-i18n="hf1t">Encaissements (C2B)</h4><p data-i18n="hf1p">Vos clients paient depuis leur wallet Mobile Money, vous êtes notifié en temps réel.</p></div>
+      <div class="hf-card"><div class="hf-icon">📤</div><h4 data-i18n="hf2t">Paiements de masse (B2C)</h4><p data-i18n="hf2p">Salaires, commissions, remboursements — versés en lot vers des milliers de wallets.</p></div>
+      <div class="hf-card"><div class="hf-icon">🔗</div><h4 data-i18n="hf3t">QR &amp; liens de paiement</h4><p data-i18n="hf3p">Un QR code ou un lien partageable pour encaisser sans intégration technique.</p></div>
+      <div class="hf-card"><div class="hf-icon">💬</div><h4 data-i18n="hf4t">Vérification WhatsApp</h4><p data-i18n="hf4p">Un chatbot WhatsApp pour confirmer le statut de n'importe quelle transaction en quelques secondes.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- OPERATORS STRIP -->
+<div class="ops-strip">
+  <div class="s-inner">
+    <div class="ops-label" data-i18n="ops_l">Opérateurs couverts</div>
+    <div class="ops-row">
+      <div class="op op-orange">Orange Money</div>
+      <div class="op op-mtn">MTN MoMo</div>
+      <div class="op op-wave">Wave</div>
+      <div class="op op-moov">Moov Money</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="s-inner">
+    <div class="eyebrow reveal"><span class="ey-line"></span> <span data-i18n="prob_ey">Le problème</span></div>
+    <div class="s-title reveal" data-i18n="prob_t">Quatre opérateurs,<br>quatre intégrations, quatre réconciliations</div>
+    <div class="problem-grid">
+      <div class="problem-cards">
+        <div class="pcard reveal"><div class="pcard-icon">🔌</div><h4 data-i18n="p1t">Intégrations multiples</h4><p data-i18n="p1p">Chaque opérateur a sa propre API, ses propres règles et ses propres délais d'homologation. Des mois de développement avant le premier franc encaissé.</p></div>
+        <div class="pcard reveal rd1"><div class="pcard-icon">🧾</div><h4 data-i18n="p2t">Réconciliation manuelle</h4><p data-i18n="p2p">Quatre relevés, quatre formats, quatre cycles de règlement. Les écarts se découvrent trop tard — ou jamais.</p></div>
+        <div class="pcard reveal rd2"><div class="pcard-icon">❓</div><h4 data-i18n="p3t">Transactions en suspens</h4><p data-i18n="p3p">« Le client dit avoir payé » : sans outil de vérification instantanée, chaque doute devient un ticket support.</p></div>
+        <div class="pcard reveal rd3"><div class="pcard-icon">🐌</div><h4 data-i18n="p4t">Paiements sortants lents</h4><p data-i18n="p4p">Verser des commissions ou des salaires à des centaines de bénéficiaires reste un travail manuel, wallet par wallet.</p></div>
+      </div>
+      <div class="problem-text reveal">
+        <h3 data-i18n="pt_h">Et si une seule intégration suffisait ?</h3>
+        <p data-i18n="pt_p1">Wakyi se place entre votre système et les opérateurs Mobile Money. Vous intégrez une fois ; nous gérons les connexions, la supervision et la réconciliation sur l'ensemble des réseaux.</p>
+        <p data-i18n="pt_p2">Moins de développement. Moins d'écarts. Une visibilité complète sur chaque transaction, entrante comme sortante.</p>
+        <div class="cost-compare">
+          <h4 data-i18n="cc_h">Intégration directe vs Wakyi</h4>
+          <div class="cost-row"><span class="cost-label" data-i18n="cc1l">Intégrations à maintenir</span><span class="cost-val old">4 → <span style="color:var(--success)">1</span></span></div>
+          <div class="cost-row"><span class="cost-label" data-i18n="cc2l">Réconciliation</span><span class="cost-val new" data-i18n="cc2v">Automatisée</span></div>
+          <div class="cost-row"><span class="cost-label" data-i18n="cc3l">Statut d'une transaction</span><span class="cost-val savings" data-i18n="cc3v">En temps réel</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="campaigns" id="services">
+  <div class="bg-text">WAKYI</div>
+  <div class="s-inner">
+    <div class="eyebrow reveal"><span class="ey-line"></span> <span data-i18n="svc_ey">Nos services de paiement</span></div>
+    <div class="s-title reveal" data-i18n="svc_t">Une plateforme,<br>six services</div>
+    <p class="s-desc reveal" data-i18n="svc_d">Chaque service est disponible via l'API Wakyi ou directement depuis le tableau de bord, sans développement.</p>
+    <div class="campaign-grid svc-grid">
+      <div class="camp-card reveal">
+        <div class="camp-icon">📥</div><h3 data-i18n="s1t">Encaissements Mobile Money (C2B)</h3>
+        <p data-i18n="s1p">Acceptez les paiements de vos clients depuis n'importe quel wallet ivoirien, en ligne ou en point de vente.</p>
+        <ul class="camp-features"><li data-i18n="s1a">Push USSD / confirmation sur le téléphone du client</li><li data-i18n="s1b">Notification webhook instantanée à votre système</li><li data-i18n="s1c">Référence unique par transaction pour le rapprochement</li></ul>
+      </div>
+      <div class="camp-card reveal rd1">
+        <div class="camp-icon">📤</div><h3 data-i18n="s2t">Paiements de masse (B2C)</h3>
+        <p data-i18n="s2p">Versez salaires, commissions, primes, remboursements ou aides vers des milliers de wallets en un seul envoi.</p>
+        <ul class="camp-features"><li data-i18n="s2a">Import fichier ou appel API par lot</li><li data-i18n="s2b">Validation à plusieurs niveaux avant exécution</li><li data-i18n="s2c">Rapport d'exécution détaillé, bénéficiaire par bénéficiaire</li></ul>
+      </div>
+      <div class="camp-card reveal rd2">
+        <div class="camp-icon">🧩</div><h3 data-i18n="s3t">API d'agrégation unique</h3>
+        <p data-i18n="s3p">Une documentation, un jeu de clés, un environnement de test. Tous les opérateurs derrière le même contrat d'interface.</p>
+        <ul class="camp-features"><li data-i18n="s3a">API REST sécurisée, sandbox complet</li><li data-i18n="s3b">Webhooks signés et relance automatique</li><li data-i18n="s3c">Ajout de nouveaux opérateurs sans changement de code</li></ul>
+      </div>
+      <div class="camp-card reveal">
+        <div class="camp-icon">🔗</div><h3 data-i18n="s4t">QR code &amp; liens de paiement</h3>
+        <p data-i18n="s4p">Pour les commerçants et les équipes sans développeur : générez un QR ou un lien, partagez-le, encaissez.</p>
+        <ul class="camp-features"><li data-i18n="s4a">QR statique par point de vente ou dynamique par montant</li><li data-i18n="s4b">Lien partageable par WhatsApp, SMS ou e-mail</li><li data-i18n="s4c">Page de paiement aux couleurs de votre marque</li></ul>
+      </div>
+      <div class="camp-card reveal rd1">
+        <div class="camp-icon">💬</div><h3 data-i18n="s5t">Chatbot WhatsApp de vérification</h3>
+        <p data-i18n="s5p">Vos équipes et vos clients vérifient le statut d'une transaction depuis WhatsApp — sans accès au back-office.</p>
+        <ul class="camp-features"><li data-i18n="s5a">Recherche par référence, numéro ou montant</li><li data-i18n="s5b">Réponse immédiate : reçu, en attente, échoué</li><li data-i18n="s5c">Réduction des tickets support « j'ai payé mais… »</li></ul>
+      </div>
+      <div class="camp-card reveal rd2">
+        <div class="camp-icon">📊</div><h3 data-i18n="s6t">Tableau de bord &amp; réconciliation</h3>
+        <p data-i18n="s6p">Une vue consolidée de tous vos flux, tous opérateurs confondus, avec rapprochement automatique contre les relevés.</p>
+        <ul class="camp-features"><li data-i18n="s6a">Suivi temps réel des encaissements et des paiements</li><li data-i18n="s6b">Exports comptables (CSV, Excel) et rapports planifiés</li><li data-i18n="s6c">Alertes sur écarts et transactions en suspens</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="how">
+  <div class="s-inner">
+    <div style="text-align:center;max-width:680px;margin:0 auto">
+      <div class="eyebrow reveal" style="justify-content:center"><span class="ey-line"></span> <span data-i18n="how_ey">Comment ça marche</span></div>
+      <div class="s-title reveal" data-i18n="how_t">Du paiement à la réconciliation</div>
+      <p class="s-desc reveal" style="margin:0 auto" data-i18n="how_d">Le parcours d'un encaissement avec Wakyi, de bout en bout.</p>
+    </div>
+    <div class="flow-steps">
+      <div class="flow-step reveal"><div class="flow-step-icon">🛒</div><div class="flow-step-num">1</div><div><h4 data-i18n="h1t">Initiation</h4><p data-i18n="h1p">Votre système appelle l'API Wakyi, ou le client scanne un QR / ouvre un lien de paiement.</p></div></div>
+      <div class="flow-step reveal rd1"><div class="flow-step-icon">📲</div><div class="flow-step-num">2</div><div><h4 data-i18n="h2t">Confirmation client</h4><p data-i18n="h2p">Le client valide le paiement sur son téléphone, dans son wallet habituel.</p></div></div>
+      <div class="flow-step reveal rd2"><div class="flow-step-icon">⚡</div><div class="flow-step-num">3</div><div><h4 data-i18n="h3t">Notification temps réel</h4><p data-i18n="h3p">Wakyi reçoit la confirmation de l'opérateur et notifie votre système par webhook.</p></div></div>
+      <div class="flow-step reveal rd3"><div class="flow-step-icon">💬</div><div class="flow-step-num">4</div><div><h4 data-i18n="h4t">Vérification</h4><p data-i18n="h4p">En cas de doute, le statut est vérifiable instantanément via le chatbot WhatsApp ou le tableau de bord.</p></div></div>
+      <div class="flow-step reveal rd4"><div class="flow-step-icon">🧾</div><div class="flow-step-num">5</div><div><h4 data-i18n="h5t">Règlement &amp; rapport</h4><p data-i18n="h5p">Les fonds sont réglés selon le cycle convenu ; le rapprochement et les exports sont générés automatiquement.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section class="rewards">
+  <div class="s-inner">
+    <div class="rewards-header">
+      <div class="eyebrow reveal"><span class="ey-line"></span> <span data-i18n="uc_ey">Cas d'usage</span></div>
+      <div class="s-title reveal" data-i18n="uc_t">Conçu pour les entreprises<br>qui encaissent et qui paient</div>
+      <p class="s-desc reveal" data-i18n="uc_d">Des PME aux institutions, Wakyi s'adapte au volume et au niveau d'intégration souhaité.</p>
+    </div>
+    <div class="rewards-grid">
+      <div class="rcard reveal"><div class="rcard-icon">🛍️</div><h4 data-i18n="u1t">E-commerce &amp; services en ligne</h4><p data-i18n="u1p">Paiement au checkout via tous les wallets, confirmation instantanée, taux de conversion préservé.</p><span class="tag instant">C2B · API</span></div>
+      <div class="rcard reveal rd1"><div class="rcard-icon">🏪</div><h4 data-i18n="u2t">Commerçants &amp; réseaux de distribution</h4><p data-i18n="u2p">QR code en caisse, liens de paiement pour les commandes à distance, suivi par point de vente.</p><span class="tag instant">QR · PayLink</span></div>
+      <div class="rcard reveal rd2"><div class="rcard-icon">🏢</div><h4 data-i18n="u3t">Entreprises, ONG &amp; institutions</h4><p data-i18n="u3p">Paiements de masse sécurisés : salaires, indemnités, commissions d'agents, aides directes.</p><span class="tag managed">B2C · Bulk</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIATORS -->
+<section class="diff">
+  <div class="s-inner">
+    <div class="diff-header">
+      <div class="eyebrow reveal"><span class="ey-line"></span> <span data-i18n="dif_ey">Pourquoi Wakyi</span></div>
+      <div class="s-title reveal" data-i18n="dif_t">Ce que Wakyi fait<br>différemment</div>
+      <p class="s-desc reveal" data-i18n="dif_d">Une plateforme construite par une équipe qui opère déjà des flux Mobile Money à grande échelle.</p>
+    </div>
+    <div class="diff-grid">
+      <div class="dcard reveal"><div class="dcard-icon">🧩</div><div><h4 data-i18n="df1">Une intégration, tous les opérateurs</h4><p data-i18n="df1p">Orange Money, MTN MoMo, Wave et Moov Money derrière une seule API. Les nouveaux réseaux s'ajoutent sans toucher à votre code.</p></div></div>
+      <div class="dcard reveal rd1"><div class="dcard-icon">🏗️</div><div><h4 data-i18n="df2">Expertise opérationnelle éprouvée</h4><p data-i18n="df2p">L'équipe derrière Wakyi opère déjà une plateforme d'agrégation Mobile Money en République Démocratique du Congo, connectée à quatre réseaux.</p></div></div>
+      <div class="dcard reveal rd2"><div class="dcard-icon">🧾</div><div><h4 data-i18n="df3">Réconciliation automatique</h4><p data-i18n="df3p">Rapprochement quotidien de vos transactions contre les relevés opérateurs, avec détection des écarts et des opérations en suspens.</p></div></div>
+      <div class="dcard reveal rd3"><div class="dcard-icon">💬</div><div><h4 data-i18n="df4">Vérification par WhatsApp</h4><p data-i18n="df4p">Un canal que vos équipes et vos clients utilisent déjà. Le statut d'une transaction en quelques secondes, sans formation.</p></div></div>
+      <div class="dcard reveal"><div class="dcard-icon">🔒</div><div><h4 data-i18n="df5">Sécurité par conception</h4><p data-i18n="df5p">Chiffrement de bout en bout, webhooks signés, journal d'audit complet et validation à plusieurs niveaux pour les paiements sortants.</p></div></div>
+      <div class="dcard reveal rd1"><div class="dcard-icon">📍</div><div><h4 data-i18n="df6">Support local, à Abidjan</h4><p data-i18n="df6p">Une équipe sur place, qui connaît les opérateurs et leurs réalités. Accompagnement de l'intégration jusqu'à la mise en production.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ONBOARDING -->
+<section class="deployment">
+  <div class="s-inner">
+    <div class="eyebrow reveal"><span class="ey-line"></span> <span data-i18n="dep_ey">Mise en service</span></div>
+    <div class="s-title reveal" data-i18n="dep_t">De la demande d'accès<br>à la première transaction</div>
+    <div class="deploy-card reveal">
+      <div class="deploy-left">
+        <h3 data-i18n="dl_h">Intégrez en<br><span class="accent">quelques jours</span>,<br>pas en quelques mois</h3>
+        <p data-i18n="dl_p">Pendant que nous finalisons votre dossier marchand, vos équipes travaillent déjà sur le sandbox. Pour les QR et liens de paiement, aucun développement n'est nécessaire.</p>
+        <a href="#contact-cta" class="btn btn-cyan" data-i18n="dl_b">Demander un accès →</a>
+      </div>
+      <div class="deploy-timeline">
+        <div class="dt-step"><div class="dt-dot">01</div><div><h4 data-i18n="dt1t">Demande &amp; cadrage</h4><p data-i18n="dt1p">Présentation de vos flux, volumes et opérateurs cibles. Remise de la grille tarifaire.</p></div></div>
+        <div class="dt-step"><div class="dt-dot">02</div><div><h4 data-i18n="dt2t">Dossier marchand (KYB)</h4><p data-i18n="dt2p">Collecte des documents de l'entreprise et ouverture de votre compte Wakyi.</p></div></div>
+        <div class="dt-step"><div class="dt-dot">03</div><div><h4 data-i18n="dt3t">Accès sandbox</h4><p data-i18n="dt3p">Clés de test, documentation API et simulateur de wallets pour vos développeurs.</p></div></div>
+        <div class="dt-step"><div class="dt-dot">04</div><div><h4 data-i18n="dt4t">Intégration &amp; tests</h4><p data-i18n="dt4p">Encaissements, paiements de masse, webhooks — validés de bout en bout avec notre équipe.</p></div></div>
+        <div class="dt-step"><div class="dt-dot">05</div><div><h4 data-i18n="dt5t">Mise en production 🚀</h4><p data-i18n="dt5p">Clés de production, tableau de bord activé, chatbot WhatsApp configuré. Support dédié.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="product-cta" id="contact-cta">
+  <div class="orb"></div>
+  <h2 data-i18n="cta_t">Prêt à simplifier vos paiements Mobile Money ?</h2>
+  <p data-i18n="cta_p">Contactez-nous pour une démonstration de Wakyi ou pour recevoir vos accès sandbox.</p>
+  <div class="cta-contacts">
+    <div class="cta-contact">📧 <a href="mailto:infos@ysbtechno.com">infos@ysbtechno.com</a></div>
+    <div class="cta-contact">📞 <a href="tel:+2252150015131">+225 2150 015 131</a></div>
+    <div class="cta-contact">📞 <a href="tel:+2250103680942">+225 0103 680 942</a></div>
+  </div>
+  <div class="btn-group">
+    <a href="mailto:infos@ysbtechno.com?subject=Wakyi%20%E2%80%94%20Demande%20d%27acc%C3%A8s" class="btn btn-cyan" data-i18n="cta_b1">Demander un accès →</a>
+    <a href="tel:+2252150015131" class="btn btn-ghost" data-i18n="cta_b2">Appeler maintenant</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo"><div class="logo-mark" style="width:32px;height:32px"><div class="c1" style="width:24px;height:24px"></div><div class="c2" style="width:14px;height:14px;bottom:1px;right:2px"></div></div><span>YSB Technologies</span></div>
+    <p data-i18n="ft_p">© 2026 YSB Technologies SARL — Tous droits réservés. Wakyi est une marque de YSB Technologies.<br>Abidjan, Côte d'Ivoire</p>
+    <p style="margin-top:12px"><a href="mailto:infos@ysbtechno.com">infos@ysbtechno.com</a> · <a href="tel:+2252150015131">+225 2150 015 131</a> · <a href="/">www.ysbtechno.com</a></p>
+  </div>
+</footer>
+
+<script>
+  const ro=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+</script>
+<script>
+const T={
+fr:{
+wa_tip:"Discutons sur WhatsApp",nav_cta:"Nous contacter",nav_back:"Retour au site",bc_home:"Accueil",bc_sol:"Solutions",
+hero_badge:"Solution active · Côte d'Ivoire",
+hero_h1:"Paiements &amp;<br>Mobile Money<br><span class=\"grad\">en une seule API</span>",
+hero_tag:"Encaissez, payez et vérifiez — sur tous les wallets ivoiriens.",
+hero_desc:"Wakyi est la plateforme d'agrégation de paiements Mobile Money de YSB Technologies. Une <strong>intégration unique</strong> pour accepter les paiements de vos clients, effectuer vos paiements de masse et suivre chaque transaction — Orange Money, MTN MoMo, Wave et Moov Money.",
+hero_b1:"Demander un accès",hero_b2:"Découvrir les services",
+hf1t:"Encaissements (C2B)",hf1p:"Vos clients paient depuis leur wallet Mobile Money, vous êtes notifié en temps réel.",
+hf2t:"Paiements de masse (B2C)",hf2p:"Salaires, commissions, remboursements — versés en lot vers des milliers de wallets.",
+hf3t:"QR &amp; liens de paiement",hf3p:"Un QR code ou un lien partageable pour encaisser sans intégration technique.",
+hf4t:"Vérification WhatsApp",hf4p:"Un chatbot WhatsApp pour confirmer le statut de n'importe quelle transaction en quelques secondes.",
+ops_l:"Opérateurs couverts",
+prob_ey:"Le problème",prob_t:"Quatre opérateurs,<br>quatre intégrations, quatre réconciliations",
+p1t:"Intégrations multiples",p1p:"Chaque opérateur a sa propre API, ses propres règles et ses propres délais d'homologation. Des mois de développement avant le premier franc encaissé.",
+p2t:"Réconciliation manuelle",p2p:"Quatre relevés, quatre formats, quatre cycles de règlement. Les écarts se découvrent trop tard — ou jamais.",
+p3t:"Transactions en suspens",p3p:"« Le client dit avoir payé » : sans outil de vérification instantanée, chaque doute devient un ticket support.",
+p4t:"Paiements sortants lents",p4p:"Verser des commissions ou des salaires à des centaines de bénéficiaires reste un travail manuel, wallet par wallet.",
+pt_h:"Et si une seule intégration suffisait ?",
+pt_p1:"Wakyi se place entre votre système et les opérateurs Mobile Money. Vous intégrez une fois ; nous gérons les connexions, la supervision et la réconciliation sur l'ensemble des réseaux.",
+pt_p2:"Moins de développement. Moins d'écarts. Une visibilité complète sur chaque transaction, entrante comme sortante.",
+cc_h:"Intégration directe vs Wakyi",cc1l:"Intégrations à maintenir",cc2l:"Réconciliation",cc2v:"Automatisée",cc3l:"Statut d'une transaction",cc3v:"En temps réel",
+svc_ey:"Nos services de paiement",svc_t:"Une plateforme,<br>six services",svc_d:"Chaque service est disponible via l'API Wakyi ou directement depuis le tableau de bord, sans développement.",
+s1t:"Encaissements Mobile Money (C2B)",s1p:"Acceptez les paiements de vos clients depuis n'importe quel wallet ivoirien, en ligne ou en point de vente.",s1a:"Push USSD / confirmation sur le téléphone du client",s1b:"Notification webhook instantanée à votre système",s1c:"Référence unique par transaction pour le rapprochement",
+s2t:"Paiements de masse (B2C)",s2p:"Versez salaires, commissions, primes, remboursements ou aides vers des milliers de wallets en un seul envoi.",s2a:"Import fichier ou appel API par lot",s2b:"Validation à plusieurs niveaux avant exécution",s2c:"Rapport d'exécution détaillé, bénéficiaire par bénéficiaire",
+s3t:"API d'agrégation unique",s3p:"Une documentation, un jeu de clés, un environnement de test. Tous les opérateurs derrière le même contrat d'interface.",s3a:"API REST sécurisée, sandbox complet",s3b:"Webhooks signés et relance automatique",s3c:"Ajout de nouveaux opérateurs sans changement de code",
+s4t:"QR code &amp; liens de paiement",s4p:"Pour les commerçants et les équipes sans développeur : générez un QR ou un lien, partagez-le, encaissez.",s4a:"QR statique par point de vente ou dynamique par montant",s4b:"Lien partageable par WhatsApp, SMS ou e-mail",s4c:"Page de paiement aux couleurs de votre marque",
+s5t:"Chatbot WhatsApp de vérification",s5p:"Vos équipes et vos clients vérifient le statut d'une transaction depuis WhatsApp — sans accès au back-office.",s5a:"Recherche par référence, numéro ou montant",s5b:"Réponse immédiate : reçu, en attente, échoué",s5c:"Réduction des tickets support « j'ai payé mais… »",
+s6t:"Tableau de bord &amp; réconciliation",s6p:"Une vue consolidée de tous vos flux, tous opérateurs confondus, avec rapprochement automatique contre les relevés.",s6a:"Suivi temps réel des encaissements et des paiements",s6b:"Exports comptables (CSV, Excel) et rapports planifiés",s6c:"Alertes sur écarts et transactions en suspens",
+how_ey:"Comment ça marche",how_t:"Du paiement à la réconciliation",how_d:"Le parcours d'un encaissement avec Wakyi, de bout en bout.",
+h1t:"Initiation",h1p:"Votre système appelle l'API Wakyi, ou le client scanne un QR / ouvre un lien de paiement.",
+h2t:"Confirmation client",h2p:"Le client valide le paiement sur son téléphone, dans son wallet habituel.",
+h3t:"Notification temps réel",h3p:"Wakyi reçoit la confirmation de l'opérateur et notifie votre système par webhook.",
+h4t:"Vérification",h4p:"En cas de doute, le statut est vérifiable instantanément via le chatbot WhatsApp ou le tableau de bord.",
+h5t:"Règlement &amp; rapport",h5p:"Les fonds sont réglés selon le cycle convenu ; le rapprochement et les exports sont générés automatiquement.",
+uc_ey:"Cas d'usage",uc_t:"Conçu pour les entreprises<br>qui encaissent et qui paient",uc_d:"Des PME aux institutions, Wakyi s'adapte au volume et au niveau d'intégration souhaité.",
+u1t:"E-commerce &amp; services en ligne",u1p:"Paiement au checkout via tous les wallets, confirmation instantanée, taux de conversion préservé.",
+u2t:"Commerçants &amp; réseaux de distribution",u2p:"QR code en caisse, liens de paiement pour les commandes à distance, suivi par point de vente.",
+u3t:"Entreprises, ONG &amp; institutions",u3p:"Paiements de masse sécurisés : salaires, indemnités, commissions d'agents, aides directes.",
+dif_ey:"Pourquoi Wakyi",dif_t:"Ce que Wakyi fait<br>différemment",dif_d:"Une plateforme construite par une équipe qui opère déjà des flux Mobile Money à grande échelle.",
+df1:"Une intégration, tous les opérateurs",df1p:"Orange Money, MTN MoMo, Wave et Moov Money derrière une seule API. Les nouveaux réseaux s'ajoutent sans toucher à votre code.",
+df2:"Expertise opérationnelle éprouvée",df2p:"L'équipe derrière Wakyi opère déjà une plateforme d'agrégation Mobile Money en République Démocratique du Congo, connectée à quatre réseaux.",
+df3:"Réconciliation automatique",df3p:"Rapprochement quotidien de vos transactions contre les relevés opérateurs, avec détection des écarts et des opérations en suspens.",
+df4:"Vérification par WhatsApp",df4p:"Un canal que vos équipes et vos clients utilisent déjà. Le statut d'une transaction en quelques secondes, sans formation.",
+df5:"Sécurité par conception",df5p:"Chiffrement de bout en bout, webhooks signés, journal d'audit complet et validation à plusieurs niveaux pour les paiements sortants.",
+df6:"Support local, à Abidjan",df6p:"Une équipe sur place, qui connaît les opérateurs et leurs réalités. Accompagnement de l'intégration jusqu'à la mise en production.",
+dep_ey:"Mise en service",dep_t:"De la demande d'accès<br>à la première transaction",
+dl_h:"Intégrez en<br><span class=\"accent\">quelques jours</span>,<br>pas en quelques mois",dl_p:"Pendant que nous finalisons votre dossier marchand, vos équipes travaillent déjà sur le sandbox. Pour les QR et liens de paiement, aucun développement n'est nécessaire.",dl_b:"Demander un accès →",
+dt1t:"Demande &amp; cadrage",dt1p:"Présentation de vos flux, volumes et opérateurs cibles. Remise de la grille tarifaire.",
+dt2t:"Dossier marchand (KYB)",dt2p:"Collecte des documents de l'entreprise et ouverture de votre compte Wakyi.",
+dt3t:"Accès sandbox",dt3p:"Clés de test, documentation API et simulateur de wallets pour vos développeurs.",
+dt4t:"Intégration &amp; tests",dt4p:"Encaissements, paiements de masse, webhooks — validés de bout en bout avec notre équipe.",
+dt5t:"Mise en production 🚀",dt5p:"Clés de production, tableau de bord activé, chatbot WhatsApp configuré. Support dédié.",
+cta_t:"Prêt à simplifier vos paiements Mobile Money ?",cta_p:"Contactez-nous pour une démonstration de Wakyi ou pour recevoir vos accès sandbox.",cta_b1:"Demander un accès →",cta_b2:"Appeler maintenant",
+ft_p:"© 2026 YSB Technologies SARL — Tous droits réservés. Wakyi est une marque de YSB Technologies.<br>Abidjan, Côte d'Ivoire"
+},
+en:{
+wa_tip:"Let's chat on WhatsApp",nav_cta:"Contact us",nav_back:"Back to site",bc_home:"Home",bc_sol:"Solutions",
+hero_badge:"Live solution · Côte d'Ivoire",
+hero_h1:"Payments &amp;<br>Mobile Money<br><span class=\"grad\">through one API</span>",
+hero_tag:"Collect, pay out and verify — across every Ivorian wallet.",
+hero_desc:"Wakyi is YSB Technologies' Mobile Money payment aggregation platform. A <strong>single integration</strong> to accept payments from your customers, run bulk payouts and track every transaction — Orange Money, MTN MoMo, Wave and Moov Money.",
+hero_b1:"Request access",hero_b2:"Explore the services",
+hf1t:"Collections (C2B)",hf1p:"Your customers pay from their Mobile Money wallet; you are notified in real time.",
+hf2t:"Bulk payouts (B2C)",hf2p:"Salaries, commissions, refunds — disbursed in batches to thousands of wallets.",
+hf3t:"QR &amp; payment links",hf3p:"A QR code or shareable link to collect payments with no technical integration.",
+hf4t:"WhatsApp verification",hf4p:"A WhatsApp chatbot to confirm the status of any transaction in seconds.",
+ops_l:"Operators covered",
+prob_ey:"The problem",prob_t:"Four operators,<br>four integrations, four reconciliations",
+p1t:"Multiple integrations",p1p:"Each operator has its own API, its own rules and its own certification timeline. Months of development before the first franc is collected.",
+p2t:"Manual reconciliation",p2p:"Four statements, four formats, four settlement cycles. Discrepancies surface too late — or never.",
+p3t:"Pending transactions",p3p:"\"The customer says they paid\": without an instant verification tool, every doubt becomes a support ticket.",
+p4t:"Slow outbound payments",p4p:"Paying commissions or salaries to hundreds of beneficiaries is still manual work, wallet by wallet.",
+pt_h:"What if one integration were enough?",
+pt_p1:"Wakyi sits between your system and the Mobile Money operators. You integrate once; we handle the connections, monitoring and reconciliation across all networks.",
+pt_p2:"Less development. Fewer discrepancies. Full visibility on every transaction, inbound and outbound.",
+cc_h:"Direct integration vs Wakyi",cc1l:"Integrations to maintain",cc2l:"Reconciliation",cc2v:"Automated",cc3l:"Transaction status",cc3v:"Real time",
+svc_ey:"Our payment services",svc_t:"One platform,<br>six services",svc_d:"Every service is available through the Wakyi API or directly from the dashboard, with no development.",
+s1t:"Mobile Money collections (C2B)",s1p:"Accept payments from your customers from any Ivorian wallet, online or at the point of sale.",s1a:"USSD push / confirmation on the customer's phone",s1b:"Instant webhook notification to your system",s1c:"Unique reference per transaction for reconciliation",
+s2t:"Bulk payouts (B2C)",s2p:"Disburse salaries, commissions, bonuses, refunds or aid to thousands of wallets in a single run.",s2a:"File upload or batch API call",s2b:"Multi-level approval before execution",s2c:"Detailed execution report, beneficiary by beneficiary",
+s3t:"Single aggregation API",s3p:"One documentation, one set of keys, one test environment. Every operator behind the same interface contract.",s3a:"Secure REST API, full sandbox",s3b:"Signed webhooks and automatic retries",s3c:"New operators added without code changes",
+s4t:"QR code &amp; payment links",s4p:"For merchants and teams without developers: generate a QR or a link, share it, get paid.",s4a:"Static QR per point of sale or dynamic QR per amount",s4b:"Link shareable via WhatsApp, SMS or e-mail",s4c:"Payment page in your brand colours",
+s5t:"WhatsApp verification chatbot",s5p:"Your teams and customers check a transaction's status from WhatsApp — no back-office access needed.",s5a:"Search by reference, number or amount",s5b:"Instant answer: received, pending, failed",s5c:"Fewer \"I paid but…\" support tickets",
+s6t:"Dashboard &amp; reconciliation",s6p:"A consolidated view of all your flows across every operator, with automatic matching against statements.",s6a:"Real-time tracking of collections and payouts",s6b:"Accounting exports (CSV, Excel) and scheduled reports",s6c:"Alerts on discrepancies and pending transactions",
+how_ey:"How it works",how_t:"From payment to reconciliation",how_d:"The journey of a collection with Wakyi, end to end.",
+h1t:"Initiation",h1p:"Your system calls the Wakyi API, or the customer scans a QR / opens a payment link.",
+h2t:"Customer confirmation",h2p:"The customer approves the payment on their phone, in their usual wallet.",
+h3t:"Real-time notification",h3p:"Wakyi receives the operator's confirmation and notifies your system via webhook.",
+h4t:"Verification",h4p:"If in doubt, the status can be checked instantly through the WhatsApp chatbot or the dashboard.",
+h5t:"Settlement &amp; reporting",h5p:"Funds are settled on the agreed cycle; reconciliation and exports are generated automatically.",
+uc_ey:"Use cases",uc_t:"Built for businesses<br>that collect and pay",uc_d:"From SMEs to institutions, Wakyi adapts to your volume and the level of integration you want.",
+u1t:"E-commerce &amp; online services",u1p:"Checkout payment via every wallet, instant confirmation, conversion rate preserved.",
+u2t:"Merchants &amp; distribution networks",u2p:"QR code at the till, payment links for remote orders, tracking per point of sale.",
+u3t:"Companies, NGOs &amp; institutions",u3p:"Secure bulk payouts: salaries, allowances, agent commissions, direct aid.",
+dif_ey:"Why Wakyi",dif_t:"What Wakyi does<br>differently",dif_d:"A platform built by a team that already operates Mobile Money flows at scale.",
+df1:"One integration, every operator",df1p:"Orange Money, MTN MoMo, Wave and Moov Money behind a single API. New networks are added without touching your code.",
+df2:"Proven operational expertise",df2p:"The team behind Wakyi already operates a Mobile Money aggregation platform in the Democratic Republic of Congo, connected to four networks.",
+df3:"Automatic reconciliation",df3p:"Daily matching of your transactions against operator statements, with detection of discrepancies and pending operations.",
+df4:"Verification via WhatsApp",df4p:"A channel your teams and customers already use. A transaction's status in seconds, no training required.",
+df5:"Secure by design",df5p:"End-to-end encryption, signed webhooks, full audit log and multi-level approval for outbound payments.",
+df6:"Local support, in Abidjan",df6p:"An on-the-ground team that knows the operators and their realities. Support from integration through to go-live.",
+dep_ey:"Onboarding",dep_t:"From access request<br>to first transaction",
+dl_h:"Integrate in<br><span class=\"accent\">days</span>,<br>not months",dl_p:"While we finalise your merchant file, your teams are already working in the sandbox. QR codes and payment links need no development at all.",dl_b:"Request access →",
+dt1t:"Request &amp; scoping",dt1p:"Walkthrough of your flows, volumes and target operators. Pricing grid shared.",
+dt2t:"Merchant file (KYB)",dt2p:"Collection of company documents and opening of your Wakyi account.",
+dt3t:"Sandbox access",dt3p:"Test keys, API documentation and wallet simulator for your developers.",
+dt4t:"Integration &amp; testing",dt4p:"Collections, bulk payouts, webhooks — validated end to end with our team.",
+dt5t:"Go-live 🚀",dt5p:"Production keys, dashboard activated, WhatsApp chatbot configured. Dedicated support.",
+cta_t:"Ready to simplify your Mobile Money payments?",cta_p:"Contact us for a Wakyi demo or to receive your sandbox access.",cta_b1:"Request access →",cta_b2:"Call now",
+ft_p:"© 2026 YSB Technologies SARL — All rights reserved. Wakyi is a brand of YSB Technologies.<br>Abidjan, Côte d'Ivoire"
+}
+};
+let cL=localStorage.getItem("ysb_lang")||"fr";
+function setLang(l){cL=l;localStorage.setItem("ysb_lang",l);document.documentElement.lang=l;
+document.querySelectorAll(".lang-btn").forEach(b=>b.classList.toggle("active",b.textContent.trim()===l.toUpperCase()));
+document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.getAttribute("data-i18n");if(T[l]&&T[l][k])el.innerHTML=T[l][k]});
+document.title=(l==="en"?"Wakyi — Payments & Mobile Money | YSB Technologies":"Wakyi — Paiements & Mobile Money | YSB Technologies");
+}
+document.addEventListener("DOMContentLoaded",()=>setLang(cL));
+</script>
+
+<!-- WHATSAPP FLOATING BUTTON -->
+<div class="wa-float">
+  <div class="wa-tooltip" data-i18n="wa_tip">Discutons sur WhatsApp</div>
+  <a href="https://wa.me/2250103680942?text=Bonjour%20YSB%20Technologies%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20Wakyi." target="_blank" rel="noopener" class="wa-btn" aria-label="WhatsApp">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16.004 0h-.008C7.174 0 0 7.176 0 16c0 3.5 1.128 6.744 3.046 9.378L1.054 31.29l6.118-1.96A15.89 15.89 0 0016.004 32C24.826 32 32 24.822 32 16S24.826 0 16.004 0zm9.35 22.616c-.393 1.107-1.946 2.026-3.2 2.294-.86.18-1.98.324-5.756-1.238-4.832-1.998-7.94-6.896-8.18-7.214-.232-.318-1.946-2.59-1.946-4.942 0-2.35 1.232-3.508 1.67-3.986.392-.43 1.036-.644 1.654-.644.2 0 .378.02.54.036.436.02.656.046 .944.73.358.852 1.232 3.006 1.34 3.224.108.218.216.518.066.818-.142.308-.268.446-.486.698-.218.252-.424.446-.642.718-.2.236-.424.488-.178.924.246.43 1.094 1.8 2.35 2.916 1.616 1.434 2.978 1.88 3.4 2.088.43.208.682.178.934-.108.258-.29 1.102-1.286 1.396-1.728.288-.442.582-.366.978-.218.4.142 2.538 1.198 2.974 1.416.436.218.728.328.836.508.106.18.106 1.054-.288 2.16z"/></svg>
+  </a>
+</div>
+</body>
+</html>
